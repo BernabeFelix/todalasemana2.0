@@ -1,5 +1,3 @@
-# Nike Career Site
-
 ## Git Workflow
 
 Based on [MojoTech Git Workflow](http://blog.mojotech.com/mojotech-git-workflow/)
