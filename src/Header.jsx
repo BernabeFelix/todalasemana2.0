@@ -5,10 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 
-const styles = {
-  backgroundColor: '#5ba8d6'
-};
-
 const Header = props => (
   <div>
     <AppBar

@@ -17,11 +17,9 @@ class App extends React.Component {
   }
   // Toggle function (open/close Drawer)
   toggleDrawer() {
-    console.log(`DRAWER IS: ${this.state.sideNavOpen}`);
     this.setState({
       sideNavOpen: !this.state.sideNavOpen
     });
-    console.log(`DRAWER IS: ${this.state.sideNavOpen}`);
   }
 
   render() {
