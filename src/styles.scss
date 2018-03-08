@@ -1,5 +1,19 @@
-// @import someFile;
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+$font-stack: 'Roboto', sans-serif;
+
+$blue-lighter: #e5f5fb;
+$blue-light: #b5e2f5;
+$blue-mid: #25aae1;
+$blue-darks: #5ba8d6;
+$orange: #f7941e;
 
 body {
-    background-color: lightgreen;
+  background-color: $blue-light;
+  font-family: $font-stack;
+  margin: 0px;
+}
+
+.header {
+  background-color: $blue-darks;
 }
