@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SideNav from './SideNav';
 import Main from './Main';
 import Header from './Header';
-import styles from './styles.scss';
 
 class App extends React.Component {
   constructor() {
@@ -15,7 +14,7 @@ class App extends React.Component {
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
-  // Toggle function (open/close Drawer)
+
   toggleDrawer() {
     this.setState({
       sideNavOpen: !this.state.sideNavOpen
@@ -40,18 +39,6 @@ class App extends React.Component {
   }
 }
 
-// const App = () => (
-//   <MuiThemeProvider>
-//     <Router>
-//       <div>
-//         <Header />
-//         <SideNav />
-//         <Main />
-//       </div>
-//     </Router>
-//   </MuiThemeProvider>
-// );
-
 export default App;
 
-ReactDOM.render(<App style={styles} />, document.getElementById('app'));
+// ReactDOM.render(<App style={styles} />, document.getElementById('app'));

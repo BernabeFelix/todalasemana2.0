@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Paper from 'material-ui/Paper';
 
 const Content = props => (
   <div>
@@ -17,15 +18,76 @@ Content.propTypes = {
 
 const Main = () => (
   <BrowserRouter>
-    <div>
-      <main>
-        <div>
-          <Route exact path="/" component={Content} />
-          <Route exact path="/lunes" component={Content} />
-          <Route exact path="/martes" component={Content} />
-        </div>
-      </main>
-    </div>
+    <main className="main">
+      <Paper className="paper">
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+              <div>Lorem ipsum dolor est a simply dummy text.</div>
+            </div>
+          )}
+        />
+        <Route exact path="/lunes" component={Content} />
+        <Route exact path="/martes" component={Content} />
+      </Paper>
+    </main>
   </BrowserRouter>
 );
 
