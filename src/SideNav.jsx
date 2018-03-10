@@ -14,14 +14,16 @@ const SideNav = props => (
       onRequestChange={props.onCloseDrawer}
       containerClassName="sidenav"
     >
-      <div className="logo">
-        <h3>
-          <span>
-            Toda<span className="text-orange">la</span>semana.com
-          </span>
-        </h3>
-        <span className="slogan">Online & Mobile Marketing</span>
-      </div>
+      <Link to="/">
+        <div className="logo">
+          <h3>
+            <span>
+              Toda<span className="text-orange">la</span>semana.com
+            </span>
+          </h3>
+          <span className="slogan">Online & Mobile Marketing</span>
+        </div>
+      </Link>
       <Menu
         onClick={props.onCloseDrawer}
         width={250}

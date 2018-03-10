@@ -18,7 +18,7 @@ Content.propTypes = {
 
 const About = () => (
   <div>
-    <h1>About</h1>
+    <h1 className="text-orange">About</h1>
     <Paper className="paper">
       <div>Lorem ipsum dolor est a simply dummy text.</div>
       <div>Lorem ipsum dolor est a simply dummy text.</div>
@@ -93,7 +93,12 @@ const Main = () => (
         }}
       />
       <Route path="/lunes" render={() => <div>Lunes!!</div>} />
-      <Route exact strict path="/" render={() => <h1>Welcome!</h1>} />
+      <Route
+        exact
+        strict
+        path="/"
+        render={() => <h1 className="text-orange">Welcome!</h1>}
+      />
     </Switch>
   </main>
 );
