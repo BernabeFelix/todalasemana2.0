@@ -1,6 +1,6 @@
 {
   "rules": {
-    "linebreak-style": ["error", "windows"],
+    "linebreak-style": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {

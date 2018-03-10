@@ -1,10 +1,9 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SideNav from './SideNav';
+import SideNav from './components/common/SideNav';
 import Main from './Main';
-import Header from './Header';
+import Header from './components/common/Header';
 
 class App extends React.Component {
   constructor() {
@@ -25,14 +24,12 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <Router>
-          <div>
             <Header onToggleDrawer={this.toggleDrawer} />
             <SideNav
-              open={this.state.sideNavOpen}
-              onCloseDrawer={this.toggleDrawer}
+                open={this.state.sideNavOpen}
+                onCloseDrawer={this.toggleDrawer}
             />
             <Main />
-          </div>
         </Router>
       </MuiThemeProvider>
     );
