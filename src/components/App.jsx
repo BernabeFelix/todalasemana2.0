@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Main from './Content';
-import Header from './components/common/Header';
+import Header from './common/Header';
 
 const App = () => (
   <MuiThemeProvider>
