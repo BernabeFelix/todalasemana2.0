@@ -8,9 +8,10 @@ $blue-mid: #25aae1;
 $blue-darks: #5ba8d6;
 $orange: #f7941e;
 $white: #ffffff;
+$gray-bg: #f2f2f2;
 
 body {
-  background-color: $blue-light;
+  background-color: $gray-bg;
   font-family: $font-stack;
   margin: 0px;
 }
@@ -88,7 +89,7 @@ a {
 
 .main {
   margin-top: 64px;
-  background-color: #f2f2f2;
+  // background-color: $gray-bg;
   padding: 20px;
 }
 .paper {

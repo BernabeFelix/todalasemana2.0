@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 
@@ -16,79 +16,86 @@ Content.propTypes = {
   content: PropTypes.string
 };
 
+const About = () => (
+  <div>
+    <h1>About</h1>
+    <Paper className="paper">
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+      <div>Lorem ipsum dolor est a simply dummy text.</div>
+    </Paper>
+  </div>
+);
+
 const Main = () => (
-  <BrowserRouter>
-    <main className="main">
-      <Paper className="paper">
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-              <div>Lorem ipsum dolor est a simply dummy text.</div>
-            </div>
-          )}
-        />
-        <Route exact path="/lunes" component={Content} />
-        <Route exact path="/martes" component={Content} />
-      </Paper>
-    </main>
-  </BrowserRouter>
+  <main className="main">
+    <Switch>
+      <Route
+        path="/about"
+        render={({ match }) => {
+          if (match) {
+            return <About />;
+          }
+          return false;
+        }}
+      />
+      <Route path="/lunes" render={() => <div>Lunes!!</div>} />
+      <Route exact strict path="/" render={() => <h1>Welcome!</h1>} />
+    </Switch>
+  </main>
 );
 
 export default Main;

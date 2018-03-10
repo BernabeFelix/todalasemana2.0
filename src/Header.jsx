@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';

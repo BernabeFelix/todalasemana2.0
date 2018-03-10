@@ -4,20 +4,10 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
 import Subheader from 'material-ui/Subheader';
-// import ArrowDropRight from 'material-ui/svg-icons/navigation/arrow-downward';
 import PropTypes from 'prop-types';
-// import styles from './styles.scss';
-
-// const styles = {
-//   container: {
-//     backgroundColor: '#b5e2f5'
-//   }
-// };
-// console.log(styles);
 
 const SideNav = props => (
   <div>
-    {/* width={250} */}
     <Drawer
       docked={false}
       open={props.open}
@@ -59,10 +49,15 @@ const SideNav = props => (
         <Link to="/sabado" title="sabado">
           <MenuItem className="menu-item">Sabado</MenuItem>
         </Link>
-        <Link to="/Domingo" title="Domingo">
+        <Link to="/domingo" title="Domingo">
           <MenuItem className="menu-item">Domingo</MenuItem>
         </Link>
       </Menu>
+      <Link to="/about" title="About this site">
+        <MenuItem className="menu-item" onClick={props.onCloseDrawer}>
+          About
+        </MenuItem>
+      </Link>
     </Drawer>
   </div>
 );
