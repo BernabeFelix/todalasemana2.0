@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SideNav from './components/common/SideNav';
 import Main from './Main';
 import Header from './components/common/Header';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,12 +24,14 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <Router>
+          <Fragment>
             <Header onToggleDrawer={this.toggleDrawer} />
             <SideNav
-                open={this.state.sideNavOpen}
-                onCloseDrawer={this.toggleDrawer}
+              open={this.state.sideNavOpen}
+              onCloseDrawer={this.toggleDrawer}
             />
             <Main />
+          </Fragment>
         </Router>
       </MuiThemeProvider>
     );
