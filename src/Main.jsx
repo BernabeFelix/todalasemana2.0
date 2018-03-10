@@ -97,7 +97,7 @@ const Main = () => (
         exact
         strict
         path="/"
-        render={() => <h1 className="text-orange">Welcome!</h1  >}
+        render={() => <h1 className="text-orange">Welcome!</h1>}
       />
     </Switch>
   </main>

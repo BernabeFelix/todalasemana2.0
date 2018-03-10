@@ -1,27 +1,42 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
+import SideNav from './SideNav';
 
-const Header = props => (
-  <div>
-    <AppBar
-      title="Toda la semana"
-      className="header"
-      onLeftIconButtonClick={props.onToggleDrawer}
-      iconElementRight={
-        <FlatButton
-          label="Sign In/ Sign Up"
-          containerElement={<Link to="signin" />}
+class Header extends React.Component {
+  state = {
+    sideNavOpen: false
+  };
+
+  toggleDrawer = () => {
+    this.setState({
+      sideNavOpen: !this.state.sideNavOpen
+    });
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <AppBar
+          title="Toda la semana"
+          className="header"
+          onLeftIconButtonClick={this.toggleDrawer}
+          iconElementRight={
+            <FlatButton
+              label="Sign In/ Sign Up"
+              containerElement={<Link to="signin" />}
+            />
+          }
         />
-      }
-    />
-  </div>
-);
+
+        <SideNav
+          open={this.state.sideNavOpen}
+          onCloseDrawer={this.toggleDrawer}
+        />
+      </Fragment>
+    );
+  }
+}
 
 export default Header;
-
-Header.propTypes = {
-  onToggleDrawer: PropTypes.func.isRequired
-};
