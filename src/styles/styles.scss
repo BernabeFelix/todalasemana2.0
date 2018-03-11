@@ -1,18 +1,16 @@
+/* external imports */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @import 'styles/utils';
 
 @import 'components/Home/PromotionSingleResult';
 
-$font-stack: 'Roboto', sans-serif;
+@import './variables';
 
-$blue-lighter: #e5f5fb;
-$blue-light: #b5e2f5;
-$blue-mid: #25aae1;
-$blue-darks: #5ba8d6;
-$orange: #f7941e;
-$white: #ffffff;
-$black: #000000;
-$gray-bg: #f2f2f2;
+/* component imports */
+@import '../components/common/Header/Header';
+@import '../components/common/SideNav/SideNav';
+
+$font-stack: 'Roboto', sans-serif;
 
 body {
   background: url('./images/fondo_1180x1820.jpg') center no-repeat;
