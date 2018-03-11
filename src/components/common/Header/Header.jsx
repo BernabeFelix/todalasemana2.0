@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
-import SideNav from './SideNav';
+import SideNav from '../SideNav/SideNav';
 
 class Header extends React.Component {
   state = {
