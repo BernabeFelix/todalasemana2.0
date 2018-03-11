@@ -1,7 +1,17 @@
 import React from 'react';
 
 const PromotionSingleResult = () => (
-  <span>This content will take up 3/12 (or 1/4) of the container</span>
+  <div className="row promotion-single-result">
+    <div className="col-xs-12 col-sm-3">
+      <img className="img-responsive" src="https://placebear.com/200/100" alt="" />
+    </div>
+    <div className="col-xs-12 col-sm-9">
+      <div className="row">
+        <div className="col-xs-12">Titulo</div>
+        <div className="col-xs-12">Description</div>
+      </div>
+    </div>
+  </div>
 );
 
 export default PromotionSingleResult;
