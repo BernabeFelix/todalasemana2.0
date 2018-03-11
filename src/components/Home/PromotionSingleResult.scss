@@ -1,11 +1,16 @@
 .promotion-single-result {
   background-color: white;
   border-radius: 0.5rem;
-  max-height: 100px;
+  min-height: 100px;
+  margin-top: 1rem;
 
   .img-container {
     padding: 0.5rem;
-    display: flex; // center img
+
+    // center img
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       border-radius: 0.5rem;
