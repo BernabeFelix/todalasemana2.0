@@ -15,6 +15,6 @@ const PromotionSingleResult = ({ description, id, imgUrl, title }) => (
   </Link>
 );
 
-PromotionSingleResult.propTypes = { ...Promotion };
+PromotionSingleResult.propTypes = Promotion;
 
 export default PromotionSingleResult;
