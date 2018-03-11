@@ -35,7 +35,10 @@ module.exports = {
             loader: 'css-loader'
           },
           {
-            loader: 'sass-loader'
+            loader: 'resolve-url-loader'
+          },
+          {
+            loader: 'sass-loader?sourceMap'
           }
         ]
       },
@@ -44,7 +47,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {}
+            options: { useRelativePath: true }
           }
         ]
       }
