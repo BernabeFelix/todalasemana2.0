@@ -1,5 +1,9 @@
-export const aboutUrl = '/about';
+import pathToRegexp from 'path-to-regexp';
 
-export const homeUrl = '/';
+const r = path => pathToRegexp.compile(path);
 
-export const dayUrl = '/day/:day';
+export const aboutUrl = r('/about');
+
+export const homeUrl = r('/');
+
+export const promotionUrl = r('/promotion/:id');
