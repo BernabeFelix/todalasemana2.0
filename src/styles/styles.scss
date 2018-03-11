@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-@import 'styles/utils';
+@import 'utils';
 
-@import 'components/Home/PromotionSingleResult';
+@import '../components/Home/PromotionSingleResult';
 
 $font-stack: 'Roboto', sans-serif;
 
@@ -15,7 +15,7 @@ $black: #000000;
 $gray-bg: #f2f2f2;
 
 body {
-  background: url('./images/fondo_1180x1820.jpg') center no-repeat;
+  background: url('../images/fondo_1180x1820.jpg') center no-repeat;
   font-family: $font-stack;
   margin: 0;
 }

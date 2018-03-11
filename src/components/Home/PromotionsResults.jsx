@@ -1,10 +1,6 @@
 import React from 'react';
 import PromotionSingleResult from './PromotionSingleResult';
 
-const PromotionsResults = () => (
-  <div className="container-fluid">
-    <PromotionSingleResult />
-  </div>
-);
+const PromotionsResults = () => <PromotionSingleResult />;
 
 export default PromotionsResults;
