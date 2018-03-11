@@ -15,9 +15,9 @@ $black: #000000;
 $gray-bg: #f2f2f2;
 
 body {
-  background-color: $gray-bg;
+  background: url('./images/fondo_1180x1820.jpg') center no-repeat;
   font-family: $font-stack;
-  margin: 0px;
+  margin: 0;
 }
 /* Scrollbar (webkit only) */
 /* width */
