@@ -24,7 +24,7 @@ class Header extends React.Component {
           onLeftIconButtonClick={this.toggleDrawer}
           iconElementRight={
             <FlatButton
-              label="Sign In/ Sign Up"
+              label="Martes"
               containerElement={<Link to="signin" />}
             />
           }

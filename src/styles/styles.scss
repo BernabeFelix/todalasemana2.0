@@ -1,8 +1,8 @@
 /* external imports */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-@import 'styles/utils';
+@import './utils';
 
-@import 'components/Home/PromotionSingleResult';
+@import '../components/Home/PromotionSingleResult';
 
 @import './variables';
 
