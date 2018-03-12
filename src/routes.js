@@ -2,6 +2,8 @@ import pathToRegexp from 'path-to-regexp';
 
 const r = path => pathToRegexp.compile(path);
 
+export const authUrl = r('/auth');
+
 export const homeUrl = r('/');
 
 export const signInUrl = r('/entrar');
