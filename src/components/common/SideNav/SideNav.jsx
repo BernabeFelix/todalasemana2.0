@@ -1,38 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import Menu from 'material-ui/Menu';
-import Subheader from 'material-ui/Subheader';
 import PropTypes from 'prop-types';
+import Day from './Day';
 
 const SideNav = props => (
-  <div>
-    <Drawer
-      docked={false}
-      open={props.open}
-      onRequestChange={props.onCloseDrawer}
-      containerClassName="sidenav"
-    >
-      <Link to="/">
-        <div className="logo">
-          <h3>
-            <span>
-              Toda<span className="text-orange">la</span>semana.com
-            </span>
-          </h3>
-          <span className="slogan">Online & Mobile Marketing</span>
-        </div>
-      </Link>
-      <Menu
-        onClick={props.onCloseDrawer}
-        width={250}
-        listStyle={{ width: '250px' }}
-        className="menu"
-      >
-        <Subheader className="subheader text-white">
-          Elije el día de tu preferencia
-        </Subheader>
+  <Drawer
+    docked={false}
+    open={props.open}
+    onRequestChange={props.onCloseDrawer}
+    containerClassName="sidenav"
+  >
+    <Link to="/" onClick={props.onCloseDrawer}>
+      <div className="logo">
+        <h3>
+          <span>
+            Toda<span className="text-orange">la</span>semana.com
+          </span>
+        </h3>
+        <span className="slogan">Online & Mobile Marketing</span>
+      </div>
+    </Link>
+    <Day dayName="lunes" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="martes" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="miercoles" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="jueves" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="viernes" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="sabado" onCloseDrawer={props.onCloseDrawer} />
+    <Day dayName="domingo" onCloseDrawer={props.onCloseDrawer} />
+  </Drawer>
+);
+
+SideNav.defaultProps = {
+  open: false
+};
+
+SideNav.propTypes = {
+  open: PropTypes.bool,
+  onCloseDrawer: PropTypes.func.isRequired
+};
+
+/*
+
+
         <Link to="/lunes" title="Lunes">
           <MenuItem className="menu-item">Lunes</MenuItem>
         </Link>
@@ -54,23 +64,6 @@ const SideNav = props => (
         <Link to="/domingo" title="Domingo">
           <MenuItem className="menu-item">Domingo</MenuItem>
         </Link>
-      </Menu>
-      <Link to="/about" title="About this site">
-        <MenuItem className="menu-item" onClick={props.onCloseDrawer}>
-          About
-        </MenuItem>
-      </Link>
-    </Drawer>
-  </div>
-);
-
-SideNav.defaultProps = {
-  open: false
-};
-
-SideNav.propTypes = {
-  open: PropTypes.bool,
-  onCloseDrawer: PropTypes.func.isRequired
-};
+*/
 
 export default SideNav;
