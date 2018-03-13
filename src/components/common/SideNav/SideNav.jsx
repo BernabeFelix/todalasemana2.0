@@ -40,30 +40,4 @@ SideNav.propTypes = {
   onCloseDrawer: PropTypes.func.isRequired
 };
 
-/*
-
-
-        <Link to="/lunes" title="Lunes">
-          <MenuItem className="menu-item">Lunes</MenuItem>
-        </Link>
-        <Link to="/martes" title="martes">
-          <MenuItem className="menu-item">Martes</MenuItem>
-        </Link>
-        <Link to="/miercoles" title="miercoles">
-          <MenuItem className="menu-item">Miercoles</MenuItem>
-        </Link>
-        <Link to="/jueves" title="jueves">
-          <MenuItem className="menu-item">Jueves</MenuItem>
-        </Link>
-        <Link to="/viernes" title="viernes">
-          <MenuItem className="menu-item">Viernes</MenuItem>
-        </Link>
-        <Link to="/sabado" title="sabado">
-          <MenuItem className="menu-item">Sabado</MenuItem>
-        </Link>
-        <Link to="/domingo" title="Domingo">
-          <MenuItem className="menu-item">Domingo</MenuItem>
-        </Link>
-*/
-
 export default SideNav;
