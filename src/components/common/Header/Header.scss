@@ -2,7 +2,7 @@
 
 .header {
   height: 64px;
-  background-color: $blue-darks !important;
+  background-color: $red !important;
   position: fixed !important;
   left: 0;
   top: 0;
@@ -56,7 +56,7 @@
       color: $blue-darks !important;
 
       &:hover {
-        color: $orange !important;
+        color: $red !important;
       }
     }
 
