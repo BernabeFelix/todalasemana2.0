@@ -64,7 +64,7 @@ a {
 .main {
   margin-top: 64px;
   padding: 1rem;
-  padding-top: 64px;
+  padding-top: calc(1rem + 64px);
 }
 .paper {
   padding: 15px 20px;
