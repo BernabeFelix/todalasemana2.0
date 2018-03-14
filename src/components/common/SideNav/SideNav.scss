@@ -35,10 +35,7 @@
       line-height: 12px;
     }
   }
-
-  .subheader {
-    color: $white !important;
-    line-height: 14px !important;
-    padding: 0px 10px;
+  &-day-menu {
+    text-transform: capitalize;
   }
 }

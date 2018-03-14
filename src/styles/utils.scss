@@ -14,3 +14,11 @@
     display: initial;
   }
 }
+
+.show-xs-only {
+  display: none;
+
+  @media only screen and (max-width: 48em) {
+    display: initial;
+  }
+}
