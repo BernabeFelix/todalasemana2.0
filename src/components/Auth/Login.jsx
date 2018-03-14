@@ -1,12 +1,12 @@
-import { TextField } from 'material-ui';
+import { FlatButton, TextField } from 'material-ui';
 import React, { Component } from 'react';
 import _isEmpty from 'lodash-es/isEmpty';
 
-const submitButtonStyle = {
-  backgroundColor: 'orange',
-  fontSize: '18px',
-  color: 'white'
-};
+// const submitButtonStyle = {
+//   backgroundColor: 'orange',
+//   fontSize: '18px',
+//   color: 'white'
+// };
 
 class Login extends Component {
   static userField = 'user';
@@ -93,17 +93,34 @@ class Login extends Component {
           onChange={this.update}
           value={user}
           name="user"
+          style={{ display: 'block', margin: 'auto' }}
         />
         <TextField
+          style={{ display: 'block', margin: 'auto' }}
           floatingLabelText="contraseña"
           errorText={passwordErrorText}
           onChange={this.update}
           value={password}
           name="password"
         />
-        <button type="submit" style={submitButtonStyle} onClick={this.submit}>
-          Entrar
-        </button>
+        <div
+          className="submit-btn-wrapper"
+          style={{
+            textAlign: 'right',
+            width: 256,
+            margin: 'auto',
+            paddingBottom: '1rem'
+          }}
+        >
+          <FlatButton
+            label="Entrar"
+            className="header-right-nav-btn"
+            hoverColor="transparent"
+            rippleColor="transparent !important"
+            style={{ border: '1px solid #5ba8d6', borderRadius: '.5rem'}}
+            onClick={this.submit}
+          />
+        </div>
       </div>
     );
   }
