@@ -1,22 +1,27 @@
 import { FlatButton, TextField } from 'material-ui';
 import React, { Component } from 'react';
 import _isEmpty from 'lodash-es/isEmpty';
-
-// const submitButtonStyle = {
-//   backgroundColor: 'orange',
-//   fontSize: '18px',
-//   color: 'white'
-// };
+import CustomTextField from './CustomTextField';
+import { areAllTrue, validateRequired } from './utils';
 
 class Login extends Component {
   static userField = 'user';
-  static passwordField = 'password';
   static errors = {
     [Login.userField]: {
       required: 'Ingrese un usuario'
-    },
-    [Login.passwordField]: {
-      required: 'Ingrese una contraseña'
+    }
+  };
+
+  static controls = {
+    password: {
+      errors: {
+        required: 'Ingrese una contraseña'
+      },
+      fields: {
+        name: 'password',
+        type: 'text',
+        floatingLabelText: 'contraseña'
+      }
     }
   };
 
@@ -24,41 +29,44 @@ class Login extends Component {
     [Login.userField]: '',
     [Login.passwordField]: '',
     userErrorText: '',
-    passwordErrorText: ''
-  };
-
-  validateRequired = (field, fieldErrorText) => {
-    const toUpdate = {};
-    let isValid = true;
-
-    const { [field]: fieldValue, [fieldErrorText]: errorText } = this.state;
-
-    // if the field is empty
-    if (!fieldValue) {
-      // show error message
-      toUpdate[fieldErrorText] = Login.errors[field].required;
-      isValid = false;
-    } else if (errorText) {
-      // remove error message if the field is already fulfilled
-      toUpdate[fieldErrorText] = '';
-    }
-
-    if (!_isEmpty(toUpdate)) {
-      this.setState(toUpdate);
-    }
-
-    return isValid;
+    passwordErrorText: '',
+    shouldValid: false
   };
 
   formIsValid = () => {
-    const isUserValid = this.validateRequired(Login.userField, 'userErrorText');
-
-    const isPasswordValid = this.validateRequired(
-      Login.passwordField,
-      'passwordErrorText'
+    const userRequired = validateRequired(
+      Login.userField,
+      'userErrorText',
+      this.state,
+      Login.errors
     );
 
-    return isUserValid && isPasswordValid;
+    const passwordRequired = validateRequired(
+      Login.passwordField,
+      'passwordErrorText',
+      this.state,
+      Login.errors
+    );
+
+    // If the form is not valid
+    // form controls are updated
+    const areControlsValid = areAllTrue([
+      userRequired.isValid,
+      passwordRequired.isValid
+    ]);
+
+    if (!areControlsValid) {
+      if (!_isEmpty(userRequired.toUpdate)) {
+        this.setState(userRequired.toUpdate);
+      }
+      if (!_isEmpty(passwordRequired.toUpdate)) {
+        this.setState(passwordRequired.toUpdate);
+      }
+
+      return false;
+    }
+
+    return true;
   };
 
   submit = () => {
@@ -71,19 +79,13 @@ class Login extends Component {
     alert('All right, All right, All right');
   };
 
-  update = ({ target }) => {
-    const { value, name } = target;
-
-    this.setState({ [name]: value });
+  updateValid = controlWithValidValue => {
+    // todo: add validation to shouldComponentUpdate
+    this.setState(controlWithValidValue);
   };
 
   render() {
-    const {
-      [Login.passwordField]: password,
-      passwordErrorText,
-      [Login.userField]: user,
-      userErrorText
-    } = this.state;
+    const { [Login.userField]: user, userErrorText, shouldValid } = this.state;
 
     return (
       <div className="login">
@@ -100,12 +102,10 @@ class Login extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12 text-center">
-            <TextField
-              floatingLabelText="contraseña"
-              errorText={passwordErrorText}
-              onChange={this.update}
-              value={password}
-              name="password"
+            <CustomTextField
+              fields={Login.controls.password.fields}
+              onValidChange={this.updateValid}
+              shouldValid={shouldValid}
             />
           </div>
         </div>
