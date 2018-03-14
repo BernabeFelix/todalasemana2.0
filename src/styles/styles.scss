@@ -9,13 +9,29 @@
 /* component imports */
 @import '../components/common/Header/Header';
 @import '../components/common/SideNav/SideNav';
+@import '../components/common/Footer/Footer';
 
 $font-stack: 'Roboto', sans-serif;
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 body {
   background: url('../images/fondo_1180x1820.jpg') center no-repeat;
   font-family: $font-stack;
   margin: 0;
+  margin-top: -64px;
+  position: relative;
+  padding-bottom: 68px;
+  min-height: 100%;
 }
 /* Scrollbar (webkit only) */
 /* width */
@@ -47,8 +63,8 @@ a {
 
 .main {
   margin-top: 64px;
-  // background-color: $gray-bg;
-  padding: 20px;
+  padding: 1rem;
+  padding-top: 64px;
 }
 .paper {
   padding: 15px 20px;
