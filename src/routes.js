@@ -2,11 +2,11 @@ import pathToRegexp from 'path-to-regexp';
 
 const r = path => pathToRegexp.compile(path);
 
-export const authUrl = r('/auth');
-
 export const homeUrl = r('/');
 
 export const signInUrl = r('/entrar');
+
+export const signUpUrl = r('/registrar');
 
 export const aboutUrl = r('/quienes-somos');
 
