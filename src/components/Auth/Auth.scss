@@ -1,3 +1,17 @@
 .auth-tabs {
   background-color: white;
 }
+
+.login {
+  .submit-btn-wrapper {
+    text-align: right;
+    width: 256px;
+    margin: auto;
+    padding-bottom: 1rem;
+  }
+
+  .submit-btn {
+    border: 1px solid $blue-darks !important;
+    border-radius: 0.5rem !important;
+  }
+}

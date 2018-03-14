@@ -68,7 +68,7 @@ class Login extends Component {
 
     //    send POST
     //    reset form
-    console.log('All right, All right, All right');
+    alert('All right, All right, All right');
   };
 
   update = ({ target }) => {
@@ -87,37 +87,34 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <TextField
-          floatingLabelText="email"
-          errorText={userErrorText}
-          onChange={this.update}
-          value={user}
-          name="user"
-          style={{ display: 'block', margin: 'auto' }}
-        />
-        <TextField
-          style={{ display: 'block', margin: 'auto' }}
-          floatingLabelText="contraseña"
-          errorText={passwordErrorText}
-          onChange={this.update}
-          value={password}
-          name="password"
-        />
-        <div
-          className="submit-btn-wrapper"
-          style={{
-            textAlign: 'right',
-            width: 256,
-            margin: 'auto',
-            paddingBottom: '1rem'
-          }}
-        >
+        <div className="row">
+          <div className="col-xs-12 text-center">
+            <TextField
+              floatingLabelText="email"
+              errorText={userErrorText}
+              onChange={this.update}
+              value={user}
+              name="user"
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 text-center">
+            <TextField
+              floatingLabelText="contraseña"
+              errorText={passwordErrorText}
+              onChange={this.update}
+              value={password}
+              name="password"
+            />
+          </div>
+        </div>
+        <div className="submit-btn-wrapper">
           <FlatButton
             label="Entrar"
-            className="header-right-nav-btn"
+            className="header-right-nav-btn submit-btn"
             hoverColor="transparent"
             rippleColor="transparent !important"
-            style={{ border: '1px solid #5ba8d6', borderRadius: '.5rem'}}
             onClick={this.submit}
           />
         </div>
