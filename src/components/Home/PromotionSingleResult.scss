@@ -3,9 +3,11 @@
   border-radius: 0.5rem;
   min-height: 100px;
   margin-top: 1rem;
+  padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
 
   .img-container {
-    padding: 0.5rem;
+    // padding: 0.5rem;
 
     // center img
     display: flex;
