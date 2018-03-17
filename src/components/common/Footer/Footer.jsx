@@ -2,7 +2,6 @@ import React, { Fragment, Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import FooterLink from './FooterLink';
 import { homeUrl } from '../../../routes';
-// import Modal from './Modal';
 import { About, Services, Contact } from './Modals';
 
 class Footer extends Component {
@@ -43,7 +42,6 @@ class Footer extends Component {
       default:
         break;
     }
-    console.log(this.state);
   };
 
   handleClose = () => {
@@ -55,8 +53,6 @@ class Footer extends Component {
   };
 
   render() {
-    console.log('RENDER');
-    console.log(this.state);
     return (
       <Fragment>
         <About open={this.state.aboutOpen} handleClose={this.handleClose} />
