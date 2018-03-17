@@ -66,34 +66,38 @@ class Footer extends Component {
         />
         <Contact open={this.state.contactOpen} handleClose={this.handleClose} />
         <footer className="footer">
-          <FooterLink url={homeUrl()} label="Home" />
-          <FlatButton
-            label="Quienes somos"
-            className="footer-link"
-            hoverColor="transparent"
-            rippleColor="transparent"
-            onClick={() => this.handleOpen('about')}
-          />
-          <FlatButton
-            label="Servicios"
-            className="footer-link"
-            hoverColor="transparent"
-            rippleColor="transparent"
-            onClick={() => this.handleOpen('services')}
-          />
-          <FlatButton
-            label="Contacto"
-            className="footer-link"
-            hoverColor="transparent"
-            rippleColor="transparent"
-            onClick={() => this.handleOpen('contact')}
-          />
-          {/* <FooterLink
-            onClick={this.handleOpen('about')}
-            label="Quienes somos"
-          />
-          <FooterLink url={this.handleOpen('services')} label="Servicios" />
-          <FooterLink url={this.handleOpen('contact')} label="Contacto" /> */}
+          <div className="row">
+            <div className="col-xs-12 col-sm-3">
+              <FooterLink url={homeUrl()} label="Home" />
+            </div>
+            <div className="col-xs-12 col-sm-3">
+              <FlatButton
+                label="Quienes somos"
+                className="footer-link"
+                hoverColor="transparent"
+                rippleColor="transparent"
+                onClick={() => this.handleOpen('about')}
+              />
+            </div>
+            <div className="col-xs-12 col-sm-3">
+              <FlatButton
+                label="Servicios"
+                className="footer-link"
+                hoverColor="transparent"
+                rippleColor="transparent"
+                onClick={() => this.handleOpen('services')}
+              />
+            </div>
+            <div className="col-xs-12 col-sm-3">
+              <FlatButton
+                label="Contacto"
+                className="footer-link"
+                hoverColor="transparent"
+                rippleColor="transparent"
+                onClick={() => this.handleOpen('contact')}
+              />
+            </div>
+          </div>
         </footer>
       </Fragment>
     );

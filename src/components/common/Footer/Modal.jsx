@@ -26,6 +26,8 @@ const Modal = props => (
       modal={false}
       open={props.open}
       onRequestClose={props.handleClose}
+      autoDetectWindowHeight
+      autoScrollBodyContent
     >
       {props.children}
     </Dialog>
