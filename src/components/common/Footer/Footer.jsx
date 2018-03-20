@@ -63,10 +63,10 @@ class Footer extends Component {
         <Contact open={this.state.contactOpen} handleClose={this.handleClose} />
         <footer className="footer">
           <div className="row">
-            <div className="col-xs-12 col-sm-3">
+            <div className="col-xs-6 col-sm-3">
               <FooterLink url={homeUrl()} label="Home" />
             </div>
-            <div className="col-xs-12 col-sm-3">
+            <div className="col-xs-6 col-sm-3">
               <FlatButton
                 label="Quienes somos"
                 className="footer-link"
@@ -75,7 +75,7 @@ class Footer extends Component {
                 onClick={() => this.handleOpen('about')}
               />
             </div>
-            <div className="col-xs-12 col-sm-3">
+            <div className="col-xs-6 col-sm-3">
               <FlatButton
                 label="Servicios"
                 className="footer-link"
@@ -84,7 +84,7 @@ class Footer extends Component {
                 onClick={() => this.handleOpen('services')}
               />
             </div>
-            <div className="col-xs-12 col-sm-3">
+            <div className="col-xs-6 col-sm-3">
               <FlatButton
                 label="Contacto"
                 className="footer-link"

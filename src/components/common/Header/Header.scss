@@ -43,7 +43,7 @@
     margin-left: 5px;
     margin-right: 5px;
     padding: 5px;
-    background-color: $blue-lighter;
+    background-color: $white;
     border-radius: 25px;
 
     &.hide-sm {
@@ -53,7 +53,7 @@
     }
 
     &-btn {
-      color: $blue-darks !important;
+      color: $blue-cool !important;
 
       &:hover {
         color: $red !important;
@@ -61,7 +61,7 @@
     }
 
     &-divider {
-      color: $blue-darks;
+      color: $blue-cool;
     }
   }
 }

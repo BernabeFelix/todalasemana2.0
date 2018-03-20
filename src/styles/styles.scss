@@ -28,35 +28,13 @@ body {
   background: url('../images/fondo_1180x1820.jpg') center no-repeat;
   font-family: $font-stack;
   margin: 0;
-  margin-top: -64px;
+  margin-top: (-$headerHeight);
   position: relative;
-  padding-bottom: 68px;
+  padding-bottom: 50px;
   min-height: 100%;
   @media only screen and (max-width: 48em) {
-    padding-bottom: 176px;
+    padding-bottom: 72px;
   }
-}
-/* Scrollbar (webkit only) */
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 
 a {
@@ -65,9 +43,12 @@ a {
 }
 
 .main {
-  margin-top: 64px;
+  margin-top: $headerHeight;
   padding: 1rem;
-  padding-top: calc(1rem + 64px);
+  padding-top: calc(2rem + #{$headerHeight});
+  @media only screen and (max-width: 48em) {
+    padding-top: calc(1rem + #{$headerHeight});
+  }
 }
 .paper {
   padding: 15px 20px;
