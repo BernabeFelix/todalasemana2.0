@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .sidenav {
-  background-color: $blue-darks !important;
+  background-color: $blue-cool !important;
   overflow-x: hidden;
   div[role='presentation'],
   .menu {
@@ -21,7 +21,7 @@
 
   .logo {
     padding: 15px;
-    background-color: $blue-lighter;
+    background-color: $white;
 
     h3 {
       margin-bottom: 0px;

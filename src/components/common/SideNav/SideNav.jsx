@@ -15,7 +15,7 @@ const SideNav = props => (
       <div className="logo">
         <h3>
           <span>
-            Toda<span className="text-orange">la</span>semana.com
+            Toda<span className="text-red">la</span>semana.com
           </span>
         </h3>
         <span className="slogan">Online & Mobile Marketing</span>
