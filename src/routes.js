@@ -10,6 +10,8 @@ export const aboutUrl = r('/quienes-somos');
 
 export const servicesUrl = r('/servicios');
 
+export const contactUrl = r('/contacto');
+
 export const promotionUrl = r('/promo/:id');
 
 export const dayUrl = r('/dia/:day');

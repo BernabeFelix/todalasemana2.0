@@ -9,35 +9,32 @@
 /* component imports */
 @import '../components/common/Header/Header';
 @import '../components/common/SideNav/SideNav';
+@import '../components/common/Footer/Footer';
 
 $font-stack: 'Roboto', sans-serif;
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 body {
   background: url('../images/fondo_1180x1820.jpg') center no-repeat;
   font-family: $font-stack;
   margin: 0;
-}
-/* Scrollbar (webkit only) */
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  margin-top: (-$headerHeight);
+  position: relative;
+  padding-bottom: 50px;
+  min-height: 100%;
+  @media only screen and (max-width: 48em) {
+    padding-bottom: 72px;
+  }
 }
 
 a {
@@ -46,9 +43,12 @@ a {
 }
 
 .main {
-  margin-top: 64px;
-  // background-color: $gray-bg;
-  padding: 20px;
+  margin-top: $headerHeight;
+  padding: 1rem;
+  padding-top: calc(2rem + #{$headerHeight});
+  @media only screen and (max-width: 48em) {
+    padding-top: calc(1rem + #{$headerHeight});
+  }
 }
 .paper {
   padding: 15px 20px;
@@ -56,6 +56,9 @@ a {
 // Text colors
 .text-orange {
   color: $orange;
+}
+.text-red {
+  color: $red;
 }
 .text-white {
   color: $white;

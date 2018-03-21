@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Content from './Content';
 import Header from './common/Header/Header';
+import Footer from './common/Footer/Footer';
 
 const App = () => (
   <MuiThemeProvider>
@@ -10,6 +11,7 @@ const App = () => (
       <Fragment>
         <Header />
         <Content />
+        <Footer />
       </Fragment>
     </Router>
   </MuiThemeProvider>

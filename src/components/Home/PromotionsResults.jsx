@@ -27,6 +27,12 @@ PromotionsResults.defaultProps = {
       description: 'Im the description',
       imgUrl: 'https://placebear.com/200/100',
       title: 'Im the title'
+    },
+    {
+      id: 4,
+      description: 'Im the description',
+      imgUrl: 'https://placebear.com/200/100',
+      title: 'Im the title'
     }
   ]
 };
