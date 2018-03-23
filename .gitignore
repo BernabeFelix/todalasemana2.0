@@ -1,6 +1,8 @@
 // IDES
 .idea/
+client/.idea/
 
 // local
 node_modules/
+client/node_modules/
 yarn-error.log
