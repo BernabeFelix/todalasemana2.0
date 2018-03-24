@@ -7,14 +7,15 @@ export const validateRequired = (field, fieldErrorText, state, errors) => {
   // if the field is empty
   if (!fieldValue) {
     // show error message
-    toUpdate[fieldErrorText] = errors[field].required;
+
+    toUpdate[fieldErrorText] = errors.required;
     isValid = false;
   } else if (errorText) {
     // remove error message if the field is already fulfilled
     toUpdate[fieldErrorText] = '';
   }
 
+  console.log({ isValid, toUpdate });
+
   return { isValid, toUpdate };
 };
-
-export const areAllTrue = (arr) => arr.every(el => el)
