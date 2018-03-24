@@ -8,14 +8,14 @@ router.use(bodyParser.json());
 // SignUp
 router
   .route('/')
-  .post('/', (req, res) => {
+  .post((req, res) => {
     const { email, password } = req.body;
     const ret = { user: { id: 0, email, password } };
     // firebase create user
 
     res.status(200).send(ret);
   })
-  .get('/', (req, res) => {
+  .get((req, res) => {
     res.status(200).send({
       users: [
         {
