@@ -4,5 +4,8 @@
     "es6": true,
     "browser": true,
     "node": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"]
   }
 }
