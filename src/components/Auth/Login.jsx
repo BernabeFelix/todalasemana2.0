@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import CustomTextField from './CustomTextField';
 import controls from './controls';
 import Form from './Form';
@@ -6,7 +6,7 @@ import Form from './Form';
 const Login = () => (
   <Form>
     {(updateValid, shouldValid) => (
-      <div className="login">
+      <Fragment>
         <div className="row">
           <div className="col-xs-12 text-center">
             <CustomTextField
@@ -25,7 +25,7 @@ const Login = () => (
             />
           </div>
         </div>
-      </div>
+      </Fragment>
     )}
   </Form>
 );
