@@ -5,6 +5,7 @@
     "browser": true,
     "node": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "comma-dangle": ["error", "never"]
   }
