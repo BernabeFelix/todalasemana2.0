@@ -1,6 +1,7 @@
 {
   "rules": {
     "linebreak-style": "off",
+    "comma-dangle": ["error", "never"],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
