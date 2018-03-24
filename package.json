@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
+    "lodash-es": "^4.17.7",
     "material-ui": "^0.20.0",
     "path-to-regexp": "^2.2.0",
     "prop-types": "^15.6.1",

@@ -1,5 +1,3 @@
-@import '../../../styles/variables.scss';
-
 .sidenav {
   background-color: $blue-cool !important;
   overflow-x: hidden;
@@ -9,9 +7,9 @@
   }
 
   a {
-    ::active,
-    ::link,
-    ::focus {
+    :active,
+    :link,
+    :focus {
       color: inherit;
     }
     .menu-item {
