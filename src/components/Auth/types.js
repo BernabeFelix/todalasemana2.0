@@ -6,7 +6,7 @@ const Errors = {
 
 export const Fields = {
   name: string.isRequired,
-  type: string.isRequired,
+  type: string,
   floatingLabelText: string.isRequired
 };
 
@@ -17,5 +17,6 @@ export const Control = {
 
 export const Input = {
   email: 'email',
-  text: 'text'
+  text: 'text',
+  password: 'password'
 };

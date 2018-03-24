@@ -1,6 +1,7 @@
 import { Tab, Tabs } from 'material-ui';
 import React from 'react';
 import Login from './Login';
+import SignUp from './SignUp';
 
 const Auth = () => (
   <div className="container">
@@ -10,7 +11,9 @@ const Auth = () => (
           <Tab label="Entrar">
             <Login />
           </Tab>
-          <Tab label="Registrate" />
+          <Tab label="Registrate">
+            <SignUp />
+          </Tab>
         </Tabs>
       </div>
     </div>
