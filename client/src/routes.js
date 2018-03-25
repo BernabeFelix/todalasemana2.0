@@ -12,8 +12,9 @@ export const promotionUrl = r('/promo/:id');
 
 export const dayUrl = r('/dia/:day');
 
-export const adminUrl = r('/admin');
+export const adminUrl = r('/admin/:slug?');
 
-export const adminPromotionsUrl = r('/admin-promociones');
-
-export const adminCuentaUrl = r('/admin-cuenta');
+export const adminSlugs = {
+    cuenta: 'cuenta',
+    promociones: 'promociones'
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { adminPromotionsUrl } from '../../routes';
+import { adminSlugs, adminUrl } from '../../routes';
 import AdminMenu from './AdminMenu';
 import AdminPromotions from './AdminPromotions';
 
@@ -11,7 +11,10 @@ const CustomerAdmin = () => (
     </div>
 
     <div className="col-sm">
-      <Route path={adminPromotionsUrl()} component={AdminPromotions} />
+      <Route
+        path={adminUrl({ slug: adminSlugs.promociones })}
+        component={AdminPromotions}
+      />
     </div>
   </div>
 );
