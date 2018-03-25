@@ -8,6 +8,7 @@ const style = {
 };
 
 const AdminMenu = () => (
+  //  todo: add active state
   <Paper style={style}>
     <Menu>
       <Link to={adminUrl({ slug: adminSlugs.promociones })}>

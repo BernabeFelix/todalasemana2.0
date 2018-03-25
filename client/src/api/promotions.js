@@ -1,7 +1,10 @@
 const fakePromotions = [
   {
     id: 1,
-    description: 'Im the description',
+    description:
+      'Im the description, Im the description, Im the description, Im the description, Im the description, ' +
+      'Im the description, Im the description, Im the description, Im the description, Im the description, ' +
+      'Im the description, Im the description',
     imgUrl: 'https://placebear.com/200/100',
     title: 'Im the title'
   },
