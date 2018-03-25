@@ -1,19 +1,24 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import Auth from '../middleware/Auth';
 
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-// SignUp
 router
   .route('/')
-  .post((req, res) => {
+  .post(async (req, res) => {
+    // Sign Up
     const { email, password } = req.body;
-    const ret = { user: { id: 0, email, password } };
+    // const ret = { user: { id: 0, email, password } };
     // firebase create user
+    const auth = new Auth();
+    const signedIn = await auth.signUp(email, password).catch(error => {
+      console.error(error);
+    });
 
-    res.status(200).send(ret);
+    res.status(200).send(signedIn);
   })
   .get((req, res) => {
     res.status(200).send({

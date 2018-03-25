@@ -5,4 +5,5 @@ client/.idea/
 // local
 node_modules/
 client/node_modules/
+build/
 yarn-error.log
