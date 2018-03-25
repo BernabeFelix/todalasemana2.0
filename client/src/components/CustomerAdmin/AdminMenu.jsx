@@ -1,20 +1,22 @@
 import { Menu, MenuItem, Paper } from 'material-ui';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { adminSlugs, adminUrl } from '../../routes';
+import { shape } from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import { accountUrl, promotionsUrl } from '../../routes';
+import { Match } from '../../types';
 
 const style = {
   margin: '16px 32px 16px 0'
 };
 
-const AdminMenu = () => (
+const AdminMenu = ({ match }) => (
   //  todo: add active state
   <Paper style={style}>
     <Menu>
-      <Link to={adminUrl({ slug: adminSlugs.promociones })}>
+      <Link to={match.url + promotionsUrl()}>
         <MenuItem primaryText="Promociones" />
       </Link>
-      <Link to={adminUrl({ slug: adminSlugs.cuenta })}>
+      <Link to={match.url + accountUrl()}>
         <MenuItem primaryText="Cuenta" />
       </Link>
 
@@ -23,4 +25,6 @@ const AdminMenu = () => (
   </Paper>
 );
 
-export default AdminMenu;
+AdminMenu.propTypes = { match: shape(Match).isRequired };
+
+export default withRouter(AdminMenu);
