@@ -1,44 +1,27 @@
+import { List } from 'material-ui';
 import React from 'react';
-import PromotionSingleResult from '../Home/PromotionSingleResult';
+import { arrayOf, shape } from 'prop-types';
+import fakePromotions from '../../api/promotions';
 import { Promotion } from '../Home/types';
+import AdminPromotion from './AdminPromotion';
 
-const AdminPromotions = ({ promotions }) => (
-  <div>
-    {promotions.map(promotion => (
-      <PromotionSingleResult key={promotion.id} {...promotion} />
-    ))}
-  </div>
-);
+const AdminPromotions = ({ promotions }) => {
+  //  todo: create a 'no promotions message'
+  if (!promotions) return null;
 
-AdminPromotions.propTypes = Promotion;
+  return (
+    <List style={{ backgroundColor: 'white' }}>
+      {promotions.map(promo => <AdminPromotion key={promo.id} {...promo} />)}
+    </List>
+  );
+};
 
 AdminPromotions.defaultProps = {
-  promotions: [
-    {
-      id: 1,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 2,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 3,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 4,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    }
-  ]
+  promotions: fakePromotions
+};
+
+AdminPromotions.propTypes = {
+  promotions: arrayOf(shape(Promotion))
 };
 
 export default AdminPromotions;

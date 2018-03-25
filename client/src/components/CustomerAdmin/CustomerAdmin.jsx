@@ -10,7 +10,7 @@ const CustomerAdmin = () => (
       <AdminMenu />
     </div>
 
-    <div className="col-sm">
+    <div className="col-sm-8 col-md-5">
       <Route
         path={adminUrl({ slug: adminSlugs.promociones })}
         component={AdminPromotions}
