@@ -6,25 +6,25 @@ const fakePromotions = [
       'Im the description, Im the description, Im the description, Im the description, Im the description, ' +
       'Im the description, Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    title: 'Im the title'
+    title: 'Im the title 1'
   },
   {
     id: 2,
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    title: 'Im the title'
+    title: 'Im the title 2'
   },
   {
     id: 3,
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    title: 'Im the title'
+    title: 'Im the title 3'
   },
   {
     id: 4,
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    title: 'Im the title'
+    title: 'Im the title 4'
   }
 ];
 

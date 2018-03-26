@@ -4,6 +4,7 @@ import { shape } from 'prop-types';
 import { promotionsUrl } from '../../routes';
 import { Match } from '../../types';
 import AdminMenu from './AdminMenu';
+import AdminPromotion from './AdminPromotion';
 import AdminPromotions from './AdminPromotions';
 
 const CustomerAdmin = ({ match }) => (
@@ -15,9 +16,19 @@ const CustomerAdmin = ({ match }) => (
     <div className="col-sm-8 col-md-5">
       <Route path={match.url + promotionsUrl()} component={AdminPromotions} />
     </div>
+
+    <div className="col-sm-1 col-md-4">
+      <Route
+        exact
+        path={`${match.url}${promotionsUrl()}/:id`}
+        render={props => <AdminPromotion id={props.match.params.id} />}
+      />
+    </div>
   </div>
 );
 
-CustomerAdmin.propTypes = { match: shape(Match).isRequired };
+CustomerAdmin.propTypes = {
+  match: shape(Match).isRequired
+};
 
 export default withRouter(CustomerAdmin);

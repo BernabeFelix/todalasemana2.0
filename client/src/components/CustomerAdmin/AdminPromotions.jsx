@@ -3,7 +3,6 @@ import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 import { Link } from 'react-router-dom';
 import fakePromotions from '../../api/promotions';
-import { promotionUrl } from '../../routes';
 import { Promotion } from '../Home/types';
 import AdminPromotion from './AdminPromotion';
 import { Match } from '../../types';
@@ -14,9 +13,9 @@ const AdminPromotions = ({ match, promotions }) => {
 
   return (
     <List style={{ backgroundColor: 'white' }}>
-      {promotions.map(promo => (
-        <Link to={match.url + promotionUrl({ id: promo.id })} key={promo.id}>
-          <AdminPromotion {...promo} />
+      {promotions.map(({ id }) => (
+        <Link to={`${match.url}/${id}`} key={id}>
+          <AdminPromotion id={id} />
         </Link>
       ))}
     </List>

@@ -1,6 +1,7 @@
 import { Avatar, Divider, ListItem } from 'material-ui';
 import React, { Fragment } from 'react';
-import { Promotion } from '../Home/types';
+import { string, number, oneOfType } from 'prop-types';
+import fakePromotions from '../../api/promotions';
 
 const avatarSize = 150;
 const padding = 16;
@@ -17,19 +18,31 @@ const innerDivStyle = {
   paddingLeft: padding + avatarSize + padding
 };
 
-const AdminPromotion = ({ description, imgUrl, title }) => (
-  <Fragment>
-    <ListItem
-      leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
-      primaryText={title}
-      secondaryText={description}
-      secondaryTextLines={2}
-      innerDivStyle={innerDivStyle}
-    />
-    <Divider inset />
-  </Fragment>
-);
+const AdminPromotion = ({ id }) => {
+  if (!id) return null;
 
-AdminPromotion.propTypes = Promotion;
+  // todo: remove this when redux/apollo is setup
+  const { description, imgUrl, title } = fakePromotions.find(
+    promo => promo.id === parseInt(id, 10)
+  );
+
+  return (
+    <Fragment>
+      <ListItem
+        leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
+        primaryText={title}
+        secondaryText={description}
+        secondaryTextLines={2}
+        innerDivStyle={innerDivStyle}
+      />
+      <Divider inset />
+    </Fragment>
+  );
+};
+
+AdminPromotion.propTypes = {
+  // promotion: Promotion.isRequired,
+  id: oneOfType([string, number]).isRequired
+};
 
 export default AdminPromotion;

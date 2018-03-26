@@ -16,4 +16,4 @@ export const dayUrl = r('/dia/:day');
 
 export const adminUrl = r('/admin');
 
-export const accountUrl = r('cuenta')
+export const accountUrl = r('/cuenta')
