@@ -17,7 +17,7 @@ class Auth {
     }
 
     let signUpError = null;
-    const res = await this.auth
+    await this.auth
       .createUserWithEmailAndPassword(email, password)
       .catch(error => {
         console.error('Sign Up failed:');
