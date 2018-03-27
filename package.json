@@ -8,7 +8,7 @@
     "server": "nodemon --exec yarn babel-node -- ./server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "build":
-      "babel -d ./dist ./ --ignore dist/,client/,node_modules/,firebase-hosting/ && cd client && yarn build && cd .. && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cd package.json dist/package.json",
+      "babel -d ./dist ./ --ignore dist/,client/,node_modules/,firebase-hosting/ && cd client && yarn build && cd .. && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
     "start": "cd dist && NODE_ENV=production node server.js"
   },
   "repository": {
