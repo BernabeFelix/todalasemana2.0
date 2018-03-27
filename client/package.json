@@ -7,12 +7,8 @@
     "dev": "webpack-dev-server --mode development --open",
     "intranet":
       "webpack-dev-server --mode development --open --host 0.0.0.0 --port 8080",
-<<<<<<< HEAD
     "build":
       "NODE_ENV=production webpack --mode production --output-path ../dist/public/"
-=======
-    "build": "webpack --mode production --output-path ../dist/public/"
->>>>>>> Settings for Production build into /dist
   },
   "proxy": "http://localhost:5000/",
   "keywords": [],
