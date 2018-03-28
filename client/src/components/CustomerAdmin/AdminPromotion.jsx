@@ -19,8 +19,6 @@ const innerDivStyle = {
 };
 
 const AdminPromotion = ({ id }) => {
-  if (!id) return null;
-
   // todo: remove this when redux/apollo is setup
   const { description, imgUrl, title } = fakePromotions.find(
     promo => promo.id === parseInt(id, 10)
@@ -41,7 +39,6 @@ const AdminPromotion = ({ id }) => {
 };
 
 AdminPromotion.propTypes = {
-  // promotion: Promotion.isRequired,
   id: oneOfType([string, number]).isRequired
 };
 

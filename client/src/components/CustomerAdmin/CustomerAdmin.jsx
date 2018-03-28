@@ -4,8 +4,8 @@ import { shape } from 'prop-types';
 import { promotionsUrl } from '../../routes';
 import { Match } from '../../types';
 import AdminMenu from './AdminMenu';
-import AdminPromotion from './AdminPromotion';
 import AdminPromotions from './AdminPromotions';
+import AdminEditPromotion from './AdminEditPromotion';
 
 const CustomerAdmin = ({ match }) => (
   <div className="row">
@@ -21,7 +21,7 @@ const CustomerAdmin = ({ match }) => (
       <Route
         exact
         path={`${match.url}${promotionsUrl()}/:id`}
-        render={props => <AdminPromotion id={props.match.params.id} />}
+        render={props => <AdminEditPromotion id={props.match.params.id} />}
       />
     </div>
   </div>
