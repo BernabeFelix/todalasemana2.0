@@ -7,13 +7,26 @@ class Form extends Component {
     shouldValid: false
   };
 
-  controlsWithValidation = {};
+  // return an object of key values
+  /* eslint-disable no-return-assign, no-param-reassign */
+  getFormValues = () =>
+    Object.keys(this.controlsWithValidation).reduce(
+      (objToReturn, controlName) => {
+        objToReturn[controlName] = this.controlsWithValidation[
+          controlName
+        ].value;
 
-  formIsValid = () => {
+        return objToReturn;
+      },
+      {}
+    );
+
+  formIsValid = () =>
     Object.keys(this.controlsWithValidation).every(
       key => this.controlsWithValidation[key].valid
     );
-  };
+
+  controlsWithValidation = {};
 
   submit = () => {
     // condition valid
@@ -26,27 +39,31 @@ class Form extends Component {
       return;
     }
     //    send POST
+    const formValues = this.getFormValues();
+    alert('All right, All right, All right');
+
     //    reset form
     this.setState({ shouldValid: false });
-    alert('All right, All right, All right');
   };
 
-  updateValid = controlWithValidValue => {
+  updateControl = (controlName, values) => {
     // todo: add validation to shouldComponentUpdate
     // Controls are added to the state, so we know when all controls are valid
-    // eg. controlWithValidValue = { password: false }
+    // eg. controlWithValidValue = { password: false, value: '' }
     this.controlsWithValidation = {
       ...this.controlsWithValidation,
-      ...controlWithValidValue
+      [controlName]: values
     };
+
+    if (this.state.shouldValid) this.submit();
   };
 
   render() {
     const { shouldValid } = this.state;
 
     return (
-      <div className='form'>
-        {this.props.children(this.updateValid, shouldValid)}
+      <div className="form">
+        {this.props.children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
           <FlatButton
