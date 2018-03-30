@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { func, number, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import fakePromotions from '../../api/promotions';
+import withSnackBar from '../common/SnackBar/withSnackBar';
 
 const avatarSize = 150;
 const padding = 16;
@@ -22,7 +23,7 @@ const innerDivStyle = {
 class AdminPromotion extends Component {
   deletePromo = () => {
     //    todo: replace this by real delete
-    console.log(`Promotion with id: ${this.props.id} deleted`);
+    this.props.openSnackBar(`Promotion deleted`);
   };
 
   render() {
@@ -55,7 +56,8 @@ class AdminPromotion extends Component {
 
 AdminPromotion.propTypes = {
   id: oneOfType([string, number]).isRequired,
-  onClick: func.isRequired
+  onClick: func.isRequired,
+  openSnackBar: func.isRequired
 };
 
-export default AdminPromotion;
+export default withSnackBar(AdminPromotion);
