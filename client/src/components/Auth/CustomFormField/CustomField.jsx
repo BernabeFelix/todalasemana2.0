@@ -1,11 +1,10 @@
-import { TextField } from 'material-ui';
-import React, { Component } from 'react';
-import { bool, func, string, shape } from 'prop-types';
+import { Component } from 'react';
+import { func } from 'prop-types';
 import _isEmpty from 'lodash-es/isEmpty';
-import { Control } from './types';
-import { validateRequired } from './utils';
+import { validateRequired } from '../utils';
+import CustomFieldType from './types';
 
-class CustomTextField extends Component {
+class CustomField extends Component {
   static errorField = 'errorText';
 
   constructor(props) {
@@ -13,7 +12,7 @@ class CustomTextField extends Component {
 
     this.state = {
       [props.control.fields.name]: props.initialValue,
-      [CustomTextField.errorField]: ''
+      [CustomField.errorField]: ''
     };
   }
 
@@ -55,7 +54,7 @@ class CustomTextField extends Component {
 
     const required = validateRequired(
       control.fields.name,
-      CustomTextField.errorField,
+      CustomField.errorField,
       this.state,
       control.errors
     );
@@ -73,32 +72,29 @@ class CustomTextField extends Component {
   };
 
   render() {
-    const { control } = this.props;
+    const { children, control } = this.props;
     const {
       [control.fields.name]: value,
-      [CustomTextField.errorField]: errorField
+      [CustomField.errorField]: errorField
     } = this.state;
 
-    return (
-      <TextField
-        {...control.fields}
-        onChange={this.updateValue}
-        value={value}
-        errorText={errorField}
-      />
-    );
+    return children({
+      controlFields: control.fields,
+      errorField,
+      updateValue: this.updateValue,
+      value
+    });
   }
 }
 
-CustomTextField.defaultProps = {
+/* eslint-disable react/default-props-match-prop-types */
+CustomField.defaultProps = {
   initialValue: ''
 };
 
-CustomTextField.propTypes = {
-  control: shape(Control).isRequired,
-  onValidChange: func.isRequired,
-  shouldValid: bool.isRequired,
-  initialValue: string
+CustomField.propTypes = {
+  children: func.isRequired,
+  ...CustomFieldType
 };
 
-export default CustomTextField;
+export default CustomField;

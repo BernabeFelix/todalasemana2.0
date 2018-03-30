@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import { RaisedButton } from 'material-ui';
 import fakePromotions from '../../../api/promotions';
 import Form from '../../Auth/Form';
-import CustomTextField from '../../Auth/CustomTextField';
+import CustomTextField from '../../Auth/CustomFormField/CustomTextField';
 import controls from './controls';
 
 const AdminEditPromotion = ({ id }) => {
@@ -55,6 +55,8 @@ const AdminEditPromotion = ({ id }) => {
                   initialValue={description}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
+                  maxLength={200}
+                  multiLine
                 />
               </div>
             </div>

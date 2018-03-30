@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import CustomTextField from './CustomTextField';
+import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
 import Form from './Form';
 
