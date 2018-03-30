@@ -27,11 +27,7 @@ const CustomerAdmin = ({ location, match }) => {
         <Route
           exact
           path={`${match.url}${promotionsUrl()}/:id`}
-          render={props => {
-            // this.openPromotion();
-
-            return <AdminEditPromotion id={props.match.params.id} />;
-          }}
+          render={props => <AdminEditPromotion id={props.match.params.id} />}
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
-import { Avatar, Divider, ListItem } from 'material-ui';
-import React, { Fragment } from 'react';
-import { string, number, oneOfType } from 'prop-types';
+import { Avatar, Divider, IconButton, ListItem } from 'material-ui';
+import React, { Component, Fragment } from 'react';
+import { func, number, oneOfType, string } from 'prop-types';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import fakePromotions from '../../api/promotions';
 
 const avatarSize = 150;
@@ -18,28 +19,43 @@ const innerDivStyle = {
   paddingLeft: padding + avatarSize + padding
 };
 
-const AdminPromotion = ({ id }) => {
-  // todo: remove this when redux/apollo is setup
-  const { description, imgUrl, title } = fakePromotions.find(
-    promo => promo.id === parseInt(id, 10)
-  );
+class AdminPromotion extends Component {
+  deletePromo = () => {
+    //    todo: replace this by real delete
+    console.log(`Promotion with id: ${this.props.id} deleted`);
+  };
 
-  return (
-    <Fragment>
-      <ListItem
-        leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
-        primaryText={title}
-        secondaryText={description}
-        secondaryTextLines={2}
-        innerDivStyle={innerDivStyle}
-      />
-      <Divider inset />
-    </Fragment>
-  );
-};
+  render() {
+    const { id, onClick } = this.props;
+    // todo: remove this when redux/apollo is setup
+    const { description, imgUrl, title } = fakePromotions.find(
+      promo => promo.id === parseInt(id, 10)
+    );
+
+    return (
+      <Fragment>
+        <ListItem
+          leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
+          primaryText={title}
+          secondaryText={description}
+          secondaryTextLines={2}
+          innerDivStyle={innerDivStyle}
+          rightIconButton={
+            <IconButton touch onClick={this.deletePromo} tooltip="Eliminar">
+              <DeleteIcon color="#ee3335" />
+            </IconButton>
+          }
+          onClick={onClick}
+        />
+        <Divider inset />
+      </Fragment>
+    );
+  }
+}
 
 AdminPromotion.propTypes = {
-  id: oneOfType([string, number]).isRequired
+  id: oneOfType([string, number]).isRequired,
+  onClick: func.isRequired
 };
 
 export default AdminPromotion;

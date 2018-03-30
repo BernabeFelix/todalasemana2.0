@@ -60,7 +60,7 @@ const AdminEditPromotion = ({ id }) => {
           <Fragment>
             {/* Edit Title */}
             <div className="row">
-              <div className="col-xs-12 text-center">
+              <div className="col-xs text-center">
                 <CustomTextField
                   control={controls.title}
                   initialValue={title}
@@ -72,7 +72,7 @@ const AdminEditPromotion = ({ id }) => {
 
             {/* Edit Description */}
             <div className="row">
-              <div className="col-xs-12 text-center">
+              <div className="col-xs text-center">
                 <CustomTextField
                   control={controls.description}
                   initialValue={description}

@@ -1,32 +1,41 @@
 import { List } from 'material-ui';
-import React from 'react';
+import React, { Component } from 'react';
 import { arrayOf, shape } from 'prop-types';
-import { Link } from 'react-router-dom';
 import fakePromotions from '../../api/promotions';
 import { Promotion } from '../Home/types';
 import AdminPromotion from './AdminPromotion';
-import { Match } from '../../types';
+import { History, Match } from '../../types';
 
-const AdminPromotions = ({ match, promotions }) => {
-  //  todo: create a 'no promotions message'
-  if (!promotions) return null;
+class AdminPromotions extends Component {
+  updateRoute = id => () => {
+    const { match, history } = this.props;
+    const newRoute = `${match.url}/${id}`;
 
-  return (
-    <List style={{ backgroundColor: 'white' }}>
-      {promotions.map(({ id }) => (
-        <Link to={`${match.url}/${id}`} key={id}>
-          <AdminPromotion id={id} />
-        </Link>
-      ))}
-    </List>
-  );
-};
+    console.log('push to: ', newRoute);
+    history.push(newRoute);
+  };
+
+  render() {
+    const { promotions } = this.props;
+    //  todo: create a 'no promotions message'
+    if (!promotions) return null;
+
+    return (
+      <List style={{ backgroundColor: 'white' }}>
+        {promotions.map(({ id }) => (
+          <AdminPromotion id={id} onClick={this.updateRoute(id)} key={id} />
+        ))}
+      </List>
+    );
+  }
+}
 
 AdminPromotions.defaultProps = {
   promotions: fakePromotions
 };
 
 AdminPromotions.propTypes = {
+  history: shape(History).isRequired,
   match: shape(Match).isRequired,
   promotions: arrayOf(shape(Promotion))
 };
