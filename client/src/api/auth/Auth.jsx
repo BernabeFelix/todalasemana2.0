@@ -49,11 +49,7 @@ class Auth {
     // Check if there is a logged in user
     const user = this.auth.currentUser;
     if (user) {
-      return {
-        code: 'auth/user-signed-in',
-        message: 'Close the current session before creating new account.',
-        currentUser: user
-      };
+      Promise.reject(new Error('There is a user logged in already.'));
     }
 
     let loginError = null;
@@ -70,6 +66,14 @@ class Auth {
       });
 
     if (loginError) return loginError;
+
+    if (!res.user.emailVerified) {
+      return {
+        code: 'auth/email-not-verified',
+        message: 'The account is not activated. Please check your inbox.',
+        currentUser: user
+      };
+    }
 
     return res;
   };

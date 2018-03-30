@@ -32,7 +32,6 @@ class Form extends Component {
   submit = async () => {
     // condition valid
     const isFormIsValid = this.formIsValid();
-    console.log(isFormIsValid);
     if (!isFormIsValid) {
       if (!this.state.shouldValid) {
         this.setState({ shouldValid: true });
@@ -46,37 +45,32 @@ class Form extends Component {
       const { user, password } = this.getFormValues();
       console.log(user);
       console.log(password);
-      let error = null;
-      const res = await auth.login(user, password).catch(err => {
-        error = err;
+      try {
+        const res = await auth.login(user, password);
+        console.log(res);
+        // get token
+        // validate against backend
+        // redirect to home?
+      } catch (error) {
         console.log('Error in login:');
         console.log(error);
-      });
-      console.log(error);
-      if (error) {
         // show error
         return;
       }
-      // get token
-      // validate against backend
-      // redirect to home?
-      console.log(res);
     } else {
       // Try to create account
       const { email, password } = this.getFormValues();
-      let error = null;
-      const res = await auth.signUp({ email, password }).catch(err => {
-        error = err;
+      try {
+        const res = await auth.signUp({ email, password });
+        console.log(res);
+
+        // Show success message and invite to check the email
+      } catch (error) {
         console.log('Error in signUp:');
         console.log(error);
-      });
-
-      if (error) {
         // show error
         return;
       }
-      // Show success message and invite to check the email
-      console.log(res);
     }
     //    reset form
     this.setState({ shouldValid: false });
