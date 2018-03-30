@@ -8,14 +8,14 @@ const SignUp = () => (
     {(updateValid, shouldValid) => (
       <Fragment>
         <div className="row">
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.firstName}
               onValidChange={updateValid}
               shouldValid={shouldValid}
             />
           </div>
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.lastName}
               onValidChange={updateValid}
@@ -24,14 +24,14 @@ const SignUp = () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.address}
               onValidChange={updateValid}
               shouldValid={shouldValid}
             />
           </div>
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.zipCode}
               onValidChange={updateValid}
@@ -40,14 +40,14 @@ const SignUp = () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.phone}
               onValidChange={updateValid}
               shouldValid={shouldValid}
             />
           </div>
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.service}
               onValidChange={updateValid}
@@ -56,7 +56,7 @@ const SignUp = () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 text-center">
+          <div className="col-xs-12">
             <CustomTextField
               control={controls.email}
               onValidChange={updateValid}
@@ -65,14 +65,14 @@ const SignUp = () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.password}
               onValidChange={updateValid}
               shouldValid={shouldValid}
             />
           </div>
-          <div className="col-xs-12 col-sm-6 text-center">
+          <div className="col-xs-12 col-sm-6">
             <CustomTextField
               control={controls.password}
               onValidChange={updateValid}

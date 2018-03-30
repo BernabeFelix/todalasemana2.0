@@ -26,7 +26,8 @@ html {
 }
 
 body {
-  background: url('../images/fondo_1180x1820.jpg') center no-repeat;
+  // background: url('../images/fondo_1180x1820.jpg') center no-repeat;
+  background-color: $blue-light;
   font-family: $font-stack;
   margin: 0;
   margin-top: (-$headerHeight);
