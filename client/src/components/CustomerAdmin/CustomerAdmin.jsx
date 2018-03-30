@@ -5,7 +5,7 @@ import { promotionsUrl } from '../../routes';
 import { Location, Match } from '../../types';
 import AdminMenu from './AdminMenu';
 import AdminPromotions from './AdminPromotions';
-import AdminEditPromotion from './AdminEditPromotion';
+import AdminEditPromotion from './AdminEditPromotion/AdminEditPromotion';
 
 /* eslint-disable arrow-body-style */
 const CustomerAdmin = ({ location, match }) => {

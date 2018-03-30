@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
+import { func } from 'prop-types';
 import CustomSnackbar from './SnackBar';
+import { Intent } from '../../../styles/variables';
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -8,17 +10,17 @@ const withSnackBar = WrappedComponent => {
   class WithSnackBar extends React.Component {
     state = {
       msg: '',
-      open: false
+      open: false,
+      intent: Intent.ERROR
     };
 
-    handleRequestClose = () => {
-        // this.setState({ open: false });
-    }
+    handleRequestClose = () => this.setState({ open: false });
 
-    openSnackBar = msg => this.setState({ msg, open: true });
+    openSnackBar = (msg, intent = Intent.ERROR) =>
+      this.setState({ intent, msg, open: true });
 
     render() {
-      const { msg, open } = this.state;
+      const { intent, msg, open } = this.state;
 
       return (
         <Fragment>
@@ -26,6 +28,7 @@ const withSnackBar = WrappedComponent => {
             msg={msg}
             open={open}
             handleRequestClose={this.handleRequestClose}
+            intent={intent}
           />
           <WrappedComponent {...this.props} openSnackBar={this.openSnackBar} />
         </Fragment>
@@ -38,6 +41,10 @@ const withSnackBar = WrappedComponent => {
   )})`;
 
   return WithSnackBar;
+};
+
+export const SnackBarStyles = {
+  openSnackBar: func.isRequired
 };
 
 export default withSnackBar;

@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { func, number, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import fakePromotions from '../../api/promotions';
-import withSnackBar from '../common/SnackBar/withSnackBar';
+import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 
 const avatarSize = 150;
 const padding = 16;
@@ -57,7 +57,7 @@ class AdminPromotion extends Component {
 AdminPromotion.propTypes = {
   id: oneOfType([string, number]).isRequired,
   onClick: func.isRequired,
-  openSnackBar: func.isRequired
+  ...SnackBarStyles
 };
 
 export default withSnackBar(AdminPromotion);

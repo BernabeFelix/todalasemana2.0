@@ -1,33 +1,10 @@
 import React, { Fragment } from 'react';
 import { string } from 'prop-types';
 import { RaisedButton } from 'material-ui';
-import fakePromotions from '../../api/promotions';
-import Form from '../Auth/Form';
-import CustomTextField from '../Auth/CustomTextField';
-import { Input } from '../Auth/types';
-
-const controls = {
-  title: {
-    errors: {
-      required: 'Ingrese un titulo'
-    },
-    fields: {
-      name: 'title',
-      type: Input.text,
-      floatingLabelText: 'titulo'
-    }
-  },
-  description: {
-    errors: {
-      required: 'Ingrese una descripción'
-    },
-    fields: {
-      name: 'description',
-      type: Input.text,
-      floatingLabelText: 'descripción'
-    }
-  }
-};
+import fakePromotions from '../../../api/promotions';
+import Form from '../../Auth/Form';
+import CustomTextField from '../../Auth/CustomTextField';
+import controls from './controls';
 
 const AdminEditPromotion = ({ id }) => {
   // todo: remove this when redux/apollo is setup
@@ -55,7 +32,7 @@ const AdminEditPromotion = ({ id }) => {
         </div>
       </div>
 
-      <Form submitText="guardar">
+      <Form submitText="guardar" successText="Guardado correctamente">
         {(updateValid, shouldValid) => (
           <Fragment>
             {/* Edit Title */}

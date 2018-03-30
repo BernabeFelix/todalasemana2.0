@@ -11,7 +11,6 @@ class AdminPromotions extends Component {
     const { match, history } = this.props;
     const newRoute = `${match.url}/${id}`;
 
-    console.log('push to: ', newRoute);
     history.push(newRoute);
   };
 

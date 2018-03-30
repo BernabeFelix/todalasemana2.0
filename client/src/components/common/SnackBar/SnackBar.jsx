@@ -29,14 +29,13 @@ const CustomSnackbar = ({
 
 CustomSnackbar.defaultProps = {
   duration: 2000,
-  intent: Intent.ERROR,
   open: false
 };
 
 CustomSnackbar.propTypes = {
   duration: number,
   handleRequestClose: func.isRequired,
-  intent: string,
+  intent: string.isRequired,
   msg: string.isRequired,
   open: bool
 };

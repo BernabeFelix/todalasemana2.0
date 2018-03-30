@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FlatButton } from 'material-ui';
 import { func, string } from 'prop-types';
+import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
+import { Intent } from '../../styles/variables';
 
 class Form extends Component {
   state = {
@@ -40,7 +42,7 @@ class Form extends Component {
     }
     //    send POST
     // const formValues = this.getFormValues();
-    alert('All right, All right, All right');
+    this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
 
     //    reset form
     this.setState({ shouldValid: false });
@@ -79,12 +81,15 @@ class Form extends Component {
 }
 
 Form.defaultProps = {
-  submitText: 'entrar'
+  submitText: 'entrar',
+  successText: 'ok'
 };
 
 Form.propTypes = {
   children: func.isRequired,
-  submitText: string
+  submitText: string,
+  successText: string,
+  ...SnackBarStyles
 };
 
-export default Form;
+export default withSnackBar(Form);
