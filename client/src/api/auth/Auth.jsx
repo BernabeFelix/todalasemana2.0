@@ -49,7 +49,11 @@ class Auth {
     // Check if there is a logged in user
     const user = this.auth.currentUser;
     if (user) {
-      Promise.reject(new Error('There is a user logged in already.'));
+      return {
+        code: 'auth/user-signed-in',
+        message: 'Close the current session before creating new account.',
+        currentUser: user
+      };
     }
 
     let loginError = null;
