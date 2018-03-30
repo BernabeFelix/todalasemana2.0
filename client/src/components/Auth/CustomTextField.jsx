@@ -40,16 +40,12 @@ class CustomTextField extends Component {
       {
         [control.fields.name]: value
       },
-      () => {
-        if (shouldValid) {
-          this.validate();
-        }
-      }
+      this.validate
     );
   };
 
   validate = () => {
-    const { control, onValidChange } = this.props;
+    const { control, onValidChange, shouldValid } = this.props;
 
     const required = validateRequired(
       control.fields.name,
@@ -65,7 +61,7 @@ class CustomTextField extends Component {
     });
 
     // Update UI
-    if (!_isEmpty(required.toUpdate)) {
+    if (shouldValid && !_isEmpty(required.toUpdate)) {
       this.setState(required.toUpdate);
     }
   };

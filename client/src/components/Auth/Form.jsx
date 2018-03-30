@@ -54,8 +54,6 @@ class Form extends Component {
       ...this.controlsWithValidation,
       [controlName]: values
     };
-
-    if (this.state.shouldValid) this.submit();
   };
 
   render() {
