@@ -68,10 +68,15 @@ class Auth {
         // auth/wrong-password
         signUpError = error;
       });
-
+    console.log('Login error:');
+    console.log(signUpError);
     if (signUpError) return signUpError;
 
     return res;
+  };
+
+  logout = async () => {
+    await this.auth.signOut();
   };
 }
 
