@@ -20,7 +20,7 @@ class CustomTextField extends Component {
   componentDidMount() {
     const { onValidChange, control } = this.props;
     // init valid state on parent
-    onValidChange({ [control.fields.name]: false });
+    onValidChange([control.fields.name], { valid: false });
   }
 
   componentDidUpdate(oldProps) {
@@ -49,7 +49,7 @@ class CustomTextField extends Component {
   };
 
   validate = () => {
-    const { control } = this.props;
+    const { control, onValidChange } = this.props;
 
     const required = validateRequired(
       control.fields.name,
@@ -58,6 +58,13 @@ class CustomTextField extends Component {
       control.errors
     );
 
+    // Send value to form
+    onValidChange([control.fields.name], {
+      valid: required.isValid,
+      value: this.state[control.fields.name]
+    });
+
+    // Update UI
     if (!_isEmpty(required.toUpdate)) {
       this.setState(required.toUpdate);
     }
