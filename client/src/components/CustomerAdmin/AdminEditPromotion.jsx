@@ -55,7 +55,7 @@ const AdminEditPromotion = ({ id }) => {
         </div>
       </div>
 
-      <Form>
+      <Form submitText="guardar">
         {(updateValid, shouldValid) => (
           <Fragment>
             {/* Edit Title */}

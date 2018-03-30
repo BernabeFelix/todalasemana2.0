@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FlatButton } from 'material-ui';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 
 class Form extends Component {
   state = {
@@ -58,15 +58,16 @@ class Form extends Component {
   };
 
   render() {
+    const { children, submitText } = this.props;
     const { shouldValid } = this.state;
 
     return (
       <div className="form">
-        {this.props.children(this.updateControl, shouldValid)}
+        {children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
           <FlatButton
-            label="Entrar"
+            label={submitText}
             className="header-right-nav-btn submit-btn"
             hoverColor="transparent"
             rippleColor="transparent !important"
@@ -78,8 +79,13 @@ class Form extends Component {
   }
 }
 
+Form.defaultProps = {
+  submitText: 'entrar'
+};
+
 Form.propTypes = {
-  children: func.isRequired
+  children: func.isRequired,
+  submitText: string
 };
 
 export default Form;
