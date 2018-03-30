@@ -39,7 +39,7 @@ class Form extends Component {
       return;
     }
     //    send POST
-    const formValues = this.getFormValues();
+    // const formValues = this.getFormValues();
     alert('All right, All right, All right');
 
     //    reset form
@@ -54,8 +54,6 @@ class Form extends Component {
       ...this.controlsWithValidation,
       [controlName]: values
     };
-
-    if (this.state.shouldValid) this.submit();
   };
 
   render() {
