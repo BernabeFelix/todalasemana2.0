@@ -33,6 +33,8 @@ class CustomTextField extends Component {
   updateValue = ({ target }) => {
     const { value } = target;
     const { shouldValid, control } = this.props;
+    // Needed to do something with shouldValid for webpack to build
+    console.log(shouldValid);
 
     // check validation after state update
     // to have state updated during validation

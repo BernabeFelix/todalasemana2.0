@@ -47,10 +47,8 @@ class Form extends Component {
       console.log(password);
       try {
         const res = await auth.login(user, password);
+        // REdirect to home?
         console.log(res);
-        // get token
-        // validate against backend
-        // redirect to home?
       } catch (error) {
         console.log('Error in login:');
         console.log(error);
