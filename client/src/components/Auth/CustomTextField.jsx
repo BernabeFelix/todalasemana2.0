@@ -18,9 +18,15 @@ class CustomTextField extends Component {
   }
 
   componentDidMount() {
-    const { onValidChange, control } = this.props;
-    // init valid state on parent
-    onValidChange([control.fields.name], { valid: false });
+    const { initialValue, onValidChange, control } = this.props;
+
+    if (!initialValue) {
+      // init valid state on parent
+      onValidChange([control.fields.name], { valid: false });
+      return;
+    }
+
+    this.validate();
   }
 
   componentDidUpdate(oldProps) {
