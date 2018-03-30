@@ -2,32 +2,44 @@ import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import { promotionsUrl } from '../../routes';
-import { Match } from '../../types';
+import { Location, Match } from '../../types';
 import AdminMenu from './AdminMenu';
 import AdminPromotions from './AdminPromotions';
 import AdminEditPromotion from './AdminEditPromotion';
 
-const CustomerAdmin = ({ match }) => (
-  <div className="row">
-    <div className="col-sm-3">
-      <AdminMenu />
-    </div>
+/* eslint-disable arrow-body-style */
+const CustomerAdmin = ({ location, match }) => {
+  const noPromoOpen = location.pathname === match.url + promotionsUrl();
+  const promotionListCol = noPromoOpen ? 5 : 4;
+  const promotionCol = noPromoOpen ? 4 : 5;
 
-    <div className="col-sm-8 col-md-5">
-      <Route path={match.url + promotionsUrl()} component={AdminPromotions} />
-    </div>
+  return (
+    <div className="row">
+      <div className="col-lg-3">
+        <AdminMenu />
+      </div>
 
-    <div className="col-sm-1 col-md-4">
-      <Route
-        exact
-        path={`${match.url}${promotionsUrl()}/:id`}
-        render={props => <AdminEditPromotion id={props.match.params.id} />}
-      />
+      <div className={`col-lg-${promotionListCol} max-width-transition`}>
+        <Route path={match.url + promotionsUrl()} component={AdminPromotions} />
+      </div>
+
+      <div className={`col-lg-${promotionCol} max-width-transition`}>
+        <Route
+          exact
+          path={`${match.url}${promotionsUrl()}/:id`}
+          render={props => {
+            // this.openPromotion();
+
+            return <AdminEditPromotion id={props.match.params.id} />;
+          }}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 CustomerAdmin.propTypes = {
+  location: shape(Location).isRequired,
   match: shape(Match).isRequired
 };
 

@@ -29,7 +29,6 @@ class Form extends Component {
   controlsWithValidation = {};
 
   submit = () => {
-    console.log('submit ');
     // condition valid
     const isFormIsValid = this.formIsValid();
 
