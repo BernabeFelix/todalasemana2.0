@@ -1,14 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+// import { Link } from 'react-router-dom';
 import CustomTextField from './CustomTextField';
 import controls from './controls';
 import Form from './Form';
 
 const Login = () => (
-  <Form>
+  <Form isLogin>
     {(updateValid, shouldValid) => (
-      <Fragment>
+      <div className="login">
         <div className="row">
-          <div className="col-xs-12 text-center">
+          <div className="col-xs-12">
             <CustomTextField
               control={controls.user}
               onValidChange={updateValid}
@@ -17,7 +18,7 @@ const Login = () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 text-center">
+          <div className="col-xs-12">
             <CustomTextField
               control={controls.password}
               onValidChange={updateValid}
@@ -25,7 +26,8 @@ const Login = () => (
             />
           </div>
         </div>
-      </Fragment>
+        <span className="recover-password">Recuperar contraseña</span>
+      </div>
     )}
   </Form>
 );
