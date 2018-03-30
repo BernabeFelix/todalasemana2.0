@@ -1,6 +1,6 @@
 import { TextField } from 'material-ui';
 import React, { Component } from 'react';
-import { bool, func, shape } from 'prop-types';
+import { bool, func, string, shape } from 'prop-types';
 import _isEmpty from 'lodash-es/isEmpty';
 import { Control } from './types';
 import { validateRequired } from './utils';
@@ -12,7 +12,7 @@ class CustomTextField extends Component {
     super(props);
 
     this.state = {
-      [props.control.fields.name]: '',
+      [props.control.fields.name]: props.initialValue,
       [CustomTextField.errorField]: ''
     };
   }
@@ -32,7 +32,7 @@ class CustomTextField extends Component {
 
   updateValue = ({ target }) => {
     const { value } = target;
-    const { shouldValid, control } = this.props;
+    const { control } = this.props;
 
     // check validation after state update
     // to have state updated during validation
@@ -84,10 +84,15 @@ class CustomTextField extends Component {
   }
 }
 
+CustomTextField.defaultProps = {
+  initialValue: ''
+};
+
 CustomTextField.propTypes = {
   control: shape(Control).isRequired,
   onValidChange: func.isRequired,
-  shouldValid: bool.isRequired
+  shouldValid: bool.isRequired,
+  initialValue: string
 };
 
 export default CustomTextField;

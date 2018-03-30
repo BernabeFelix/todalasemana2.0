@@ -1,7 +1,33 @@
-import React from 'react';
-import { number } from 'prop-types';
+import React, { Fragment } from 'react';
+import { string } from 'prop-types';
 import { RaisedButton } from 'material-ui';
 import fakePromotions from '../../api/promotions';
+import Form from '../Auth/Form';
+import CustomTextField from '../Auth/CustomTextField';
+import { Input } from '../Auth/types';
+
+const controls = {
+  title: {
+    errors: {
+      required: 'Ingrese un titulo'
+    },
+    fields: {
+      name: 'title',
+      type: Input.text,
+      floatingLabelText: 'titulo'
+    }
+  },
+  description: {
+    errors: {
+      required: 'Ingrese una descripción'
+    },
+    fields: {
+      name: 'description',
+      type: Input.text,
+      floatingLabelText: 'descripción'
+    }
+  }
+};
 
 const AdminEditPromotion = ({ id }) => {
   // todo: remove this when redux/apollo is setup
@@ -11,7 +37,7 @@ const AdminEditPromotion = ({ id }) => {
 
   return (
     <div className="admin-edit-promotion">
-      {/* Image */}
+      {/* Upload Image */}
       <div className="row image-row">
         <div className="col-xs-6 image-wrapper">
           <div
@@ -29,23 +55,41 @@ const AdminEditPromotion = ({ id }) => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-xs">
-          <input type="text" value={title} />
-        </div>
-      </div>
+      <Form>
+        {(updateValid, shouldValid) => (
+          <Fragment>
+            {/* Edit Title */}
+            <div className="row">
+              <div className="col-xs-12 text-center">
+                <CustomTextField
+                  control={controls.title}
+                  initialValue={title}
+                  onValidChange={updateValid}
+                  shouldValid={shouldValid}
+                />
+              </div>
+            </div>
 
-      <div className="row">
-        <div className="col-xs">
-          <textarea value={description} />
-        </div>
-      </div>
+            {/* Edit Description */}
+            <div className="row">
+              <div className="col-xs-12 text-center">
+                <CustomTextField
+                  control={controls.description}
+                  initialValue={description}
+                  onValidChange={updateValid}
+                  shouldValid={shouldValid}
+                />
+              </div>
+            </div>
+          </Fragment>
+        )}
+      </Form>
     </div>
   );
 };
 
 AdminEditPromotion.propTypes = {
-  id: number.isRequired
+  id: string.isRequired
 };
 
 export default AdminEditPromotion;
