@@ -36,7 +36,6 @@ class CustomTextField extends Component {
 
     // check validation after state update
     // to have state updated during validation
-    console.log(`${control.fields.name}= ${value}`);
     this.setState(
       {
         [control.fields.name]: value
