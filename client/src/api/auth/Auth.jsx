@@ -56,7 +56,7 @@ class Auth {
       };
     }
 
-    let signUpError = null;
+    let loginError = null;
 
     const res = await this.auth
       .signInAndRetrieveDataWithEmailAndPassword(email, password)
@@ -66,11 +66,10 @@ class Auth {
         // auth/user-disabled
         // auth/user-not-found
         // auth/wrong-password
-        signUpError = error;
+        loginError = error;
       });
-    console.log('Login error:');
-    console.log(signUpError);
-    if (signUpError) return signUpError;
+
+    if (loginError) return loginError;
 
     return res;
   };
