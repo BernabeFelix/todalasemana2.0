@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { func } from 'prop-types';
 import CustomSnackbar from './SnackBar';
-import { Intent } from '../../../styles/variables';
+import { Intent } from '../../../types';
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';

@@ -17,8 +17,7 @@ export const $grayBg = '#f2f2f2';
 // sizes
 export const $headerHeight = '64px';
 
-// intent
-export const Intent = {
-  ERROR: 'ERROR',
-  SUCCESS: 'SUCCESS'
-};
+// media queries
+export const $large = 'only screen and (min-width: 75em)';
+export const $upToMedium = 'only screen and (max-width: 62em)';
+export const $upToSmall = 'only screen and (max-width: 48em)';

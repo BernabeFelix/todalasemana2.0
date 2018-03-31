@@ -1,7 +1,8 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import { bool, func, number, string } from 'prop-types';
-import { $blueCool, $red, Intent } from '../../../styles/variables';
+import { $blueCool, $red } from '../../../styles/variables';
+import { Intent } from '../../../types';
 
 const successStyle = {
   backgroundColor: $blueCool

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
-import { Intent } from '../../styles/variables';
+import { Intent } from '../../types';
 
 class Form extends Component {
   state = {

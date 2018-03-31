@@ -16,3 +16,9 @@ $gray-bg: #f2f2f2;
 
 /* sizes */
 $headerHeight: 64px;
+
+/* media queries */
+$large: 'only screen and (min-width: 75em)';
+$medium: 'only screen and (min-width: 62.01em)';
+$upToMedium: 'only screen and (max-width: 62em)';
+$upToSmall: 'only screen and (max-width: 48em)';
