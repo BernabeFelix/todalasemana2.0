@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { RaisedButton, FlatButton } from 'material-ui';
 import { func, bool } from 'prop-types';
 import Auth from '../../api/auth/Auth';
 
+const sleep = async ms => new Promise(resolve => setTimeout(resolve, ms));
 class Form extends Component {
   state = {
     shouldValid: false
@@ -30,14 +32,20 @@ class Form extends Component {
   controlsWithValidation = {};
 
   submit = async () => {
+    this.setState({
+      errorMsg: null,
+      loading: true
+    });
     // condition valid
     const isFormIsValid = this.formIsValid();
     if (!isFormIsValid) {
       if (!this.state.shouldValid) {
         this.setState({ shouldValid: true });
       }
+      this.setState({ loading: false });
       return;
     }
+    await sleep(300); // just to fake load time haha
     const auth = new Auth();
     if (this.props.isLogin === true) {
       // Try login
@@ -49,11 +57,14 @@ class Form extends Component {
         const res = await auth.login(user, password);
         // REdirect to home?
         console.log(res);
+        this.setState({ redirectTo: '/' });
       } catch (error) {
         console.log('Error in login:');
         console.log(error);
         // show error
-        return;
+        this.setState({
+          errorMsg: error.message
+        });
       }
     } else {
       // Try to create account
@@ -67,11 +78,14 @@ class Form extends Component {
         console.log('Error in signUp:');
         console.log(error);
         // show error
-        return;
+        this.setState({
+          errorMsg: error.message
+        });
       }
     }
+
     //    reset form
-    this.setState({ shouldValid: false });
+    this.setState({ shouldValid: false, loading: false });
   };
 
   updateControl = (controlName, values) => {
@@ -92,10 +106,20 @@ class Form extends Component {
   };
 
   render() {
-    const { shouldValid } = this.state;
+    if (this.state.redirectTo) {
+      return <Redirect to={this.state.redirectTo} />;
+    }
 
+    const { shouldValid } = this.state;
+    const classNames = this.props.isLogin ? 'form login' : 'form signup';
+    const alertSizeClass = this.props.isLogin ? 'alert-small' : '';
     return (
-      <form className="form" autoComplete="off">
+      <form className={classNames}>
+        {this.state.errorMsg && (
+          <div className={`alert alert-error ${alertSizeClass}`}>
+            <div className="">{this.state.errorMsg}</div>
+          </div>
+        )}
         {this.props.children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
@@ -105,6 +129,7 @@ class Form extends Component {
             backgroundColor="#ee3335"
             labelColor="#fff"
             onClick={this.submit}
+            disabled={this.state.loading}
           />
           <FlatButton label="Sign out" onClick={this.logout} fullWidth />
         </div>

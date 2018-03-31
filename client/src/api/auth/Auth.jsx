@@ -3,7 +3,7 @@ import FirebaseApp from './FirebaseApp';
 const userLogedInError = user => {
   const err = {
     code: 'auth/user-signed-in',
-    message: 'Close the current session before creating new account.',
+    message: 'Close the current session before proceeding.',
     currentUser: user
   };
   throw err;
@@ -21,32 +21,34 @@ class Auth {
 
     // Create user in firebase
     const { email, password } = data;
-    let signUpError = null;
-    await this.auth
-      .createUserWithEmailAndPassword(email, password)
-      .catch(error => {
-        // TODO: Hanlde errors:
-        // auth/email-already-in-use
-        // auth/invalid-email
-        // auth/operation-not-allowed
-        // auth/weak-password
-        signUpError = error;
-      });
-
-    if (signUpError) return signUpError;
+    try {
+      await this.auth.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      // TODO: Hanlde errors:
+      // auth/email-already-in-use
+      // auth/invalid-email
+      // auth/operation-not-allowed
+      // auth/weak-password
+      throw error;
+    }
 
     user = this.auth.currentUser;
-    // Save user to database
-    await user.sendEmailVerification().catch(error => {
+    try {
+      const actionCodeSettings = {
+        url: 'http://localhost:8080',
+        handleCodeInApp: true
+      };
+      await user.sendEmailVerification(actionCodeSettings);
+      console.log(`Verification email sent to ${email}.`);
+    } catch (error) {
       // Unknown error codes? didn't find in js reference
       // signUpError = 'auth/verification-email-not-sent';
-      signUpError = error;
-    });
+      return error;
+    }
 
-    if (signUpError) return signUpError;
+    // Save user to database
 
     // TODO: Post user data to database...
-    console.log(`Verification email sent to ${email}.`);
 
     // Logout user, can't use the app if doesn't verify the email
     this.logout();

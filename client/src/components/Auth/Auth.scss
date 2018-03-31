@@ -7,10 +7,16 @@
 
 .form {
   padding: 1rem;
-  .login {
-    max-width: 256px;
+  &.login {
+    max-width: calc(256px + 2rem);
     margin: auto;
+    & .error-msg {
+      // margin-top: 1rem;
+      font-size: 14px;
+    }
+  }
 
+  .login {
     .recover-password {
       display: inline-block;
       margin-top: 1rem;
@@ -24,7 +30,6 @@
     }
   }
   .submit-btn-wrapper {
-    text-align: right;
     width: 256px;
     margin: auto;
   }
