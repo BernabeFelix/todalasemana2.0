@@ -1,10 +1,17 @@
 import React, { Fragment } from 'react';
 import { string } from 'prop-types';
 import { RaisedButton } from 'material-ui';
+import Dropzone from 'react-dropzone';
 import fakePromotions from '../../../api/promotions';
 import Form from '../../Auth/Form';
 import CustomTextField from '../../Auth/CustomFormField/CustomTextField';
 import controls from './controls';
+
+const dropZoneStyle = {
+  width: 'auto',
+  height: 'auto',
+  border: 'none'
+};
 
 const AdminEditPromotion = ({ id }) => {
   // todo: remove this when redux/apollo is setup
@@ -23,12 +30,19 @@ const AdminEditPromotion = ({ id }) => {
           />
         </div>
         <div className="col-xs-6">
-          <RaisedButton
-            label="Cambiar Imagen"
-            style={{
-              margin: 12
+          <Dropzone
+            style={dropZoneStyle}
+            onDropAccepted={files => {
+              console.log(files);
             }}
-          />
+          >
+            <RaisedButton
+              label="Cambiar Imagen"
+              style={{
+                margin: 12
+              }}
+            />
+          </Dropzone>
         </div>
       </div>
 
