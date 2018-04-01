@@ -1,0 +1,23 @@
+.admin-edit-promotion {
+  background-color: white;
+  padding: 1rem;
+
+  .image-row {
+    align-items: center;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: 200px;
+    //min-height: 200px;
+    position: relative;
+  }
+
+  .image {
+    height: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}

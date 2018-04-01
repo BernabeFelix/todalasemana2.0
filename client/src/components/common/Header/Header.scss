@@ -15,7 +15,7 @@
     left: 1rem;
     top: 0.5rem;
 
-    @media only screen and (max-width: 62em) {
+    @media #{$upToMedium} {
       left: 0;
       position: relative;
       display: block;
@@ -25,6 +25,7 @@
   }
 
   &-left-icon {
+    // todo: @paul pass this to a media query variable on variables.scss
     @media only screen and (min-width: 62em) {
       display: none !important;
     }
@@ -45,7 +46,7 @@
     border-radius: 25px;
 
     &.hide-sm {
-      @media only screen and (max-width: 62em) {
+      @media #{$upToMedium} {
         display: none;
       }
     }

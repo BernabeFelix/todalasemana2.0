@@ -1,44 +1,27 @@
 import React from 'react';
-import { arrayOf, shape } from 'prop-types';
+import { arrayOf, func, shape } from 'prop-types';
+import fakePromotions from '../../api/promotions';
+import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
 import { Promotion } from './types';
 
-const PromotionsResults = ({ promotions }) =>
+const PromotionsResults = ({ promotions, urlCallback }) =>
   promotions.map(promotion => (
-    <PromotionSingleResult key={promotion.id} {...promotion} />
+    <PromotionSingleResult
+      key={promotion.id}
+      url={urlCallback}
+      {...promotion}
+    />
   ));
 
 PromotionsResults.defaultProps = {
-  promotions: [
-    {
-      id: 1,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 2,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 3,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    },
-    {
-      id: 4,
-      description: 'Im the description',
-      imgUrl: 'https://placebear.com/200/100',
-      title: 'Im the title'
-    }
-  ]
+  urlCallback: promotionUrl,
+  promotions: fakePromotions
 };
 
 PromotionsResults.propTypes = {
-  promotions: arrayOf(shape(Promotion))
+  promotions: arrayOf(shape(Promotion)),
+  urlCallback: func
 };
 
 export default PromotionsResults;

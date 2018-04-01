@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import controls from './controls';
-import CustomTextField from './CustomTextField';
+import CustomTextField from './CustomFormField/CustomTextField';
 import Form from './Form';
 
 const SignUp = () => (

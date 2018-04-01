@@ -8,12 +8,12 @@ export const signInUrl = r('/entrar');
 
 export const signUpUrl = r('/registrar');
 
-export const aboutUrl = r('/quienes-somos');
-
-export const servicesUrl = r('/servicios');
-
-export const contactUrl = r('/contacto');
-
 export const promotionUrl = r('/promo/:id');
 
+export const promotionsUrl = r('/promotions/:id?');
+
 export const dayUrl = r('/dia/:day');
+
+export const adminUrl = r('/admin');
+
+export const accountUrl = r('/cuenta')

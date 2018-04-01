@@ -1,26 +1,31 @@
-import { TextField } from 'material-ui';
-import React, { Component } from 'react';
-import { bool, func, shape } from 'prop-types';
+import { Component } from 'react';
+import { func } from 'prop-types';
 import _isEmpty from 'lodash-es/isEmpty';
-import { Control } from './types';
-import { validateRequired } from './utils';
+import { validateRequired } from '../utils';
+import CustomFieldType from './types';
 
-class CustomTextField extends Component {
+class CustomField extends Component {
   static errorField = 'errorText';
 
   constructor(props) {
     super(props);
 
     this.state = {
-      [props.control.fields.name]: '',
-      [CustomTextField.errorField]: ''
+      [props.control.fields.name]: props.initialValue,
+      [CustomField.errorField]: ''
     };
   }
 
   componentDidMount() {
-    const { onValidChange, control } = this.props;
-    // init valid state on parent
-    onValidChange([control.fields.name], { valid: false });
+    const { initialValue, onValidChange, control } = this.props;
+
+    if (!initialValue) {
+      // init valid state on parent
+      onValidChange([control.fields.name], { valid: false });
+      return;
+    }
+
+    this.validate();
   }
 
   componentDidUpdate(oldProps) {
@@ -32,7 +37,7 @@ class CustomTextField extends Component {
 
   updateValue = ({ target }) => {
     const { value } = target;
-    const { shouldValid, control } = this.props;
+    const { control } = this.props;
 
     // check validation after state update
     // to have state updated during validation
@@ -49,7 +54,7 @@ class CustomTextField extends Component {
 
     const required = validateRequired(
       control.fields.name,
-      CustomTextField.errorField,
+      CustomField.errorField,
       this.state,
       control.errors
     );
@@ -67,27 +72,29 @@ class CustomTextField extends Component {
   };
 
   render() {
-    const { control } = this.props;
+    const { children, control } = this.props;
     const {
       [control.fields.name]: value,
-      [CustomTextField.errorField]: errorField
+      [CustomField.errorField]: errorField
     } = this.state;
 
-    return (
-      <TextField
-        {...control.fields}
-        onChange={this.updateValue}
-        value={value}
-        errorText={errorField}
-      />
-    );
+    return children({
+      controlFields: control.fields,
+      errorField,
+      updateValue: this.updateValue,
+      value
+    });
   }
 }
 
-CustomTextField.propTypes = {
-  control: shape(Control).isRequired,
-  onValidChange: func.isRequired,
-  shouldValid: bool.isRequired
+/* eslint-disable react/default-props-match-prop-types */
+CustomField.defaultProps = {
+  initialValue: ''
 };
 
-export default CustomTextField;
+CustomField.propTypes = {
+  children: func.isRequired,
+  ...CustomFieldType
+};
+
+export default CustomField;

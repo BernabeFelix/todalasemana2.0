@@ -10,6 +10,7 @@
 .hide-xs-only {
   display: none;
 
+  // todo: @paul pass this to a media query variable on variables.scss
   @media only screen and (min-width: 48em) {
     display: initial;
   }
@@ -18,7 +19,7 @@
 .show-xs-only {
   display: none;
 
-  @media only screen and (max-width: 48em) {
+  @media #{$upToSmall} {
     display: initial;
   }
 }

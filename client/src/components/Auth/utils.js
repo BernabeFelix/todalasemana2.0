@@ -15,7 +15,5 @@ export const validateRequired = (field, fieldErrorText, state, errors) => {
     toUpdate[fieldErrorText] = '';
   }
 
-  console.log({ isValid, toUpdate });
-
   return { isValid, toUpdate };
 };
