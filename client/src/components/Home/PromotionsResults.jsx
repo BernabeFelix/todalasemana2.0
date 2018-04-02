@@ -3,7 +3,7 @@ import { arrayOf, func, shape } from 'prop-types';
 import fakePromotions from '../../api/promotions';
 import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
-import { Promotion } from './types';
+import { Promotion } from '../../types';
 
 const PromotionsResults = ({ promotions, urlCallback }) =>
   promotions.map(promotion => (

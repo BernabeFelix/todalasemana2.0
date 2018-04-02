@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paper } from 'material-ui';
 import { func } from 'prop-types';
-import { Promotion } from './types';
+import { Promotion } from '../../types';
 
 const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
   <Link to={url({ id })}>

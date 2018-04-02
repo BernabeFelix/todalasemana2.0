@@ -1,10 +1,9 @@
-import { List } from 'material-ui';
 import React, { Component } from 'react';
+import { List } from 'material-ui';
 import { arrayOf, shape } from 'prop-types';
 import fakePromotions from '../../api/promotions';
-import { Promotion } from '../Home/types';
 import AdminPromotion from './AdminPromotion';
-import { History, Match } from '../../types';
+import { History, Match, Promotion } from '../../types';
 
 class AdminPromotions extends Component {
   updateRoute = id => () => {

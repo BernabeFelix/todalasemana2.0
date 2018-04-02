@@ -10,10 +10,12 @@ export const signUpUrl = r('/registrar');
 
 export const promotionUrl = r('/promo/:id');
 
-export const promotionsUrl = r('/promotions/:id?');
+export const promotionsUrl = r('/promociones/:id?');
+
+export const newPromotionUrl = r('/nueva-promocion')
 
 export const dayUrl = r('/dia/:day');
 
 export const adminUrl = r('/admin');
 
-export const accountUrl = r('/cuenta')
+export const accountUrl = r('/cuenta');

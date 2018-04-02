@@ -21,3 +21,16 @@ export const Intent = {
   ERROR: 'ERROR',
   SUCCESS: 'SUCCESS'
 };
+
+export const NewPromotion = {
+  description: string,
+  imgUrl: string,
+  title: string
+};
+
+export const Promotion = {
+  id: number.isRequired,
+  description: string.isRequired,
+  imgUrl: string.isRequired,
+  title: string.isRequired
+};
