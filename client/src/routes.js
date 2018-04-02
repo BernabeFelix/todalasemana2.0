@@ -12,10 +12,12 @@ export const promotionUrl = r('/promo/:id');
 
 export const promotionsUrl = r('/promociones/:id?');
 
-export const newPromotionUrl = r('/nueva-promocion')
+export const newPromotionUrl = r('/nueva-promocion');
 
 export const dayUrl = r('/dia/:day');
 
 export const adminUrl = r('/admin');
 
 export const accountUrl = r('/cuenta');
+
+export const clientsUrl = r('/clientes/:id?');

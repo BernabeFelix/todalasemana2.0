@@ -3,10 +3,11 @@ import { bool } from 'prop-types';
 import CustomerAdmin from '../CustomerAdmin/CustomerAdmin';
 import SuperAdmin from '../SuperAdmin/SuperAdmin';
 
-const AdminSelector = ({ isSuper }) => (isSuper ? <SuperAdmin /> : <CustomerAdmin />);
+const AdminSelector = ({ isSuper }) =>
+  isSuper ? <SuperAdmin /> : <CustomerAdmin />;
 
 AdminSelector.defaultProps = {
-  isSuper: false
+  isSuper: true
 };
 
 AdminSelector.propTypes = {
