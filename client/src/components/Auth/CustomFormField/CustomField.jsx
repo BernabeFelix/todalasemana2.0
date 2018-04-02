@@ -33,7 +33,18 @@ class CustomField extends Component {
     if (this.props.shouldValid && !oldProps.shouldValid) {
       this.validate();
     }
+
+    if (this.props.initialValue !== oldProps.initialValue) {
+      this.initState();
+    }
   }
+
+  initState = () => {
+    this.setState({
+      [this.props.control.fields.name]: this.props.initialValue,
+      [CustomField.errorField]: ''
+    });
+  };
 
   updateValue = ({ target }) => {
     const { value } = target;
