@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Route,  withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import sizeMe from 'react-sizeme';
 import { clientsUrl } from '../../routes';
 import { Match, Size } from '../../types';
 import AdminMenu from './AdminMenu';
 import AdminLayout from '../Admin/AdminLayout';
+import ClientList from './ClientList';
 
 /* eslint-disable arrow-body-style */
 class SuperAdmin extends Component {
@@ -34,7 +35,13 @@ class SuperAdmin extends Component {
             {/* Middle Section */}
             <div
               className={`col-xs-12 col-md-${middleSectionCol} max-width-transition`}
-            />
+            >
+              <Route
+                exact={exact}
+                path={match.url + clientsUrl()}
+                component={ClientList}
+              />
+            </div>
 
             {/* Third Section */}
             <div

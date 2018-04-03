@@ -34,3 +34,15 @@ export const Promotion = {
   imgUrl: string.isRequired,
   title: string.isRequired
 };
+
+export const Client = {
+    id: number.isRequired,
+    firstName: string.isRequired,
+    lastName: string.isRequired,
+    address: string,
+    zipCode: string,
+    email: string,
+    phone: string,
+    company: string,
+    dateCreated: string.isRequired,
+};
