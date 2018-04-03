@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { RaisedButton, FlatButton } from 'material-ui';
-import { func, bool } from 'prop-types';
-import Auth from '../../api/auth/Auth';
+import { RaisedButton } from 'material-ui';
+import { func, string } from 'prop-types';
 
-const sleep = async ms => new Promise(resolve => setTimeout(resolve, ms));
 class Form extends Component {
   state = {
     shouldValid: false
@@ -33,7 +31,6 @@ class Form extends Component {
 
   submit = async () => {
     this.setState({
-      errorMsg: null,
       loading: true
     });
     // condition valid
@@ -45,47 +42,23 @@ class Form extends Component {
       this.setState({ loading: false });
       return;
     }
-    await sleep(300); // just to fake load time haha
-    const auth = new Auth();
-    if (this.props.isLogin === true) {
-      // Try login
-      console.log('try login');
-      const { user, password } = this.getFormValues();
-      console.log(user);
-      console.log(password);
-      try {
-        const res = await auth.login(user, password);
-        // REdirect to home?
-        console.log(res);
-        this.setState({ redirectTo: '/' });
-      } catch (error) {
-        console.log('Error in login:');
-        console.log(error);
-        // show error
-        this.setState({
-          errorMsg: error.message
-        });
-      }
-    } else {
-      // Try to create account
-      const { email, password } = this.getFormValues();
-      try {
-        const res = await auth.signUp({ email, password });
-        console.log(res);
 
-        // Show success message and invite to check the email
-      } catch (error) {
-        console.log('Error in signUp:');
-        console.log(error);
-        // show error
-        this.setState({
-          errorMsg: error.message
-        });
-      }
-    }
+    // Real submit
+    const values = this.getFormValues();
+    const reset = await this.props.submit(values);
 
-    //    reset form
+    // reset form?
+    if (reset) this.reset();
+
     this.setState({ shouldValid: false, loading: false });
+  };
+
+  reset = () => {
+    /* eslint-disable react/no-string-refs */
+    Object.keys(this.refs).forEach(key => {
+      const control = this.refs[key];
+      control.reset();
+    });
   };
 
   updateControl = (controlName, values) => {
@@ -100,26 +73,15 @@ class Form extends Component {
     if (this.state.shouldValid) this.formIsValid();
   };
 
-  logout = () => {
-    const auth = new Auth();
-    auth.logout();
-  };
-
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={this.state.redirectTo} />;
     }
 
     const { shouldValid } = this.state;
-    const classNames = this.props.isLogin ? 'form login' : 'form signup';
-    const alertSizeClass = this.props.isLogin ? 'alert-small' : '';
+    const classNames = `form ${this.props.className}`;
     return (
       <form className={classNames}>
-        {this.state.errorMsg && (
-          <div className={`alert alert-error ${alertSizeClass}`}>
-            <div className="">{this.state.errorMsg}</div>
-          </div>
-        )}
         {this.props.children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
@@ -131,7 +93,6 @@ class Form extends Component {
             onClick={this.submit}
             disabled={this.state.loading}
           />
-          <FlatButton label="Sign out" onClick={this.logout} fullWidth />
         </div>
       </form>
     );
@@ -139,12 +100,13 @@ class Form extends Component {
 }
 
 Form.defaultProps = {
-  isLogin: false
+  className: ''
 };
 
 Form.propTypes = {
+  className: string,
   children: func.isRequired,
-  isLogin: bool
+  submit: func.isRequired
 };
 
 export default Form;

@@ -10,10 +10,6 @@
   &.login {
     max-width: calc(256px + 2rem);
     margin: auto;
-    & .error-msg {
-      // margin-top: 1rem;
-      font-size: 14px;
-    }
   }
 
   .login {

@@ -68,6 +68,13 @@ class CustomTextField extends Component {
     }
   };
 
+  reset = () => {
+    this.setState({
+      [this.props.control.fields.name]: '',
+      [CustomTextField.errorField]: ''
+    });
+  };
+
   render() {
     const { control } = this.props;
     const {

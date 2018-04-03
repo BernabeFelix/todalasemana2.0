@@ -1,23 +1,30 @@
 import FirebaseApp from './FirebaseApp';
 
-const userLogedInError = user => {
+const userLoggedInError = user => {
   const err = {
     code: 'auth/user-signed-in',
-    message: 'Close the current session before proceeding.',
+    message: 'Cierra la sesión actual para continuar.',
     currentUser: user
   };
   throw err;
 };
 
+let instance = null;
+
 class Auth {
   constructor() {
-    // Initialize Firebase Auth
-    this.auth = FirebaseApp.auth();
+    if (!instance) {
+      // Initialize Firebase Auth
+      this.auth = FirebaseApp.auth();
+      instance = this;
+    }
+
+    return instance;
   }
 
   signUp = async data => {
     let user = this.auth.currentUser;
-    if (user) userLogedInError(user);
+    if (user) userLoggedInError(user);
 
     // Create user in firebase
     const { email, password } = data;
@@ -34,8 +41,9 @@ class Auth {
 
     user = this.auth.currentUser;
     try {
+      // TODO: change it to a env variable or setting...
       const actionCodeSettings = {
-        url: 'http://localhost:8080',
+        url: 'http://localhost:8080/entrar',
         handleCodeInApp: true
       };
       await user.sendEmailVerification(actionCodeSettings);
@@ -46,12 +54,11 @@ class Auth {
       return error;
     }
 
-    // Save user to database
+    // Logout user, can't use the app if doesn't verify the email
+    this.logout();
 
     // TODO: Post user data to database...
 
-    // Logout user, can't use the app if doesn't verify the email
-    this.logout();
     const result = {
       code: 'ok',
       message: `Verification email sent to ${email}.`
@@ -61,8 +68,8 @@ class Auth {
 
   login = async (email, password) => {
     // Check if there is a logged in user
-    const user = this.auth.currentUser;
-    if (user) userLogedInError(user);
+    const user = await this.getCurrentUser();
+    if (user) userLoggedInError(user);
 
     // Login
     try {
@@ -75,7 +82,7 @@ class Auth {
         await this.logout();
         const err = {
           code: 'auth/email-not-verified',
-          message: 'The account is not activated. Please check your inbox.',
+          message: 'La cuenta no se ha activado por correo electrónico.',
           currentUser: user
         };
         throw err;
@@ -98,6 +105,12 @@ class Auth {
   logout = async () => {
     // Documentation shows no possible errors for this call
     await this.auth.signOut();
+  };
+
+  getCurrentUser = async () => {
+    // Doesn't work from Header.jsx??
+    const user = this.auth.currentUser;
+    return user;
   };
 }
 

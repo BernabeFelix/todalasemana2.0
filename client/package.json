@@ -40,6 +40,7 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
+    "animate-css-styled-components": "0.0.20",
     "firebase": "^4.12.0",
     "lodash-es": "^4.17.7",
     "material-ui": "^0.20.0",
@@ -47,7 +48,8 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^3.2.5"
   },
   "prettier": {
     "singleQuote": true

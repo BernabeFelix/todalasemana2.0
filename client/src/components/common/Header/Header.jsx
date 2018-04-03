@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { string } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import Auth from '../../../api/auth/Auth';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
 import { homeUrl, signInUrl } from '../../../routes';
@@ -27,10 +29,47 @@ const SignIn = () => (
   </div>
 );
 
+const UserButton = props => (
+  <div className="header-right-nav">
+    <Link to="/perfil">
+      <FlatButton
+        label={props.username}
+        className="header-right-nav-btn"
+        hoverColor="transparent"
+        rippleColor="transparent !important"
+      />
+    </Link>
+  </div>
+);
+UserButton.propTypes = {
+  username: string.isRequired
+};
+
+const getCurrentUser = async () => {
+  const auth = new Auth();
+  const user = await auth.getCurrentUser().catch(error => console.log(error));
+  console.log(user);
+  return user ? user.email : null;
+};
+
 class Header extends React.Component {
-  state = {
-    sideNavOpen: false
-  };
+  constructor() {
+    super();
+    const user = getCurrentUser();
+    this.state = {
+      sideNavOpen: false,
+      username: user ? user.email : 'polkien'
+    };
+  }
+
+  // componentWillMount() {
+  //   const user = getCurrentUser();
+  //   // IT DOESN'T WORK!!! :@ User is always null here, why?
+  //   this.setState({
+  //     sideNavOpen: false,
+  //     username: user ? user.email : 'polkien'
+  //   });
+  // }
 
   toggleDrawer = () => {
     this.setState({
@@ -61,7 +100,11 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              <SignIn />
+              {this.state.username ? (
+                <UserButton username={this.state.username} />
+              ) : (
+                <SignIn />
+              )}
             </Fragment>
           }
         />
