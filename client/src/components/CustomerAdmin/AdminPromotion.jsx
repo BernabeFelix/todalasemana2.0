@@ -1,20 +1,13 @@
-import { Avatar, Divider, IconButton, ListItem } from 'material-ui';
+import { Divider, IconButton, ListItem } from 'material-ui';
 import React, { Component, Fragment } from 'react';
 import { func, number, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import fakePromotions from '../../api/promotions';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
+import CustomAvatar from '../common/CustomAvatar/CustomAvatar';
 
 const avatarSize = 150;
 const padding = 16;
-
-const avatarStyle = {
-  borderRadius: 0,
-  width: 'auto',
-  height: 'auto',
-  maxWidth: avatarSize,
-  maxHeight: 88 - padding
-};
 
 const innerDivStyle = {
   paddingLeft: padding + avatarSize + padding
@@ -36,7 +29,9 @@ class AdminPromotion extends Component {
     return (
       <Fragment>
         <ListItem
-          leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
+          leftAvatar={
+            <CustomAvatar src={imgUrl} size={avatarSize} padding={padding} />
+          }
           primaryText={title}
           secondaryText={description}
           secondaryTextLines={2}
