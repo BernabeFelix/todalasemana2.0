@@ -4,6 +4,7 @@ import { FadeIn } from 'animate-css-styled-components';
 import Login from './Login';
 import SignUp from './SignUp';
 
+// TODO: replace this colors by variables.js proper color
 const inkStyles = {
   backgroundColor: '#ee3335'
 };

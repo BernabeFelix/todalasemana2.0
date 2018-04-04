@@ -5,6 +5,7 @@ import Content from './Content';
 import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
 
+// TODO: replace this colors by variables.js proper color
 const colors = {
   blueCool: '#1f8f8f'
 };
