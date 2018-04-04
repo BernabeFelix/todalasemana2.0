@@ -51,7 +51,12 @@ class SuperAdmin extends Component {
                 <Route
                   exact={exact}
                   path={this.clientListPath}
-                  component={ClientList}
+                  render={props => (
+                    <ClientList
+                      {...props}
+                      promotionListPath={this.promotionListPath}
+                    />
+                  )}
                 />
               </Switch>
             </div>
