@@ -23,7 +23,7 @@ class AdminPromotions extends Component {
     if (!promotions) return null;
 
     return (
-      <List style={{ backgroundColor: 'white' }}>
+      <List style={{ backgroundColor: 'white', padding: 0 }}>
         {promotions.map(({ id }) => (
           <AdminPromotion id={id} onClick={this.updateRoute(id)} key={id} />
         ))}

@@ -1,4 +1,4 @@
-import { func, number, string } from 'prop-types';
+import { bool, func, number, string } from 'prop-types';
 
 export const Location = {
   pathname: string.isRequired
@@ -32,17 +32,18 @@ export const Promotion = {
   id: number.isRequired,
   description: string.isRequired,
   imgUrl: string.isRequired,
+  isActive: bool.isRequired,
   title: string.isRequired
 };
 
 export const Client = {
-    id: number.isRequired,
-    firstName: string.isRequired,
-    lastName: string.isRequired,
-    address: string,
-    zipCode: string,
-    email: string,
-    phone: string,
-    service: string,
-    dateCreated: string.isRequired,
+  id: number.isRequired,
+  firstName: string.isRequired,
+  lastName: string.isRequired,
+  address: string,
+  zipCode: string,
+  email: string,
+  phone: string,
+  service: string,
+  dateCreated: string.isRequired
 };
