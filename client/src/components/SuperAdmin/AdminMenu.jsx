@@ -3,6 +3,7 @@ import React from 'react';
 import { shape } from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import List from 'material-ui/svg-icons/action/view-list';
+import ClientList from 'material-ui/svg-icons/action/supervisor-account';
 import Power from 'material-ui/svg-icons/action/power-settings-new';
 import { clientsUrl, promotionsUrl } from '../../routes';
 import { Match } from '../common/types';
@@ -21,7 +22,7 @@ const AdminMenu = ({ match }) => (
       </Link>
 
       <Link to={match.url + clientsUrl()}>
-        <MenuItem primaryText="Clientes" leftIcon={<List />} />
+        <MenuItem primaryText="Clientes" leftIcon={<ClientList />} />
       </Link>
 
       <MenuItem primaryText="Salir" leftIcon={<Power color={$red} />} />
