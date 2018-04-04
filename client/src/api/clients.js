@@ -8,7 +8,8 @@ const fakeClients = [
     zipCode: '85000',
     email: 'email@email.com',
     phone: '333333333333',
-    service: 'TodaLaSemana'
+    service: 'TodaLaSemana',
+    isActive: false
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ const fakeClients = [
     zipCode: '85000',
     email: 'email@email.com',
     phone: '333333333333',
-    service: 'TodaLaSemana'
+    service: 'TodaLaSemana',
+    isActive: true
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ const fakeClients = [
     zipCode: '85000',
     email: 'email@email.com',
     phone: '333333333333',
-    service: 'TodaLaSemana'
+    service: 'TodaLaSemana',
+    isActive: true
   },
   {
     id: 4,
@@ -41,7 +44,8 @@ const fakeClients = [
     zipCode: '85000',
     email: 'email@email.com',
     phone: '333333333333',
-    service: 'TodaLaSemana'
+    service: 'TodaLaSemana',
+    isActive: false
   }
 ];
 
