@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { List } from 'material-ui';
-import { arrayOf, shape } from 'prop-types';
-import { Client, History, Match } from '../../types';
+import { arrayOf, number, string, shape } from 'prop-types';
+import { History, Match } from '../../types';
 import fakeClients from '../../api/clients';
-import ClientItem from './ClientItem';
+import ClientListItem from './ClientListItem';
 
 class ClientList extends Component {
   updateRoute = id => () => {
@@ -19,9 +19,9 @@ class ClientList extends Component {
     if (!clients) return null;
 
     return (
-      <List style={{ backgroundColor: 'white' }}>
+      <List style={{ backgroundColor: 'white', padding: 0 }}>
         {clients.map(({ id }) => (
-          <ClientItem id={id} onClick={this.updateRoute(id)} key={id} />
+          <ClientListItem id={id} onClick={this.updateRoute(id)} key={id} />
         ))}
       </List>
     );
@@ -35,7 +35,14 @@ ClientList.defaultProps = {
 ClientList.propTypes = {
   history: shape(History).isRequired,
   match: shape(Match).isRequired,
-  clients: arrayOf(shape(Client))
+  clients: arrayOf(
+    shape({
+      id: number.isRequired,
+      firstName: string.isRequired,
+      lastName: string.isRequired,
+      dateCreated: string.isRequired
+    })
+  )
 };
 
 export default ClientList;

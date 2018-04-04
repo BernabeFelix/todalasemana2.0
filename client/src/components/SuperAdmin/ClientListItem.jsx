@@ -11,7 +11,7 @@ const innerDivStyle = {
   paddingLeft: padding + avatarSize + padding
 };
 
-const ClientItem = ({ id, onClick }) => {
+const ClientListItem = ({ id, onClick }) => {
   // todo: remove this when redux/apollo is setup
   const { firstName, dateCreated } = fakeClients.find(
     client => client.id === parseInt(id, 10)
@@ -32,9 +32,9 @@ const ClientItem = ({ id, onClick }) => {
   );
 };
 
-ClientItem.propTypes = {
+ClientListItem.propTypes = {
   id: oneOfType([string, number]).isRequired,
   onClick: func.isRequired
 };
 
-export default ClientItem;
+export default ClientListItem;

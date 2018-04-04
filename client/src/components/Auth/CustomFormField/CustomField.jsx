@@ -17,7 +17,9 @@ class CustomField extends Component {
   }
 
   componentDidMount() {
-    const { initialValue, onValidChange, control } = this.props;
+    const { control, initialValue, readOnly, onValidChange } = this.props;
+
+    if (readOnly) return;
 
     if (!initialValue) {
       // init valid state on parent
@@ -61,7 +63,9 @@ class CustomField extends Component {
   };
 
   validate = () => {
-    const { control, onValidChange, shouldValid } = this.props;
+    const { control, onValidChange, readOnly, shouldValid } = this.props;
+
+    if(readOnly) return
 
     const required = validateRequired(
       control.fields.name,
@@ -107,7 +111,8 @@ class CustomField extends Component {
 
 /* eslint-disable react/default-props-match-prop-types */
 CustomField.defaultProps = {
-  initialValue: ''
+  initialValue: '',
+  readOnly: false
 };
 
 CustomField.propTypes = {

@@ -7,6 +7,7 @@ import { Match, Size } from '../../types';
 import AdminMenu from './AdminMenu';
 import AdminLayout from '../Admin/AdminLayout';
 import ClientList from './ClientList';
+import ClientEdit from './ClientEdit';
 
 /* eslint-disable arrow-body-style */
 class SuperAdmin extends Component {
@@ -46,7 +47,13 @@ class SuperAdmin extends Component {
             {/* Third Section */}
             <div
               className={`col-xs-12 col-md-${thirdSectionCol} max-width-transition`}
-            />
+            >
+              <Route
+                exact={exact}
+                path={`${match.url}${clientsUrl()}/:id`}
+                component={ClientEdit}
+              />
+            </div>
           </div>
         )}
       </AdminLayout>

@@ -14,6 +14,7 @@ const CustomTextField = ({ multiLine, maxLength, ...props }) => (
         errorText={errorField}
         multiLine={multiLine}
         maxLength={maxLength}
+        readOnly={props.readOnly}
       />
     )}
   </CustomField>
