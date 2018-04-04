@@ -3,7 +3,7 @@ import { RaisedButton } from 'material-ui';
 import controls from './AdminEditPromotion/controls';
 import Form from '../Auth/Form';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
-import { NewPromotion } from '../../types';
+import { NewPromotion } from '../common/types';
 
 // const dropZoneStyle = {
 //   width: 'auto',

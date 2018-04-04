@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import List from 'material-ui/svg-icons/action/view-list';
 import Power from 'material-ui/svg-icons/action/power-settings-new';
 import { clientsUrl } from '../../routes';
-import { Match } from '../../types';
+import { Match } from '../common/types';
 import { $red } from '../../styles/variables';
 
 const style = {

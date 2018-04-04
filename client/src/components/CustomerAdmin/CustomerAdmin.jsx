@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import sizeMe from 'react-sizeme';
 import { newPromotionUrl, promotionsUrl } from '../../routes';
-import { Match, Size } from '../../types';
+import { Match, Size } from '../common/types';
 import AdminMenu from './AdminMenu';
 import AdminPromotions from './AdminPromotions';
 import AdminEditPromotion from './AdminEditPromotion/AdminEditPromotion';

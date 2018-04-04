@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
-import { Intent } from '../../types';
+import { Intent } from '../common/types';
 
 class Form extends Component {
   state = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List } from 'material-ui';
 import { arrayOf, number, string, shape } from 'prop-types';
-import { History, Match } from '../../types';
+import { History, Match } from '../common/types';
 import fakeClients from '../../api/clients';
 import ClientListItem from './ClientListItem';
 

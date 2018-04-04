@@ -7,7 +7,7 @@ import List from 'material-ui/svg-icons/action/view-list';
 import Account from 'material-ui/svg-icons/action/account-box';
 import Power from 'material-ui/svg-icons/action/power-settings-new';
 import { accountUrl, newPromotionUrl, promotionsUrl } from '../../routes';
-import { Match } from '../../types';
+import { Match } from '../common/types';
 import { $blueCool, $red } from '../../styles/variables';
 
 const style = {

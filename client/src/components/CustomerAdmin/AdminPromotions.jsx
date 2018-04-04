@@ -3,7 +3,7 @@ import { List } from 'material-ui';
 import { arrayOf, shape } from 'prop-types';
 import fakePromotions from '../../api/promotions';
 import AdminPromotion from './AdminPromotion';
-import { History, Match, Promotion } from '../../types';
+import { History, Match, Promotion } from '../common/types';
 
 class AdminPromotions extends Component {
   updateRoute = id => () => {

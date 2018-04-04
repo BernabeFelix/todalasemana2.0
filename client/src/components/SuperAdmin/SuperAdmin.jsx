@@ -3,7 +3,7 @@ import { Route, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import sizeMe from 'react-sizeme';
 import { clientsUrl } from '../../routes';
-import { Match, Size } from '../../types';
+import { Match, Size } from '../common/types';
 import AdminMenu from './AdminMenu';
 import AdminLayout from '../Admin/AdminLayout';
 import ClientList from './ClientList';
