@@ -1,4 +1,4 @@
-import { $large, $upToMedium, $upToSmall } from './variables';
+import { $large, $upToMedium, $upToSmall } from '../styles/variables';
 
 const upToSmall = window.matchMedia($upToSmall);
 const upToMedium = window.matchMedia($upToMedium);

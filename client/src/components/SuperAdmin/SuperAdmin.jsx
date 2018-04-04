@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import sizeMe from 'react-sizeme';
-import { clientsUrl } from '../../routes';
+import { clientsUrl, promotionsUrl } from '../../routes';
 import { Match, Size } from '../common/types';
 import AdminMenu from './AdminMenu';
 import AdminLayout from '../Admin/AdminLayout';
 import ClientList from './ClientList';
 import ClientEdit from './ClientEdit';
+import AdminPromotions from '../CustomerAdmin/AdminPromotions';
+import AdminEditPromotion from '../CustomerAdmin/AdminEditPromotion/AdminEditPromotion';
 
 /* eslint-disable arrow-body-style */
 class SuperAdmin extends Component {
@@ -18,7 +20,10 @@ class SuperAdmin extends Component {
 
     this.clientListPath = match.url + clientsUrl();
 
-    this.middleSectionPaths = [this.clientListPath];
+    this.promotionListPath = `${match.url}${promotionsUrl()}`;
+    this.editPromotionPath = `${match.url}${promotionsUrl()}/:id`;
+
+    this.middleSectionPaths = [this.clientListPath, this.promotionListPath];
   }
 
   render() {
@@ -37,22 +42,38 @@ class SuperAdmin extends Component {
             <div
               className={`col-xs-12 col-md-${middleSectionCol} max-width-transition`}
             >
-              <Route
-                exact={exact}
-                path={match.url + clientsUrl()}
-                component={ClientList}
-              />
+              <Switch>
+                <Route
+                  exact={exact}
+                  path={this.promotionListPath}
+                  component={AdminPromotions}
+                />
+                <Route
+                  exact={exact}
+                  path={this.clientListPath}
+                  component={ClientList}
+                />
+              </Switch>
             </div>
 
             {/* Third Section */}
             <div
               className={`col-xs-12 col-md-${thirdSectionCol} max-width-transition`}
             >
-              <Route
-                exact={exact}
-                path={`${match.url}${clientsUrl()}/:id`}
-                render={props => <ClientEdit id={props.match.params.id} />}
-              />
+              <Switch>
+                <Route
+                  exact={exact}
+                  path={`${this.clientListPath}/:id`}
+                  render={props => <ClientEdit id={props.match.params.id} />}
+                />
+                <Route
+                  exact
+                  path={this.editPromotionPath}
+                  render={props => (
+                    <AdminEditPromotion id={props.match.params.id} />
+                  )}
+                />
+              </Switch>
             </div>
           </div>
         )}

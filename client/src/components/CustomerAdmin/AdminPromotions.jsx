@@ -4,11 +4,15 @@ import { arrayOf, shape } from 'prop-types';
 import fakePromotions from '../../api/promotions';
 import AdminPromotion from './AdminPromotion';
 import { History, Match, Promotion } from '../common/types';
+import { hasSlashAtTheEnd } from '../../utils/url';
 
 class AdminPromotions extends Component {
   updateRoute = id => () => {
     const { match, history } = this.props;
-    const newRoute = `${match.url}/${id}`;
+    const currentUrl = match.url;
+    const newRoute = `${currentUrl}${
+      !hasSlashAtTheEnd(currentUrl) ? '/' : ''
+    }${id}`;
 
     history.push(newRoute);
   };

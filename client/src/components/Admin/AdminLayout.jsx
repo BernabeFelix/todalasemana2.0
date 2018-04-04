@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { arrayOf, func, string, shape } from 'prop-types';
 import { Location, Match, Size } from '../common/types';
-import { isUpToMedium } from '../../styles/utils';
+import { isUpToMedium } from '../../utils/mq';
 
 /* eslint-disable arrow-body-style */
 class AdminLayout extends Component {

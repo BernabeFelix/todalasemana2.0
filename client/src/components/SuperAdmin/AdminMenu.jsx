@@ -4,7 +4,7 @@ import { shape } from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import List from 'material-ui/svg-icons/action/view-list';
 import Power from 'material-ui/svg-icons/action/power-settings-new';
-import { clientsUrl } from '../../routes';
+import { clientsUrl, promotionsUrl } from '../../routes';
 import { Match } from '../common/types';
 import { $red } from '../../styles/variables';
 
@@ -16,6 +16,10 @@ const AdminMenu = ({ match }) => (
   //  todo: add active state
   <Paper style={style}>
     <Menu>
+      <Link to={match.url + promotionsUrl()}>
+        <MenuItem primaryText="Todas Promociones" leftIcon={<List />} />
+      </Link>
+
       <Link to={match.url + clientsUrl()}>
         <MenuItem primaryText="Clientes" leftIcon={<List />} />
       </Link>
