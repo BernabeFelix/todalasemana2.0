@@ -1,13 +1,5 @@
 import FirebaseApp from './FirebaseApp';
-
-const userLoggedInError = user => {
-  const err = {
-    code: 'auth/user-signed-in',
-    message: 'Cierra la sesión actual para continuar.',
-    currentUser: user
-  };
-  throw err;
-};
+import errors from './errors';
 
 let instance = null;
 
@@ -24,19 +16,14 @@ class Auth {
 
   signUp = async data => {
     let user = this.auth.currentUser;
-    if (user) userLoggedInError(user);
+    if (user) throw errors.userLoggedInError;
 
     // Create user in firebase
     const { email, password } = data;
     try {
       await this.auth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
-      // TODO: Hanlde errors:
-      // auth/email-already-in-use
-      // auth/invalid-email
-      // auth/operation-not-allowed
-      // auth/weak-password
-      throw error;
+      throw errors.getErrorMessageForCode(error.code);
     }
 
     user = this.auth.currentUser;
@@ -47,11 +34,11 @@ class Auth {
         handleCodeInApp: true
       };
       await user.sendEmailVerification(actionCodeSettings);
-      console.log(`Verification email sent to ${email}.`);
     } catch (error) {
-      // Unknown error codes? didn't find in js reference
-      // signUpError = 'auth/verification-email-not-sent';
-      return error;
+      // Unknown error codes? didn't find in js reference, so rolling back and throwing generic error
+      // Delete user
+      user.delete();
+      throw errors.internalError;
     }
 
     // Logout user, can't use the app if doesn't verify the email
@@ -61,7 +48,7 @@ class Auth {
 
     const result = {
       code: 'ok',
-      message: `Verification email sent to ${email}.`
+      message: `Hemos enviado un correo de activación a '${email}'.`
     };
     return result;
   };
@@ -69,7 +56,7 @@ class Auth {
   login = async (email, password) => {
     // Check if there is a logged in user
     const user = await this.getCurrentUser();
-    if (user) userLoggedInError(user);
+    if (user) throw errors.userLoggedInError;
 
     // Login
     try {
@@ -80,25 +67,13 @@ class Auth {
       // Did user verified his email?
       if (!res.user.emailVerified) {
         await this.logout();
-        const err = {
-          code: 'auth/email-not-verified',
-          message: 'La cuenta no se ha activado por correo electrónico.',
-          currentUser: user
-        };
-        throw err;
+        throw errors.emailNotVerified;
       }
-      // TODO: validate token against backend?
+      // Maybe TODO: validate token against backend?
       // user = this.auth.currentUser;
-      // const token = user.getIdToken();
-
-      return res;
+      // return user.getIdToken();;
     } catch (error) {
-      // TODO: Handle possible errors, here or in caller?:
-      // auth/invalid-email
-      // auth/user-disabled
-      // auth/user-not-found
-      // auth/wrong-password
-      throw error;
+      throw errors.getErrorMessageForCode(error.code);
     }
   };
 

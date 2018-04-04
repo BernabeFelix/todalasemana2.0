@@ -22,17 +22,11 @@ class SignUp extends Component {
       const { email, password } = data;
       const auth = new Auth();
       const res = await auth.signUp({ email, password });
-      console.log(res);
-
-      // Reset form
 
       // Show success message and invite to check the email
-      const msg = `Hemos enviado un correo de activación a '${email}'.`;
-      this.setState({ success: msg });
+      this.setState({ success: res.message });
       return true; // Indicate the form to reset the fields
     } catch (error) {
-      console.log('Error in signUp:');
-      console.log(error);
       // show error
       this.setState({
         error: error.message
@@ -50,7 +44,7 @@ class SignUp extends Component {
             {success && (
               <Snackbar open message={success} autoHideDuration={20000} />
             )}
-            {this.state.error && (
+            {error && (
               <div className="alert alert-error alert-small">{error}</div>
             )}
             <div className="row">

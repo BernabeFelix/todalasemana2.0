@@ -10,32 +10,28 @@ import { homeUrl } from '../../routes';
 
 class Login extends Component {
   state = {
-    errorMsg: null
+    error: null,
+    redirect: null
   };
 
   login = async data => {
     const { user, password } = data;
     this.setState({
-      errorMsg: null
+      error: null,
+      redirect: null
     });
 
     await sleep(300); // just to fake load time haha
     const auth = new Auth();
     // Try login
-    console.log('try login');
-    console.log(user);
-    console.log(password);
     try {
-      const res = await auth.login(user, password);
+      await auth.login(user, password);
       // Redirect to home
-      console.log(res);
-      this.setState({ redirectTo: homeUrl() });
+      this.setState({ redirect: homeUrl() });
     } catch (error) {
-      console.log('Error in login:');
-      console.log(error);
       // show error
       this.setState({
-        errorMsg: error.message
+        error: error.message
       });
     }
   };
@@ -45,17 +41,17 @@ class Login extends Component {
   };
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect to={this.state.redirectTo} />;
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to={redirect} />;
     }
+    const { error } = this.state;
     return (
       <Form submit={this.login} className="login">
         {(updateValid, shouldValid) => (
           <div className="login">
-            {this.state.errorMsg && (
-              <div className="alert alert-error alert-small">
-                {this.state.errorMsg}
-              </div>
+            {error && (
+              <div className="alert alert-error alert-small">{error}</div>
             )}
             <div className="row">
               <div className="col-xs-12">
