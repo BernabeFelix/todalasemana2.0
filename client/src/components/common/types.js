@@ -43,6 +43,6 @@ export const Client = {
     zipCode: string,
     email: string,
     phone: string,
-    company: string,
+    service: string,
     dateCreated: string.isRequired,
 };

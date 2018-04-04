@@ -51,7 +51,7 @@ class SuperAdmin extends Component {
               <Route
                 exact={exact}
                 path={`${match.url}${clientsUrl()}/:id`}
-                component={ClientEdit}
+                render={props => <ClientEdit id={props.match.params.id} />}
               />
             </div>
           </div>
