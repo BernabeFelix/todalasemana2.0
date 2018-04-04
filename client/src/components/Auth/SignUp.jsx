@@ -16,7 +16,7 @@ class SignUp extends Component {
       error: null,
       success: null
     });
-    await sleep(300);
+    await sleep(300); // Fake load time
     // Try to create account
     try {
       const { email, password } = data;

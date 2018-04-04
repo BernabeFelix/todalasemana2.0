@@ -7,6 +7,7 @@ import Form from './Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { homeUrl } from '../../routes';
+// import { History, Match, Promotion } from '../common/types';
 
 class Login extends Component {
   state = {
@@ -27,7 +28,9 @@ class Login extends Component {
     try {
       await auth.login(user, password);
       // Redirect to home
-      this.setState({ redirect: homeUrl() });
+      const { history } = this.props;
+      history.push(homeUrl());
+      // this.setState({ redirect: homeUrl() });
     } catch (error) {
       // show error
       this.setState({

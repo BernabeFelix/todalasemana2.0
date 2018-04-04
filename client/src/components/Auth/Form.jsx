@@ -55,10 +55,7 @@ class Form extends Component {
 
   reset = () => {
     /* eslint-disable react/no-string-refs */
-    Object.keys(this.refs).forEach(key => {
-      const control = this.refs[key];
-      control.reset();
-    });
+    Object.values(this.refs).forEach(control => control.reset());
   };
 
   updateControl = (controlName, values) => {
@@ -78,7 +75,7 @@ class Form extends Component {
       return <Redirect to={this.state.redirectTo} />;
     }
 
-    const { shouldValid } = this.state;
+    const { shouldValid, loading } = this.state;
     const classNames = `form ${this.props.className}`;
     return (
       <form className={classNames}>
@@ -91,7 +88,7 @@ class Form extends Component {
             backgroundColor="#ee3335"
             labelColor="#fff"
             onClick={this.submit}
-            disabled={this.state.loading}
+            disabled={loading}
           />
         </div>
       </form>
