@@ -7,8 +7,7 @@
     "client": "cd client && yarn intranet",
     "server": "nodemon --exec yarn babel-node -- ./server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "build":
-      "babel -d ./dist ./ --ignore dist/,client/,node_modules/,firebase-hosting/ && cd client && yarn build && cd .. && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
+    "build": "babel -d ./dist ./ --ignore dist/,client/,node_modules/,firebase-hosting/ && cd client && yarn build && cd .. && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
     "start": "cd dist && NODE_ENV=production node server.js"
   },
   "repository": {
@@ -37,6 +36,7 @@
     "concurrently": "^3.5.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0"
+    "eslint-plugin-import": "^2.9.0",
+    "prettier": "1.11.1"
   }
 }

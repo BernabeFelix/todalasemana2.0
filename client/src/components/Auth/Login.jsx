@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FlatButton } from 'material-ui';
-import CustomTextField from './CustomTextField';
+import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
 import Form from './Form';
 import { sleep } from './utils';
@@ -28,9 +28,9 @@ class Login extends Component {
     try {
       await auth.login(user, password);
       // Redirect to home
-      const { history } = this.props;
-      history.push(homeUrl());
-      // this.setState({ redirect: homeUrl() });
+      // const { history } = this.props;
+      // history.push(homeUrl());
+      this.setState({ redirect: homeUrl() });
     } catch (error) {
       // show error
       this.setState({

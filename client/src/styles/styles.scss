@@ -6,6 +6,8 @@
 
 @import '../components/Home/PromotionSingleResult';
 @import '../components/Auth/Auth';
+@import '../components/CustomerAdmin/AdminEditPromotion/AdminEditPromotion';
+@import '../components/CustomerAdmin/CustomerAdmin';
 
 /* component imports */
 @import '../components/common/Header/Header';
@@ -34,7 +36,8 @@ body {
   position: relative;
   padding-bottom: 50px;
   min-height: 100%;
-  @media only screen and (max-width: 48em) {
+
+  @media #{$upToSmall} {
     padding-bottom: 72px;
   }
 }
@@ -48,7 +51,8 @@ a {
   margin-top: $headerHeight;
   padding: 1rem;
   padding-top: calc(2rem + #{$headerHeight});
-  @media only screen and (max-width: 48em) {
+
+  @media #{$upToSmall} {
     padding-top: calc(1rem + #{$headerHeight});
   }
 }

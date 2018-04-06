@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import controls from './controls';
-import CustomTextField from './CustomTextField';
+import CustomTextField from './CustomFormField/CustomTextField';
 import Form from './Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';

@@ -1,3 +1,6 @@
+// NOTE: if you delete/add something in this file
+// make sure to do it also in variables.js
+
 /* variables */
 
 $blue-lighter: #e5f5fb;
@@ -14,3 +17,9 @@ $errorColor: #d50000; // TODO: add to variables.js
 
 /* sizes */
 $headerHeight: 64px;
+
+/* media queries */
+$large: 'only screen and (min-width: 75em)';
+$medium: 'only screen and (min-width: 62.01em)';
+$upToMedium: 'only screen and (max-width: 62em)';
+$upToSmall: 'only screen and (max-width: 48em)';

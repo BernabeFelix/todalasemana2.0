@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paper } from 'material-ui';
-import { promotionUrl } from '../../routes';
+import { func } from 'prop-types';
 import { Promotion } from './types';
 
-const PromotionSingleResult = ({ description, id, imgUrl, title }) => (
-  <Link to={promotionUrl({ id })}>
+const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
+  <Link to={url({ id })}>
     <Paper className="promotion-single-result" zDepth={2}>
       <div className="row">
         <div className="col-xs-12 col-sm-3">
@@ -22,6 +22,9 @@ const PromotionSingleResult = ({ description, id, imgUrl, title }) => (
   </Link>
 );
 
-PromotionSingleResult.propTypes = Promotion;
+PromotionSingleResult.propTypes = {
+  url: func.isRequired,
+  ...Promotion
+};
 
 export default PromotionSingleResult;
