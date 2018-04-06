@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { adminUrl, homeUrl, signInUrl, signUpUrl } from '../routes';
-import Admin from './CustomerAdmin/CustomerAdmin';
 import Auth from './Auth/Auth';
 import Home from './Home/Home';
+import AdminSelector from "./Admin/AdminSelector";
 
 const Content = () => (
   <main className="main">
@@ -11,7 +11,7 @@ const Content = () => (
       <Route exact path={homeUrl()} component={Home} />
       <Route path={signInUrl()} component={Auth} />
       <Route path={signUpUrl()} component={Auth} />
-      <Route path={adminUrl()} component={Admin} />
+      <Route path={adminUrl()} component={AdminSelector} />
     </Switch>
   </main>
 );

@@ -1,23 +1,29 @@
-import { Avatar, Divider, IconButton, ListItem } from 'material-ui';
+import { Divider, IconButton, ListItem } from 'material-ui';
 import React, { Component, Fragment } from 'react';
 import { func, number, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import fakePromotions from '../../api/promotions';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
+import CustomAvatar from '../common/CustomAvatar/CustomAvatar';
+import { $blueCool, $red } from '../../styles/variables';
 
-const avatarSize = 150;
-const padding = 16;
+const $avatarSize = 150;
+const $padding = 16;
+const $itemHeight = 88;
+const $borderMargin = 1;
 
-const avatarStyle = {
-  borderRadius: 0,
-  width: 'auto',
-  height: 'auto',
-  maxWidth: avatarSize,
-  maxHeight: 88 - padding
+const activeBorder = {
+  left: 0,
+  position: 'absolute',
+  paddingTop: $borderMargin / 2,
+  paddingBottom: $borderMargin / 2,
+  top: 0,
+  height: $itemHeight - $borderMargin
 };
 
 const innerDivStyle = {
-  paddingLeft: padding + avatarSize + padding
+  height: $itemHeight,
+  paddingLeft: $padding + $avatarSize + $padding
 };
 
 class AdminPromotion extends Component {
@@ -29,25 +35,34 @@ class AdminPromotion extends Component {
   render() {
     const { id, onClick } = this.props;
     // todo: remove this when redux/apollo is setup
-    const { description, imgUrl, title } = fakePromotions.find(
+    const { description, imgUrl, isActive, title } = fakePromotions.find(
       promo => promo.id === parseInt(id, 10)
     );
 
     return (
       <Fragment>
         <ListItem
-          leftAvatar={<Avatar src={imgUrl} style={avatarStyle} />}
           primaryText={title}
           secondaryText={description}
           secondaryTextLines={2}
           innerDivStyle={innerDivStyle}
+          onClick={onClick}
+          leftAvatar={
+            <CustomAvatar src={imgUrl} size={$avatarSize} padding={$padding} />
+          }
           rightIconButton={
             <IconButton touch onClick={this.deletePromo} tooltip="Eliminar">
               <DeleteIcon color="#ee3335" />
             </IconButton>
           }
-          onClick={onClick}
-        />
+        >
+          <div
+            style={{
+              ...activeBorder,
+              borderLeft: `10px solid ${isActive ? $blueCool : $red}`
+            }}
+          />
+        </ListItem>
         <Divider inset />
       </Fragment>
     );

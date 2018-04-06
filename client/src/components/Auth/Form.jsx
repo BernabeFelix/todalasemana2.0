@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
-import { Intent } from '../../types';
+import { Intent } from '../common/types';
+import { $blueCool } from '../../styles/variables';
 
 class Form extends Component {
   state = {
@@ -45,13 +46,10 @@ class Form extends Component {
       return;
     }
 
-    //    send POST
-    // const formValues = this.getFormValues();
     this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
 
-    // Real submit
     const values = this.getFormValues();
-    const reset = await this.props.submit(values);
+    const reset = await this.props.onSubmit(values);
 
     // reset form?
     if (reset) this.reset();
@@ -83,6 +81,7 @@ class Form extends Component {
     const { children, submitText } = this.props;
     const { shouldValid, loading } = this.state;
     const classNames = `form ${this.props.className}`;
+
     return (
       <form className={classNames}>
         {children(this.updateControl, shouldValid)}
@@ -95,6 +94,11 @@ class Form extends Component {
             labelColor="#fff"
             onClick={this.submit}
             disabled={loading}
+            labelStyle={{ color: $blueCool }}
+            buttonStyle={{
+              backgroundColor: 'white',
+              border: `1px solid ${$blueCool}`
+            }}
           />
         </div>
       </form>
@@ -111,10 +115,12 @@ Form.defaultProps = {
 Form.propTypes = {
   className: string,
   children: func.isRequired,
-  submit: func.isRequired,
+  onSubmit: func.isRequired,
   submitText: string,
   successText: string,
   ...SnackBarStyles
 };
 
-export default withSnackBar(Form);
+const FormWithSnackBar = withSnackBar(Form);
+
+export default FormWithSnackBar;

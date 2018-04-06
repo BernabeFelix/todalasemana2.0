@@ -1,15 +1,18 @@
-import { List } from 'material-ui';
 import React, { Component } from 'react';
+import { List } from 'material-ui';
 import { arrayOf, shape } from 'prop-types';
 import fakePromotions from '../../api/promotions';
-import { Promotion } from '../Home/types';
 import AdminPromotion from './AdminPromotion';
-import { History, Match } from '../../types';
+import { History, Match, Promotion } from '../common/types';
+import { hasSlashAtTheEnd } from '../../utils/url';
 
 class AdminPromotions extends Component {
   updateRoute = id => () => {
     const { match, history } = this.props;
-    const newRoute = `${match.url}/${id}`;
+    const currentUrl = match.url;
+    const newRoute = `${currentUrl}${
+      !hasSlashAtTheEnd(currentUrl) ? '/' : ''
+    }${id}`;
 
     history.push(newRoute);
   };
@@ -20,7 +23,7 @@ class AdminPromotions extends Component {
     if (!promotions) return null;
 
     return (
-      <List style={{ backgroundColor: 'white' }}>
+      <List style={{ backgroundColor: 'white', padding: 0 }}>
         {promotions.map(({ id }) => (
           <AdminPromotion id={id} onClick={this.updateRoute(id)} key={id} />
         ))}

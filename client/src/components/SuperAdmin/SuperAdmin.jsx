@@ -2,26 +2,28 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import sizeMe from 'react-sizeme';
-import { newPromotionUrl, promotionsUrl } from '../../routes';
+import { clientsUrl, promotionsUrl } from '../../routes';
 import { Match, Size } from '../common/types';
 import AdminMenu from './AdminMenu';
-import AdminPromotions from './AdminPromotions';
-import AdminEditPromotion from './AdminEditPromotion/AdminEditPromotion';
-import NewPromotion from './NewPromotion';
 import AdminLayout from '../Admin/AdminLayout';
+import ClientList from './ClientList';
+import ClientEdit from './ClientEdit';
+import AdminPromotions from '../CustomerAdmin/AdminPromotions';
+import AdminEditPromotion from '../CustomerAdmin/AdminEditPromotion/AdminEditPromotion';
 
 /* eslint-disable arrow-body-style */
-class CustomerAdmin extends Component {
+class SuperAdmin extends Component {
   constructor(props) {
     super(props);
 
     const { match } = props;
 
-    this.promotionListPath = match.url + promotionsUrl();
-    this.newPromoPath = match.url + newPromotionUrl();
+    this.clientListPath = match.url + clientsUrl();
+
+    this.promotionListPath = `${match.url}${promotionsUrl()}`;
     this.editPromotionPath = `${match.url}${promotionsUrl()}/:id`;
 
-    this.middleSectionPaths = [this.promotionListPath, this.newPromoPath];
+    this.middleSectionPaths = [this.clientListPath, this.promotionListPath];
   }
 
   render() {
@@ -47,9 +49,14 @@ class CustomerAdmin extends Component {
                   component={AdminPromotions}
                 />
                 <Route
-                  exact
-                  path={this.newPromoPath}
-                  component={NewPromotion}
+                  exact={exact}
+                  path={this.clientListPath}
+                  render={props => (
+                    <ClientList
+                      {...props}
+                      promotionListPath={this.promotionListPath}
+                    />
+                  )}
                 />
               </Switch>
             </div>
@@ -58,13 +65,20 @@ class CustomerAdmin extends Component {
             <div
               className={`col-xs-12 col-md-${thirdSectionCol} max-width-transition`}
             >
-              <Route
-                exact
-                path={this.editPromotionPath}
-                render={props => (
-                  <AdminEditPromotion id={props.match.params.id} />
-                )}
-              />
+              <Switch>
+                <Route
+                  exact={exact}
+                  path={`${this.clientListPath}/:id`}
+                  render={props => <ClientEdit id={props.match.params.id} />}
+                />
+                <Route
+                  exact
+                  path={this.editPromotionPath}
+                  render={props => (
+                    <AdminEditPromotion id={props.match.params.id} />
+                  )}
+                />
+              </Switch>
             </div>
           </div>
         )}
@@ -74,9 +88,9 @@ class CustomerAdmin extends Component {
 }
 
 /* eslint-disable react/no-unused-prop-types */
-CustomerAdmin.propTypes = {
+SuperAdmin.propTypes = {
   match: shape(Match).isRequired,
   size: shape(Size).isRequired
 };
 
-export default withRouter(sizeMe()(CustomerAdmin));
+export default withRouter(sizeMe()(SuperAdmin));
