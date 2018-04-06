@@ -4,6 +4,7 @@ import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 import { Intent } from '../common/types';
+import { $blueCool } from '../../styles/variables';
 
 class Form extends Component {
   state = {
@@ -93,6 +94,11 @@ class Form extends Component {
             labelColor="#fff"
             onClick={this.submit}
             disabled={loading}
+            labelStyle={{ color: $blueCool }}
+            buttonStyle={{
+              backgroundColor: 'white',
+              border: `1px solid ${$blueCool}`
+            }}
           />
         </div>
       </form>
@@ -117,4 +123,4 @@ Form.propTypes = {
 
 const FormWithSnackBar = withSnackBar(Form);
 
-export default FormWithSnackBar
+export default FormWithSnackBar;
