@@ -45,13 +45,10 @@ class Form extends Component {
       return;
     }
 
-    //    send POST
-    // const formValues = this.getFormValues();
     this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
 
-    // Real submit
     const values = this.getFormValues();
-    const reset = await this.props.submit(values);
+    const reset = await this.props.onSubmit(values);
 
     // reset form?
     if (reset) this.reset();
@@ -83,6 +80,7 @@ class Form extends Component {
     const { children, submitText } = this.props;
     const { shouldValid, loading } = this.state;
     const classNames = `form ${this.props.className}`;
+
     return (
       <form className={classNames}>
         {children(this.updateControl, shouldValid)}
@@ -111,10 +109,12 @@ Form.defaultProps = {
 Form.propTypes = {
   className: string,
   children: func.isRequired,
-  submit: func.isRequired,
+  onSubmit: func.isRequired,
   submitText: string,
   successText: string,
   ...SnackBarStyles
 };
 
-export default withSnackBar(Form);
+const FormWithSnackBar = withSnackBar(Form);
+
+export default FormWithSnackBar

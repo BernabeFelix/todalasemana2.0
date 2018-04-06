@@ -18,7 +18,6 @@ const activeBorder = {
   paddingTop: $borderMargin / 2,
   paddingBottom: $borderMargin / 2,
   top: 0,
-  borderLeft: `10px solid ${isActive ? $blueCool : $red}`,
   height: $itemHeight - $borderMargin
 };
 
@@ -57,7 +56,12 @@ class AdminPromotion extends Component {
             </IconButton>
           }
         >
-          <div style={activeBorder} />
+          <div
+            style={{
+              ...activeBorder,
+              borderLeft: `10px solid ${isActive ? $blueCool : $red}`
+            }}
+          />
         </ListItem>
         <Divider inset />
       </Fragment>

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { FlatButton } from 'material-ui';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
 import Form from './Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { homeUrl } from '../../routes';
-// import { History, Match, Promotion } from '../common/types';
 
 class Login extends Component {
   state = {
@@ -15,14 +13,18 @@ class Login extends Component {
     redirect: null
   };
 
+
+
   login = async data => {
     const { user, password } = data;
+
+    // todo: @paul what is this for?
     this.setState({
       error: null,
       redirect: null
     });
 
-    await sleep(300); // just to fake load time haha
+    await sleep(300); // just to fake load time
     const auth = new Auth();
     // Try login
     try {
@@ -38,10 +40,6 @@ class Login extends Component {
       });
     }
   };
-  logout = () => {
-    const auth = new Auth();
-    auth.logout();
-  };
 
   render() {
     const { redirect } = this.state;
@@ -50,7 +48,7 @@ class Login extends Component {
     }
     const { error } = this.state;
     return (
-      <Form submit={this.login} className="login">
+      <Form onSubmit={this.login} className="login">
         {(updateValid, shouldValid) => (
           <div className="login">
             {error && (
@@ -75,7 +73,6 @@ class Login extends Component {
               </div>
             </div>
             <span className="recover-password">Recuperar contraseña</span>
-            <FlatButton label="Sign out" onClick={this.logout} fullWidth />
           </div>
         )}
       </Form>

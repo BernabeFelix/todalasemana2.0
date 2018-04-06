@@ -38,7 +38,7 @@ class SignUp extends Component {
   render() {
     const { error, success } = this.state;
     return (
-      <Form submit={this.signUp} className="signup">
+      <Form onSubmit={this.signUp} className="signup">
         {(updateValid, shouldValid) => (
           <Fragment>
             {success && (

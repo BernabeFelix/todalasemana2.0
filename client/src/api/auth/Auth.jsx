@@ -4,6 +4,7 @@ import errors from './errors';
 let instance = null;
 
 class Auth {
+  // todo: refactor this to be static class properties
   constructor() {
     if (!instance) {
       // Initialize Firebase Auth
