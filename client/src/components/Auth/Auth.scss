@@ -1,17 +1,30 @@
 .auth-tabs {
-  background-color: white;
+  > div:first-child {
+    background-color: $blue-cool !important;
+    border-radius: 2px 2px 0px 0px;
+  }
 }
 
 .form {
-  .submit-btn-wrapper {
-    text-align: right;
-    width: 256px;
+  padding: 1rem;
+  &.login {
+    max-width: calc(256px + 2rem);
     margin: auto;
-    padding-bottom: 1rem;
+    .recover-password {
+      display: inline-block;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: $blue-darks;
+      cursor: pointer;
+
+      &:hover {
+        color: $blue-cool;
+      }
+    }
   }
 
-  .submit-btn {
-    border: 1px solid $blue-darks !important;
-    border-radius: 0.5rem !important;
+  .submit-btn-wrapper {
+    width: 256px;
+    margin: auto;
   }
 }

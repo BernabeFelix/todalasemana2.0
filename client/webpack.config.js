@@ -54,7 +54,11 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {}
+            options: {
+              publicPath:
+                process.env.NODE_ENV === 'production' ? 'public/' : null
+              // useRelativePath: process.env.NODE_ENV === 'production'
+            }
           }
         ]
       }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Paper } from 'material-ui';
 import { func } from 'prop-types';
 import { Promotion } from './types';
 
 const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
   <Link to={url({ id })}>
-    <div className="promotion-single-result">
+    <Paper className="promotion-single-result" zDepth={2}>
       <div className="row">
         <div className="col-xs-12 col-sm-3">
           <div className="img-container">
@@ -17,7 +18,7 @@ const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
           <p>{description}</p>
         </div>
       </div>
-    </div>
+    </Paper>
   </Link>
 );
 

@@ -7,16 +7,27 @@ const controls = {
     },
     fields: {
       name: 'password',
-      type: Input.email,
+      type: Input.password,
       floatingLabelText: 'contraseña'
+    }
+  },
+  passwordConfirm: {
+    errors: {
+      required: 'Confirme su contraseña'
+    },
+    fields: {
+      name: 'passwordConfirm',
+      type: Input.password,
+      floatingLabelText: 'confirmar contraseña'
     }
   },
   user: {
     errors: {
-      required: 'Ingrese una contraseña'
+      required: 'Ingrese su correo electrónico'
     },
     fields: {
       name: 'user',
+      type: Input.email,
       floatingLabelText: 'correo electronico'
     }
   },
@@ -71,6 +82,7 @@ const controls = {
     },
     fields: {
       name: 'email',
+      type: Input.email,
       floatingLabelText: 'correo electronico'
     }
   },

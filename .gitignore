@@ -1,8 +1,12 @@
 // IDES
 .idea/
 client/.idea/
+client/.vscode/
 
 // local
 node_modules/
 client/node_modules/
+build/
+dist/
+client/dist/
 yarn-error.log

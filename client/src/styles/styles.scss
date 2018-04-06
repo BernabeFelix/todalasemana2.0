@@ -28,7 +28,8 @@ html {
 }
 
 body {
-  background: url('../images/fondo_1180x1820.jpg') center no-repeat;
+  // background: url('../images/fondo_1180x1820.jpg') center no-repeat;
+  background-color: $gray-bg;
   font-family: $font-stack;
   margin: 0;
   margin-top: (-$headerHeight);
@@ -59,12 +60,37 @@ a {
   padding: 15px 20px;
 }
 // Text colors
-.text-orange {
-  color: $orange;
+.text {
+  &-white {
+    color: $white;
+  }
+  &-red {
+    color: $red;
+  }
+  &-orage {
+    color: $orange;
+  }
+  &-error,
+  &-danger {
+    color: $errorColor;
+  }
 }
-.text-red {
-  color: $red;
+
+/* alerts */
+.alert {
+  padding: 1rem;
+  &.alert-small {
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+
+  &.alert-error,
+  &.alert-danger {
+    background-color: #fbe9e7;
+    color: #d50000;
+  }
 }
-.text-white {
-  color: $white;
+
+p {
+  margin-top: 0px;
 }

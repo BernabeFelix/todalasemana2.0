@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { FlatButton } from 'material-ui';
+import { Redirect } from 'react-router-dom';
+import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 import { Intent } from '../../types';
@@ -30,22 +31,37 @@ class Form extends Component {
 
   controlsWithValidation = {};
 
-  submit = () => {
+  submit = async () => {
+    this.setState({
+      loading: true
+    });
     // condition valid
     const isFormIsValid = this.formIsValid();
-
     if (!isFormIsValid) {
       if (!this.state.shouldValid) {
         this.setState({ shouldValid: true });
       }
+      this.setState({ loading: false });
       return;
     }
+
     //    send POST
     // const formValues = this.getFormValues();
     this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
 
-    //    reset form
-    this.setState({ shouldValid: false });
+    // Real submit
+    const values = this.getFormValues();
+    const reset = await this.props.submit(values);
+
+    // reset form?
+    if (reset) this.reset();
+
+    this.setState({ shouldValid: false, loading: false });
+  };
+
+  reset = () => {
+    /* eslint-disable react/no-string-refs */
+    Object.values(this.refs).forEach(control => control.reset());
   };
 
   updateControl = (controlName, values) => {
@@ -56,37 +72,46 @@ class Form extends Component {
       ...this.controlsWithValidation,
       [controlName]: values
     };
+
+    if (this.state.shouldValid) this.formIsValid();
   };
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={this.state.redirectTo} />;
+    }
     const { children, submitText } = this.props;
-    const { shouldValid } = this.state;
-
+    const { shouldValid, loading } = this.state;
+    const classNames = `form ${this.props.className}`;
     return (
-      <div className="form">
+      <form className={classNames}>
         {children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
-          <FlatButton
+          <RaisedButton
             label={submitText}
-            className="header-right-nav-btn submit-btn"
-            hoverColor="transparent"
-            rippleColor="transparent !important"
+            fullWidth
+            backgroundColor="#ee3335"
+            labelColor="#fff"
             onClick={this.submit}
+            disabled={loading}
           />
         </div>
-      </div>
+      </form>
     );
   }
 }
 
 Form.defaultProps = {
+  className: '',
   submitText: 'entrar',
   successText: 'ok'
 };
 
 Form.propTypes = {
+  className: string,
   children: func.isRequired,
+  submit: func.isRequired,
   submitText: string,
   successText: string,
   ...SnackBarStyles

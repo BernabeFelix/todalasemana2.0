@@ -17,3 +17,6 @@ export const validateRequired = (field, fieldErrorText, state, errors) => {
 
   return { isValid, toUpdate };
 };
+
+export const sleep = async ms =>
+  new Promise(resolve => setTimeout(resolve, ms));
