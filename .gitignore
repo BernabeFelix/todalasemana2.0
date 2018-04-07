@@ -2,6 +2,7 @@
 .idea/
 client/.idea/
 client/.vscode/
+.DS_Store
 
 // local
 node_modules/
