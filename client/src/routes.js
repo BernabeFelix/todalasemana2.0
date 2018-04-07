@@ -18,6 +18,8 @@ export const dayUrl = r('/dia/:day');
 
 export const adminUrl = r('/admin');
 
+export const superAdminUrl = r('/super-admin');
+
 export const accountUrl = r('/cuenta');
 
 export const clientsUrl = r('/clientes/:id?');
