@@ -10,7 +10,7 @@
       "concurrently --kill-others-on-fail \"yarn dev\" \"yarn dev-client\"",
     "build-client": "cd client && yarn build",
     "build":
-      "babel -d ./dist ./ --ignore node_modules/,dist/,build/,client/,public/ && cp public dist/public/ -r && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
+      "babel -d ./dist ./ --ignore node_modules/,dist/,build/,client/,public/ && cp public dist/public/ -r && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
     "build-full": "yarn build-client && yarn build",
     "start": "cd dist && NODE_ENV=production node server.js"
   },
