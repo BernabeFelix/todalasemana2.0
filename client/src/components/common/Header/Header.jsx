@@ -57,7 +57,7 @@ class Header extends React.Component {
   };
 
   handleSessionChange = user => {
-    this.setState({ username: user ? user.email : 'polkien' });
+    this.setState({ username: user ? user.email : null });
   };
 
   toggleDrawer = () => {
