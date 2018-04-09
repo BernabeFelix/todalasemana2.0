@@ -5,7 +5,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '..', 'public'),
+    path: path.resolve(__dirname, '..', 'dist/public'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     publicPath: isProd ? 'public/' : '/'
