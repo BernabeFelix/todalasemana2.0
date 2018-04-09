@@ -29,6 +29,7 @@ const SignIn = () => (
   </div>
 );
 
+// TODO: add menu to go to admin sections
 const UserButton = props => (
   <div className="header-right-nav">
     <Link to="/perfil">
@@ -45,31 +46,19 @@ UserButton.propTypes = {
   username: string.isRequired
 };
 
-const getCurrentUser = async () => {
-  const auth = new Auth();
-  const user = await auth.getCurrentUser().catch(error => console.log(error));
-  console.log(user);
-  return user ? user.email : null;
-};
-
 class Header extends React.Component {
   constructor() {
     super();
-    const user = getCurrentUser();
-    this.state = {
-      sideNavOpen: false,
-      username: user ? user.email : 'polkien'
-    };
+    Auth.auth.onAuthStateChanged(this.handleSessionChange);
   }
+  state = {
+    sideNavOpen: false,
+    username: null
+  };
 
-  // componentWillMount() {
-  //   const user = getCurrentUser();
-  //   // IT DOESN'T WORK!!! :@ User is always null here, why?
-  //   this.setState({
-  //     sideNavOpen: false,
-  //     username: user ? user.email : 'polkien'
-  //   });
-  // }
+  handleSessionChange = user => {
+    this.setState({ username: user ? user.email : 'polkien' });
+  };
 
   toggleDrawer = () => {
     this.setState({
@@ -78,6 +67,7 @@ class Header extends React.Component {
   };
 
   render() {
+    const { username } = this.state;
     return (
       <Fragment>
         <AppBar
@@ -100,11 +90,7 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              {this.state.username ? (
-                <UserButton username={this.state.username} />
-              ) : (
-                <SignIn />
-              )}
+              {username ? <UserButton username={username} /> : <SignIn />}
             </Fragment>
           }
         />
