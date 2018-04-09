@@ -81,12 +81,12 @@ class Form extends Component {
     if (this.state.redirectTo) {
       return <Redirect to={this.state.redirectTo} />;
     }
-    const { children, submitText, onSubmit } = this.props;
+    const { children, submitText } = this.props;
     const { shouldValid, loading } = this.state;
     const classNames = `form ${this.props.className}`;
 
     return (
-      <form className={classNames} onSubmit={onSubmit}>
+      <form className={classNames}>
         {children(this.updateControl, shouldValid)}
 
         <div className="submit-btn-wrapper">
