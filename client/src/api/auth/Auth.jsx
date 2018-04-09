@@ -5,19 +5,12 @@ import errors from './errors';
 // let instance = null;
 
 class Auth {
-  // todo: refactor this to be static class properties
   static auth = FirebaseApp.auth();
-  // constructor() {
-  //   if (!instance) {
-  //     // Initialize Firebase Auth
-  //     this.auth = FirebaseApp.auth();
-  //     instance = this;
-  //   }
 
-  //   return instance;
-  // }
   continueUrlHome = process.env.HomeUrl || 'http://localhost:8080';
+
   signInUrl = `${this.continueUrlHome}/${signInUrl}`;
+
   signUp = async data => {
     let user = Auth.auth.currentUser;
     if (user) throw errors.userLoggedInError;
