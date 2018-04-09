@@ -1,20 +1,23 @@
 import FirebaseApp from './FirebaseApp';
+import { signInUrl } from '../../routes';
 import errors from './errors';
 
-let instance = null;
+// let instance = null;
 
 class Auth {
   // todo: refactor this to be static class properties
-  constructor() {
-    if (!instance) {
-      // Initialize Firebase Auth
-      this.auth = FirebaseApp.auth();
-      instance = this;
-    }
+  static auth = FirebaseApp.auth();
+  // constructor() {
+  //   if (!instance) {
+  //     // Initialize Firebase Auth
+  //     this.auth = FirebaseApp.auth();
+  //     instance = this;
+  //   }
 
-    return instance;
-  }
-
+  //   return instance;
+  // }
+  continueUrlHome = process.env.HomeUrl || 'http://localhost:8080';
+  signInUrl = `${this.continueUrlHome}/${signInUrl}`;
   signUp = async data => {
     let user = this.auth.currentUser;
     if (user) throw errors.userLoggedInError;
@@ -31,7 +34,7 @@ class Auth {
     try {
       // TODO: change it to a env variable or setting...
       const actionCodeSettings = {
-        url: 'http://localhost:8080/entrar',
+        url: this.signInUrl,
         handleCodeInApp: true
       };
       await user.sendEmailVerification(actionCodeSettings);
@@ -81,6 +84,23 @@ class Auth {
   logout = async () => {
     // Documentation shows no possible errors for this call
     await this.auth.signOut();
+  };
+
+  sendRecoveryEmail = async email => {
+    try {
+      const actionCodeSettings = { url: this.continueUrlHome };
+      this.auth.sendPasswordResetEmail(email, actionCodeSettings);
+    } catch (error) {
+      // The following are not user facing errors, so will throw internal error...
+      // auth/missing-android-pkg-name
+      // auth/missing-continue-uri
+      // auth/invalid-continue-uri
+      // auth/unauthorized-continue-uri
+      // auth/missing-ios-bundle-id
+      let err = errors.getErrorMessageForCode(error.code);
+      if (!err) err = { message: errors.internalError };
+      throw err;
+    }
   };
 
   getCurrentUser = async () => {

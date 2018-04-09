@@ -52,7 +52,10 @@ class Form extends Component {
     const reset = await this.props.onSubmit(values);
 
     // reset form?
-    if (reset) this.reset();
+    if (reset) {
+      this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
+      this.reset();
+    }
 
     this.setState({ shouldValid: false, loading: false });
   };

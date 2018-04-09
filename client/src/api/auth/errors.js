@@ -24,10 +24,10 @@ const fireBaseErrors = [
   },
   {
     code: 'auth/user-not-found',
-    message: wrongCredentialasErrorMsg
+    message: 'El correo no está asociado a ningún usuario registrado.'
   },
   {
-    code: 'auth/email-already-in-use',
+    code: 'auth/wrong-password',
     message: wrongCredentialasErrorMsg
   },
   {

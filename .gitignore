@@ -10,4 +10,5 @@ client/node_modules/
 build/
 dist/
 client/dist/
+public/
 yarn-error.log

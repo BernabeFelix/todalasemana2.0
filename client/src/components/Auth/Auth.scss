@@ -11,14 +11,16 @@
     max-width: calc(256px + 2rem);
     margin: auto;
     .recover-password {
-      display: inline-block;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      color: $blue-darks;
-      cursor: pointer;
+      display: inline-block !important;
+      margin-top: 1rem !important;
+      margin-bottom: 0.5rem !important;
+      color: $blue-darks !important;
 
       &:hover {
-        color: $blue-cool;
+        color: $blue-cool !important;
+      }
+      span {
+        padding: 0px !important;
       }
     }
   }

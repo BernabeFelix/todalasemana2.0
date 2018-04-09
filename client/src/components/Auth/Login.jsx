@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
 import Form from './Form';
+import PasswordRecovery from './PasswordRecovery';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
+
 import { homeUrl } from '../../routes';
 
 class Login extends Component {
@@ -13,15 +16,13 @@ class Login extends Component {
     redirect: null
   };
 
-
-
   login = async data => {
     const { user, password } = data;
 
-    // todo: @paul what is this for?
+    // todo: @paul what is this for? -> @berna, this is for clearing error msg before trying again
     this.setState({
-      error: null,
-      redirect: null
+      error: null
+      // redirect: null <- this one is silly indeed
     });
 
     await sleep(300); // just to fake load time
@@ -41,14 +42,24 @@ class Login extends Component {
     }
   };
 
+  forgotPassword = () => {
+    console.log('show forgot password');
+    this.setState({ showPasswordRecovery: true });
+  };
+
   render() {
-    const { redirect } = this.state;
+    const { redirect, error, showPasswordRecovery } = this.state;
+
     if (redirect) {
       return <Redirect to={redirect} />;
     }
-    const { error } = this.state;
+
+    if (showPasswordRecovery) {
+      return <PasswordRecovery />;
+    }
+
     return (
-      <Form onSubmit={this.login} className="login">
+      <Form onSubmit={this.login} className="login" successText="Welcome back!">
         {(updateValid, shouldValid) => (
           <div className="login">
             {error && (
@@ -72,7 +83,17 @@ class Login extends Component {
                 />
               </div>
             </div>
-            <span className="recover-password">Recuperar contraseña</span>
+            <div className="row">
+              <div className="col-xs-12">
+                <FlatButton
+                  label="Recuperar contraseña"
+                  className="recover-password"
+                  hoverColor="transparent"
+                  rippleColor="transparent"
+                  onClick={this.forgotPassword}
+                />
+              </div>
+            </div>
           </div>
         )}
       </Form>
