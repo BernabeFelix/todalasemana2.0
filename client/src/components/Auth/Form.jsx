@@ -124,6 +124,7 @@ Form.propTypes = {
   ...SnackBarStyles
 };
 
+// @berna unnesesary const? could export directly I think..
 const FormWithSnackBar = withSnackBar(Form);
 
 export default FormWithSnackBar;
