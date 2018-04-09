@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import UserMenu from './UserMenu';
 import Auth from '../../../api/auth/Auth';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
@@ -53,11 +54,12 @@ class Header extends React.Component {
   }
   state = {
     sideNavOpen: false,
-    username: null
+    userName: null
   };
 
   handleSessionChange = user => {
-    this.setState({ username: user ? user.email : null });
+    const isAdmin = false; // Math.floor(Math.random() * 2) === 0;
+    this.setState({ userName: user ? user.email : null, isAdmin });
   };
 
   toggleDrawer = () => {
@@ -67,7 +69,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { username } = this.state;
+    const { userName, isAdmin } = this.state;
     return (
       <Fragment>
         <AppBar
@@ -90,7 +92,11 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              {username ? <UserButton username={username} /> : <SignIn />}
+              {userName ? (
+                <UserMenu userName={userName} isAdmin={isAdmin} />
+              ) : (
+                <SignIn />
+              )}
             </Fragment>
           }
         />
