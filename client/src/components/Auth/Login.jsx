@@ -43,8 +43,12 @@ class Login extends Component {
   };
 
   forgotPassword = () => {
-    console.log('show forgot password');
     this.setState({ showPasswordRecovery: true });
+  };
+
+  togglePasswordRecovery = () => {
+    const { showPasswordRecovery } = this.state;
+    this.setState({ showPasswordRecovery: !showPasswordRecovery });
   };
 
   render() {
@@ -55,7 +59,7 @@ class Login extends Component {
     }
 
     if (showPasswordRecovery) {
-      return <PasswordRecovery />;
+      return <PasswordRecovery cancel={this.togglePasswordRecovery} />;
     }
 
     return (
@@ -90,7 +94,7 @@ class Login extends Component {
                   className="recover-password"
                   hoverColor="transparent"
                   rippleColor="transparent"
-                  onClick={this.forgotPassword}
+                  onClick={this.togglePasswordRecovery}
                 />
               </div>
             </div>
