@@ -1,12 +1,14 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '..', 'build'),
+    path: path.resolve(__dirname, '..', 'dist/public'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    publicPath: '/'
+    publicPath: isProd ? 'public/' : '/'
   },
   module: {
     rules: [
@@ -55,9 +57,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              publicPath:
-                process.env.NODE_ENV === 'production' ? 'public/' : null
-              // useRelativePath: process.env.NODE_ENV === 'production'
+              publicPath: isProd ? 'public/' : null
             }
           }
         ]

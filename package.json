@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "cd client && yarn intranet",
-    "server": "nodemon --exec yarn babel-node -- ./server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "build": "babel -d ./dist ./ --ignore dist/,client/,node_modules/,firebase-hosting/ && cd client && yarn build && cd .. && cp index.html dist/index.html && cp firebase.json dist/firebase.json && cp package.json dist/package.json",
+    "dev-client": "cd client && yarn intranet",
+    "dev": "nodemon --exec yarn babel-node -- ./server.js",
+    "dev-full":
+      "concurrently --kill-others-on-fail \"yarn dev\" \"yarn dev-client\"",
+    "build-client": "cd client && yarn build",
+    "build":
+      "babel -d ./dist ./ --ignore node_modules/,dist/,client/ && cp {firebase.json,package.json} dist/",
+    "build-full": "yarn build-client && yarn build",
     "start": "cd dist && NODE_ENV=production node server.js"
   },
   "repository": {
