@@ -19,18 +19,18 @@ class Auth {
   continueUrlHome = process.env.HomeUrl || 'http://localhost:8080';
   signInUrl = `${this.continueUrlHome}/${signInUrl}`;
   signUp = async data => {
-    let user = this.auth.currentUser;
+    let user = Auth.auth.currentUser;
     if (user) throw errors.userLoggedInError;
 
     // Create user in firebase
     const { email, password } = data;
     try {
-      await this.auth.createUserWithEmailAndPassword(email, password);
+      await Auth.auth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
       throw errors.getErrorMessageForCode(error.code);
     }
 
-    user = this.auth.currentUser;
+    user = Auth.auth.currentUser;
     try {
       // TODO: change it to a env variable or setting...
       const actionCodeSettings = {
@@ -64,7 +64,7 @@ class Auth {
 
     // Login
     try {
-      const res = await this.auth.signInAndRetrieveDataWithEmailAndPassword(
+      const res = await Auth.auth.signInAndRetrieveDataWithEmailAndPassword(
         email,
         password
       );
@@ -75,7 +75,7 @@ class Auth {
       }
       // Maybe TODO: validate token against backend?
       // user = this.auth.currentUser;
-      // return user.getIdToken();;
+      // return user.getIdToken();
     } catch (error) {
       throw errors.getErrorMessageForCode(error.code);
     }
@@ -83,13 +83,13 @@ class Auth {
 
   logout = async () => {
     // Documentation shows no possible errors for this call
-    await this.auth.signOut();
+    await Auth.auth.signOut();
   };
 
   sendRecoveryEmail = async email => {
     try {
       const actionCodeSettings = { url: this.continueUrlHome };
-      this.auth.sendPasswordResetEmail(email, actionCodeSettings);
+      await Auth.auth.sendPasswordResetEmail(email, actionCodeSettings);
     } catch (error) {
       // The following are not user facing errors, so will throw internal error...
       // auth/missing-android-pkg-name
@@ -105,7 +105,7 @@ class Auth {
 
   getCurrentUser = async () => {
     // Doesn't work from Header.jsx??
-    const user = this.auth.currentUser;
+    const user = Auth.auth.currentUser;
     return user;
   };
 }
