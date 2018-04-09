@@ -1,27 +1,44 @@
 import React from 'react';
 import { arrayOf, func, shape } from 'prop-types';
-import fakePromotions from '../../api/promotions';
+import { graphql } from 'react-apollo';
+import { gql } from 'apollo-boost';
 import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
 import { Promotion } from '../common/types';
 
-const PromotionsResults = ({ promotions, urlCallback }) =>
-  promotions.map(promotion => (
-    <PromotionSingleResult
-      key={promotion.id}
-      url={urlCallback}
-      {...promotion}
-    />
-  ));
+const PromotionsResults = ({ query, urlCallback }) =>
+  query.promotions
+    ? query.promotions.map(promotion => (
+        <PromotionSingleResult
+          key={promotion.id}
+          url={urlCallback}
+          {...promotion}
+        />
+      ))
+    : null;
 
 PromotionsResults.defaultProps = {
   urlCallback: promotionUrl,
-  promotions: fakePromotions
+  query: { promotions: [] }
 };
 
 PromotionsResults.propTypes = {
-  promotions: arrayOf(shape(Promotion)),
+  query: shape({
+    promotions: arrayOf(shape(Promotion))
+  }),
   urlCallback: func
 };
 
-export default PromotionsResults;
+const query = gql`
+  query {
+    promotions {
+      id
+      title
+      imgUrl
+      isActive
+      description
+    }
+  }
+`;
+
+export default graphql(query, { name: 'query' })(PromotionsResults);
