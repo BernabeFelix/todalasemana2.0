@@ -24,6 +24,10 @@ export const adminNewPromoUrl = r('/admin/nueva-promocion');
 
 export const superAdminUrl = r('/super-admin');
 
+export const superAdminPromosUrl = r('/super-admin/promociones');
+
+export const superAdminClientsUrl = r('/super-admin/clientes');
+
 export const accountUrl = r('/cuenta');
 
 export const adminAccountUrl = r('/admin/cuenta');

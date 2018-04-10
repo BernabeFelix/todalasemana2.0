@@ -58,7 +58,9 @@ class Header extends React.Component {
   };
 
   handleSessionChange = user => {
-    const isAdmin = false; // Math.floor(Math.random() * 2) === 0;
+    // For now, this line controls what menu will be shown in header (either admin or customer)
+    // TODO: refactor once we have roles in backend
+    const isAdmin = true;
     this.setState({ userName: user ? user.email : null, isAdmin });
   };
 

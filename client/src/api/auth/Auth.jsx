@@ -2,8 +2,6 @@ import FirebaseApp from './FirebaseApp';
 import { signInUrl } from '../../routes';
 import errors from './errors';
 
-// let instance = null;
-
 class Auth {
   static auth = FirebaseApp.auth();
 
@@ -25,7 +23,6 @@ class Auth {
 
     user = Auth.auth.currentUser;
     try {
-      // TODO: change it to a env variable or setting...
       const actionCodeSettings = {
         url: this.signInUrl,
         handleCodeInApp: true
@@ -38,10 +35,10 @@ class Auth {
       throw errors.internalError;
     }
 
+    // TODO: Post user data to database...
+
     // Logout user, can't use the app if doesn't verify the email
     this.logout();
-
-    // TODO: Post user data to database...
 
     const result = {
       code: 'ok',
