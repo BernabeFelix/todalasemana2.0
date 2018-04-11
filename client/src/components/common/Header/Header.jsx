@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { string } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -29,23 +28,6 @@ const SignIn = () => (
     </Link>
   </div>
 );
-
-// TODO: add menu to go to admin sections
-const UserButton = props => (
-  <div className="header-right-nav">
-    <Link to="/perfil">
-      <FlatButton
-        label={props.username}
-        className="header-right-nav-btn"
-        hoverColor="transparent"
-        rippleColor="transparent !important"
-      />
-    </Link>
-  </div>
-);
-UserButton.propTypes = {
-  username: string.isRequired
-};
 
 class Header extends React.Component {
   constructor() {

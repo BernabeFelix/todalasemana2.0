@@ -9,6 +9,7 @@ import Auth from '../../api/auth/Auth';
 
 class PasswordRecovery extends Component {
   state = { error: null };
+
   sendRecoveryEmail = async data => {
     this.setState({ error: null });
     await sleep(300); // just to fake load time

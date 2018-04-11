@@ -10,7 +10,7 @@ import Account from 'material-ui/svg-icons/action/account-box';
 import ClientList from 'material-ui/svg-icons/action/supervisor-account';
 import { $red } from '../../../styles/variables';
 import {
-  homeUrl,
+  signInUrl,
   superAdminPromosUrl,
   superAdminClientsUrl,
   adminAccountUrl
@@ -38,7 +38,7 @@ const AdminMenu = ({ closeMenu, logout }) => (
     />
     <Divider />
     <MenuItem
-      containerElement={<Link to={homeUrl()} />}
+      containerElement={<Link to={signInUrl()} />}
       primaryText="Salir"
       leftIcon={<Power color={$red} />}
       onClick={logout}

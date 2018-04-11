@@ -19,27 +19,23 @@ class Login extends Component {
   login = async data => {
     const { user, password } = data;
 
-    // todo: @paul what is this for? -> @berna, this is for clearing error msg before trying again
-    this.setState({
-      error: null
-      // redirect: null <- this one is silly indeed
-    });
-
     await sleep(300); // just to fake load time
-    const auth = new Auth();
-    // Try login
-    try {
-      await auth.login(user, password);
-      // Redirect to home
-      // const { history } = this.props;
-      // history.push(homeUrl());
-      this.setState({ redirect: homeUrl() });
-    } catch (error) {
-      // show error
-      this.setState({
-        error: error.message
-      });
-    }
+    this.setState({ error: null }, async () => {
+      const auth = new Auth();
+      // Try login
+      try {
+        await auth.login(user, password);
+        // Redirect to home
+        // const { history } = this.props;
+        // history.push(homeUrl());
+        this.setState({ redirect: homeUrl() });
+      } catch (error) {
+        // show error
+        this.setState({
+          error: error.message
+        });
+      }
+    });
   };
 
   forgotPassword = () => {
@@ -47,8 +43,9 @@ class Login extends Component {
   };
 
   togglePasswordRecovery = () => {
-    const { showPasswordRecovery } = this.state;
-    this.setState({ showPasswordRecovery: !showPasswordRecovery });
+    this.setState(currentState => ({
+      showPasswordRecovery: !currentState.showPasswordRecovery
+    }));
   };
 
   render() {

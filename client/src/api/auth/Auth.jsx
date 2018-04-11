@@ -64,8 +64,6 @@ class Auth {
         throw errors.emailNotVerified;
       }
       // Maybe TODO: validate token against backend?
-      // user = this.auth.currentUser;
-      // return user.getIdToken();
     } catch (error) {
       throw errors.getErrorMessageForCode(error.code);
     }
@@ -94,7 +92,6 @@ class Auth {
   };
 
   getCurrentUser = async () => {
-    // Doesn't work from Header.jsx??
     const user = Auth.auth.currentUser;
     return user;
   };

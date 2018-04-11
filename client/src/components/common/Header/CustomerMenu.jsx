@@ -10,7 +10,7 @@ import List from 'material-ui/svg-icons/action/view-list';
 import Account from 'material-ui/svg-icons/action/account-box';
 import { $blueCool, $red } from '../../../styles/variables';
 import {
-  homeUrl,
+  signInUrl,
   adminNewPromoUrl,
   adminAccountUrl,
   adminPromotionsUrl
@@ -38,7 +38,7 @@ const CustomerMenu = ({ closeMenu, logout }) => (
     />
     <Divider />
     <MenuItem
-      containerElement={<Link to={homeUrl()} />}
+      containerElement={<Link to={signInUrl()} />}
       primaryText="Salir"
       leftIcon={<Power color={$red} />}
       onClick={logout}
