@@ -1,6 +1,7 @@
 import React from 'react';
 import PromotionsResults from './PromotionsResults';
 import Map from '../Map/Map';
+import UserLocation from '../Map/UserLocation';
 
 const Home = () => (
   <div className="container">
@@ -12,6 +13,14 @@ const Home = () => (
       </div>
 
       <div className="col-xs-12 col-sm-6">
+        <UserLocation>
+          {location => (
+            <React.Fragment>
+              <h4>{location.lat}</h4>
+              <h4>{location.lng}</h4>
+            </React.Fragment>
+          )}
+        </UserLocation>
         <Map
           markers={[
             {
