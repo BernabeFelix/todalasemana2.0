@@ -65,7 +65,7 @@ class AdminPromotion extends Component {
                     onClick={this.deletePromo}
                     tooltip="Eliminar"
                   >
-                    <DeleteIcon color="#ee3335" />
+                    <DeleteIcon color={$red} />
                   </IconButton>
                 }
               >
