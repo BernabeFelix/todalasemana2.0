@@ -7,7 +7,8 @@ const CustomFieldType = {
   readOnly: bool,
   onValidChange: requiredIf(func, props => !props.readOnly),
   shouldValid: bool.isRequired,
-  initialValue: string
+  initialValue: string,
+  ref: string
 };
 
 export default CustomFieldType;
