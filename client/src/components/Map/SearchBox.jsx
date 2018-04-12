@@ -47,7 +47,7 @@ class SearchBox extends Component {
             {...controlFields}
             placeholder=""
             ref={this.setRef}
-            autocomplete='off'
+            autoComplete="off"
             id="custom-search-box"
             errorText={errorText}
             maxLength={maxLength}

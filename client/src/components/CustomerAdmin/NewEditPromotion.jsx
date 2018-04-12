@@ -4,6 +4,7 @@ import controls from './AdminEditPromotion/controls';
 import Form from '../common/Form';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
 import { NewPromotion } from '../common/types';
+import SearchBox from '../Map/SearchBox';
 
 // const dropZoneStyle = {
 //   width: 'auto',
@@ -66,6 +67,16 @@ class NewEditPromotion extends Component {
                     shouldValid={shouldValid}
                     maxLength={200}
                     multiLine
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs text-center">
+                  <SearchBox
+                    control={controls.address}
+                    onValidChange={updateValid}
+                    shouldValid={shouldValid}
+                    onPlacesChanged={location => console.log(location)}
                   />
                 </div>
               </div>

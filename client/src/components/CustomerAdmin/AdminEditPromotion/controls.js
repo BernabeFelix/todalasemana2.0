@@ -1,14 +1,13 @@
 import { Input } from '../../Auth/types';
 
 const controls = {
-  title: {
+  address: {
     errors: {
-      required: 'Ingrese un titulo'
+      required: 'Ingrese una dirección'
     },
     fields: {
-      name: 'title',
-      type: Input.text,
-      floatingLabelText: 'titulo'
+      name: 'address',
+      floatingLabelText: 'dirección'
     }
   },
   description: {
@@ -19,6 +18,16 @@ const controls = {
       name: 'description',
       type: Input.text,
       floatingLabelText: 'descripción'
+    }
+  },
+  title: {
+    errors: {
+      required: 'Ingrese un titulo'
+    },
+    fields: {
+      name: 'title',
+      type: Input.text,
+      floatingLabelText: 'titulo'
     }
   }
 };
