@@ -27,9 +27,9 @@ class SearchBox extends Component {
   };
 
   setRef = () => {
-    // Have to do this because
+    // Have to do this because TextField is not the final element
+    // This results on a not working search box
     const DOMInput = document.querySelector('#custom-search-box');
-    console.log(DOMInput);
 
     this.searchBoxRef = DOMInput;
   };
