@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
+import { TextField } from 'material-ui';
+import CustomTextField from '../Auth/CustomFormField/CustomTextField';
+import CustomField from '../Auth/CustomFormField/CustomField';
 
 class SearchBox extends Component {
   componentDidMount() {
@@ -23,17 +26,44 @@ class SearchBox extends Component {
     }
   };
 
-  setRef = element => {
-    this.searchBoxRef = element;
+  setRef = () => {
+    // Have to do this because
+    const DOMInput = document.querySelector('#custom-search-box');
+    console.log(DOMInput);
+
+    this.searchBoxRef = DOMInput;
   };
 
   render() {
-    return <input ref={this.setRef} type="text" />;
+    const { multiLine, maxLength, ...props } = this.props;
+
+    // This is a copy from CustomTextField.jsx
+    // Have to do this becuase id was not passed from CustomTextField to TextField
+    //  todo: search for a better way to do this
+    return (
+      <CustomField {...props}>
+        {({ controlFields, errorText, updateValue }) => (
+          <TextField
+            {...controlFields}
+            placeholder=""
+            id="custom-search-box"
+            ref={this.setRef}
+            errorText={errorText}
+            multiLine={multiLine}
+            maxLength={maxLength}
+            onChange={updateValue}
+            readOnly={props.readOnly}
+            autocomplete='off'
+          />
+        )}
+      </CustomField>
+    );
   }
 }
 
 SearchBox.propTypes = {
-  onPlacesChanged: func.isRequired
+  onPlacesChanged: func.isRequired,
+  ...CustomTextField.propTypes
 };
 
 export default SearchBox;
