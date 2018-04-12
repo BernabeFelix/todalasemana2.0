@@ -5,7 +5,7 @@ import CustomField from './CustomField';
 import CustomFieldType from './types';
 
 // Note: If something changes in this component, update SearchBox
-const CustomTextField = ({ multiLine, maxLength, ...props }) => (
+const CustomTextField = ({ fullWidth, multiLine, maxLength, ...props }) => (
   <CustomField {...props}>
     {({ controlFields, errorText, updateValue, value }) => (
       <TextField
@@ -16,19 +16,22 @@ const CustomTextField = ({ multiLine, maxLength, ...props }) => (
         multiLine={multiLine}
         maxLength={maxLength}
         readOnly={props.readOnly}
+        fullWidth={fullWidth}
       />
     )}
   </CustomField>
 );
 
 CustomTextField.defaultProps = {
-  multiLine: false,
-  maxLength: 100
+  maxLength: 100,
+  fullWidth: true,
+  multiLine: false
 };
 
 CustomTextField.propTypes = {
   multiLine: bool,
   maxLength: number,
+  fullWidth: bool,
   ...CustomFieldType
 };
 

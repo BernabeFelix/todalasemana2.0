@@ -35,10 +35,10 @@ class SearchBox extends Component {
   };
 
   render() {
-    const { multiLine, maxLength, ...props } = this.props;
+    const { fullWidth, maxLength, ...props } = this.props;
 
     // This is a copy from CustomTextField.jsx
-    // Have to do this becuase id was not passed from CustomTextField to TextField
+    // Have to do this because id was not passed from CustomTextField to TextField
     //  todo: search for a better way to do this
     return (
       <CustomField {...props}>
@@ -46,20 +46,22 @@ class SearchBox extends Component {
           <TextField
             {...controlFields}
             placeholder=""
-            id="custom-search-box"
             ref={this.setRef}
+            autocomplete='off'
+            id="custom-search-box"
             errorText={errorText}
-            multiLine={multiLine}
             maxLength={maxLength}
             onChange={updateValue}
             readOnly={props.readOnly}
-            autocomplete='off'
+            fullWidth={fullWidth}
           />
         )}
       </CustomField>
     );
   }
 }
+
+SearchBox.defaultProps = CustomTextField.defaultProps;
 
 SearchBox.propTypes = {
   onPlacesChanged: func.isRequired,
