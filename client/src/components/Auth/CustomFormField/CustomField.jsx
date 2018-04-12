@@ -86,6 +86,7 @@ class CustomField extends Component {
     }
   };
 
+  // todo: delete this reset if not used
   reset = () => {
     this.setState({
       [this.props.control.fields.name]: '',
@@ -97,12 +98,12 @@ class CustomField extends Component {
     const { children, control } = this.props;
     const {
       [control.fields.name]: value,
-      [CustomField.errorField]: errorField
+      [CustomField.errorField]: errorText
     } = this.state;
 
     return children({
       controlFields: control.fields,
-      errorField,
+      errorText,
       updateValue: this.updateValue,
       value
     });
