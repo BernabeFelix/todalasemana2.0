@@ -2,6 +2,7 @@ import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 import Marker from './Marker';
+import { MarkerType } from '../common/types';
 
 class Map extends React.Component {
   state = {
@@ -98,12 +99,7 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  markers: arrayOf(
-    shape({
-      title: string,
-      location: string.isRequired
-    })
-  ).isRequired
+  markers: arrayOf(shape(MarkerType)).isRequired
 };
 
 export default Map;

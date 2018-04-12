@@ -47,3 +47,8 @@ export const Client = {
   service: string,
   dateCreated: string.isRequired
 };
+
+export const MarkerType = {
+  title: string,
+  location: string.isRequired
+};
