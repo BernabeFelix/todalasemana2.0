@@ -23,10 +23,7 @@ class Auth {
 
     user = Auth.auth.currentUser;
     try {
-      const actionCodeSettings = {
-        url: this.signInUrl,
-        handleCodeInApp: true
-      };
+      const actionCodeSettings = { url: this.continueUrlHome };
       await user.sendEmailVerification(actionCodeSettings);
     } catch (error) {
       // Unknown error codes? didn't find in js reference, so rolling back and throwing generic error
@@ -42,7 +39,7 @@ class Auth {
 
     const result = {
       code: 'ok',
-      message: `Hemos enviado un correo de activación a '${email}'.`
+      message: 'Te enviamos un correo de activación.'
     };
     return result;
   };
@@ -53,20 +50,21 @@ class Auth {
     if (user) throw errors.userLoggedInError;
 
     // Login
+    let res;
     try {
-      const res = await Auth.auth.signInAndRetrieveDataWithEmailAndPassword(
+      res = await Auth.auth.signInAndRetrieveDataWithEmailAndPassword(
         email,
         password
       );
-      // Did user verified his email?
-      if (!res.user.emailVerified) {
-        await this.logout();
-        throw errors.emailNotVerified;
-      }
-      // Maybe TODO: validate token against backend?
     } catch (error) {
       throw errors.getErrorMessageForCode(error.code);
     }
+    // Did user verified his email?
+    if (!res.user.emailVerified) {
+      await this.logout();
+      throw errors.emailNotVerified;
+    }
+    // Maybe TODO: validate token against backend?
   };
 
   logout = async () => {

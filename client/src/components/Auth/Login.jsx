@@ -7,6 +7,7 @@ import Form from './Form';
 import PasswordRecovery from './PasswordRecovery';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
+import errors from '../../api/auth/errors';
 
 import { homeUrl } from '../../routes';
 
@@ -26,13 +27,12 @@ class Login extends Component {
       try {
         await auth.login(user, password);
         // Redirect to home
-        // const { history } = this.props;
-        // history.push(homeUrl());
         this.setState({ redirect: homeUrl() });
       } catch (error) {
+        const msg = error ? error.message : errors.internalError;
         // show error
         this.setState({
-          error: error.message
+          error: msg
         });
       }
     });

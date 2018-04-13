@@ -6,7 +6,7 @@ export const homeUrl = r('/');
 
 export const signInUrl = r('/entrar');
 
-export const signUpUrl = r('/registrar');
+export const signUpUrl = r('/registro');
 
 export const promotionUrl = r('/promo/:id');
 

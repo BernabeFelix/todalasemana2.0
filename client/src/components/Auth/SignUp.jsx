@@ -1,16 +1,20 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import Snackbar from 'material-ui/Snackbar';
 import controls from './controls';
 import CustomTextField from './CustomFormField/CustomTextField';
 import Form from './Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
+import { signInUrl } from '../../routes';
 
 class SignUp extends Component {
   state = {
     error: null,
-    success: null
+    success: null,
+    redirect: null
   };
+
   signUp = async data => {
     this.setState({
       error: null,
@@ -35,14 +39,30 @@ class SignUp extends Component {
     }
   };
 
+  redirect = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
-    const { error, success } = this.state;
+    const { error, success, redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to={signInUrl()} />;
+    }
+
     return (
       <Form onSubmit={this.signUp} className="signup">
         {(updateValid, shouldValid) => (
           <Fragment>
             {success && (
-              <Snackbar open message={success} autoHideDuration={20000} />
+              <Snackbar
+                open
+                message={success}
+                action="Continue"
+                onActionClick={this.redirect}
+                onRequestClose={this.redirect}
+                autoHideDuration={10000}
+              />
             )}
             {error && (
               <div className="alert alert-error alert-small">{error}</div>

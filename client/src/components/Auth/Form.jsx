@@ -4,7 +4,7 @@ import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 import { Intent } from '../common/types';
-import { $blueCool } from '../../styles/variables';
+import { $blueCool, $red } from '../../styles/variables';
 
 class Form extends Component {
   state = {
@@ -60,6 +60,7 @@ class Form extends Component {
     this.setState({ shouldValid: false, loading: false });
   };
 
+  // Not working since structure changes to CustomTextField :/
   reset = () => {
     /* eslint-disable react/no-string-refs */
     Object.values(this.refs).forEach(control => control.reset());
@@ -93,7 +94,7 @@ class Form extends Component {
           <RaisedButton
             label={submitText}
             fullWidth
-            backgroundColor="#ee3335"
+            backgroundColor={$red}
             labelColor="#fff"
             onClick={this.submit}
             disabled={loading}

@@ -34,6 +34,7 @@ class Header extends React.Component {
     super();
     Auth.auth.onAuthStateChanged(this.handleSessionChange);
   }
+
   state = {
     sideNavOpen: false,
     userName: null
@@ -43,7 +44,10 @@ class Header extends React.Component {
     // For now, this line controls what menu will be shown in header (either admin or customer)
     // TODO: refactor once we have roles in backend
     const isAdmin = true;
-    this.setState({ userName: user ? user.email : null, isAdmin });
+    this.setState({
+      userName: user && user.emailVerified ? user.email : null,
+      isAdmin
+    });
   };
 
   toggleDrawer = () => {
