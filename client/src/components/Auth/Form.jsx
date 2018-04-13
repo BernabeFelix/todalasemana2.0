@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
 import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
-import { Intent } from '../common/types';
 import { $blueCool, $red } from '../../styles/variables';
 
 class Form extends Component {
@@ -32,7 +31,7 @@ class Form extends Component {
 
   controlsWithValidation = {};
 
-  submit = async () => {
+  submit = () => {
     this.setState({
       loading: true
     });
@@ -46,24 +45,10 @@ class Form extends Component {
       return;
     }
 
-    // this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
-
     const values = this.getFormValues();
-    const reset = await this.props.onSubmit(values);
-
-    // reset form?
-    if (reset) {
-      this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
-      this.reset();
-    }
+    this.props.onSubmit(values);
 
     this.setState({ shouldValid: false, loading: false });
-  };
-
-  // Not working since structure changes to CustomTextField :/
-  reset = () => {
-    /* eslint-disable react/no-string-refs */
-    Object.values(this.refs).forEach(control => control.reset());
   };
 
   updateControl = (controlName, values) => {

@@ -29,13 +29,11 @@ class SignUp extends Component {
 
       // Show success message and invite to check the email
       this.setState({ success: res.message });
-      return true; // Indicate the form to reset the fields
     } catch (error) {
       // show error
       this.setState({
         error: error.message
       });
-      return false; // Indicate the form to hold the values
     }
   };
 
@@ -70,7 +68,6 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.firstName.fields.name}
                   control={controls.firstName}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -78,7 +75,6 @@ class SignUp extends Component {
               </div>
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.lastName.fields.name}
                   control={controls.lastName}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -88,7 +84,6 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.address.fields.name}
                   control={controls.address}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -96,7 +91,6 @@ class SignUp extends Component {
               </div>
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.zipCode.fields.name}
                   control={controls.zipCode}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -106,7 +100,6 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.phone.fields.name}
                   control={controls.phone}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -114,7 +107,6 @@ class SignUp extends Component {
               </div>
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.service.fields.name}
                   control={controls.service}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -124,7 +116,6 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-xs-12">
                 <CustomTextField
-                  ref={controls.email.fields.name}
                   control={controls.email}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -134,7 +125,6 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.password.fields.name}
                   control={controls.password}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -142,7 +132,6 @@ class SignUp extends Component {
               </div>
               <div className="col-xs-12 col-sm-6">
                 <CustomTextField
-                  ref={controls.passwordConfirm.fields.name}
                   control={controls.passwordConfirm}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
