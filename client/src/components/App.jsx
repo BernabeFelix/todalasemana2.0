@@ -4,15 +4,15 @@ import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles';
 import Content from './Content';
 import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
+import { $blueCool } from '../styles/variables';
 
-// TODO: replace this colors by variables.js proper color
-const colors = {
-  blueCool: '#1f8f8f'
-};
 const promosTheme = getMuiTheme({
   textField: {
-    focusColor: colors.blueCool,
-    hintColor: colors.blueCool
+    focusColor: $blueCool,
+    hintColor: $blueCool
+  },
+  raisedButton: {
+    primaryColor: $blueCool
   }
 });
 
