@@ -56,7 +56,7 @@ class SignUp extends Component {
               <Snackbar
                 open
                 message={success}
-                action="Continue"
+                action="Continuar"
                 onActionClick={this.redirect}
                 onRequestClose={this.redirect}
                 autoHideDuration={10000}
