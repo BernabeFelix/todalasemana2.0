@@ -5,8 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
-    "intranet":
-      "webpack-dev-server --mode development --open --host 0.0.0.0 --port 8080",
+    "intranet": "webpack-dev-server --mode development --open --host 0.0.0.0 --port 8080",
     "build": "NODE_ENV=production webpack --mode production"
   },
   "proxy": "http://localhost:5000/",
@@ -49,10 +48,12 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "styled-components": "^3.2.5",
     "react-dropzone": "^4.2.9",
+    "react-fontawesome": "^1.6.1",
     "react-router-dom": "^4.2.2",
-    "react-sizeme": "^2.4.2"
+    "react-share": "^2.1.1",
+    "react-sizeme": "^2.4.2",
+    "styled-components": "^3.2.5"
   },
   "prettier": {
     "singleQuote": true

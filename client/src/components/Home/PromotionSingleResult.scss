@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss';
+
 .promotion-single-result {
   background-color: white;
   border-radius: 2px;
   margin-top: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
 
   .img-container {
@@ -10,15 +12,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-bottom: 1rem;
 
     img {
-      border-radius: 2px;
+      border-radius: 0px;
     }
   }
-  h3 {
+  .title {
     margin-top: 0;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+    margin: 0;
+  }
+  .company {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  .availability {
+    display: block;
+    margin-bottom: 1rem;
+    color: $mute;
   }
   p {
     margin: 0;
+  }
+
+  .btn-share {
+    float: right;
   }
 }
