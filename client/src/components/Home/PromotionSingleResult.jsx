@@ -8,7 +8,7 @@ import RisedButton from 'material-ui/RaisedButton';
 import Location from 'material-ui/svg-icons/communication/location-on';
 import ShareMenu from './ShareMenu';
 import { Promotion } from '../common/types';
-import settings from '../../../settings.json';
+import { getRootUrl } from '../../utils/url';
 
 const styles = {
   chip: {
@@ -23,11 +23,7 @@ const styles = {
   }
 };
 
-const getFullUrl = relativeUrl => {
-  const { rootUrl } = settings;
-  const fullUrl = `${rootUrl}${relativeUrl}`;
-  return fullUrl;
-};
+const getFullUrl = relativeUrl => `${getRootUrl()}${relativeUrl}`;
 
 const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
   <Paper className="promotion-single-result" zDepth={2}>
