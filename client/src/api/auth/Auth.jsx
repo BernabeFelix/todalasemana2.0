@@ -5,7 +5,8 @@ import errors from './errors';
 class Auth {
   static auth = FirebaseApp.auth();
 
-  continueUrlHome = process.env.HomeUrl || 'http://localhost:8080';
+  // TODO: take from settings.json at root from branch ps/shares
+  continueUrlHome = 'http://localhost:8080';
 
   signInUrl = `${this.continueUrlHome}/${signInUrl}`;
 
