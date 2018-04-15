@@ -7,8 +7,8 @@ import FlatButton from 'material-ui/FlatButton';
 import RisedButton from 'material-ui/RaisedButton';
 import Location from 'material-ui/svg-icons/communication/location-on';
 import ShareMenu from './ShareMenu';
-
 import { Promotion } from '../common/types';
+import settings from '../../../settings.json';
 
 const styles = {
   chip: {
@@ -24,9 +24,8 @@ const styles = {
 };
 
 const getFullUrl = relativeUrl => {
-  // TODO: change for a setting
-  const { host } = window.location;
-  const fullUrl = `https://${host}${relativeUrl}`;
+  const { rootUrl } = settings;
+  const fullUrl = `${rootUrl}${relativeUrl}`;
   return fullUrl;
 };
 
