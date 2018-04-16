@@ -1,17 +1,20 @@
-import express from 'express';
 import { check, validationResult } from 'express-validator/check';
-
-const router = express.Router();
 
 const getRequiredErrorMsg = fieldName => `El campo ${fieldName} es requerido.`;
 const pswdVal = (value, { req }) => value === req.body.password;
 
-const validations = [
+// TODO: move error messages into another file
+export const validations = [
   check('firstName', getRequiredErrorMsg('nombre')).isString(),
   check('lastName', getRequiredErrorMsg('apellido')).isString(),
   check('address', getRequiredErrorMsg('dirección')).isString(),
   check('phone', getRequiredErrorMsg('teléfono')).isString(),
   check('service', getRequiredErrorMsg('servicio')).isString(),
+  check('email')
+    .exists()
+    .withMessage(getRequiredErrorMsg('correo electrónico'))
+    .isEmail()
+    .withMessage('El correo ingresado no es válido.'),
   check('id', 'El id es inválido.')
     .isString()
     .isLength({ min: 28, max: 28 })
@@ -25,32 +28,15 @@ const validations = [
     .custom(pswdVal)
 ];
 
-const validate = (req, res, next) => {
-  const errors = validationResult(req);
-
-  if (errors) {
+export const validate = (req, res, next) => {
+  let errors = validationResult(req);
+  errors = errors ? errors.array({ onlyFirstError: true }) : [];
+  if (errors.length > 0) {
     return res.status(400).json({
       code: 'invalid-fields',
       message: 'Por favor verifica los errores.',
-      errors: errors.array()
+      errors
     });
   }
   return next();
 };
-
-const save = (req, res) => {
-  const emailVerified = false;
-  const joined = Date.now();
-  const client = {
-    emailVerified, // Will we need it at some point?
-    joined,
-    ...req.body
-  };
-  // Save new client to database
-  console.log(client);
-  res.status(200).send({ status: 'ok', message: 'Usuario guardado.' });
-};
-
-router.post('/', validations, validate, save);
-
-export default router;
