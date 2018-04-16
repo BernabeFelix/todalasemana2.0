@@ -2,8 +2,9 @@ import express from 'express';
 import clients from './clients';
 import all from './all';
 import single from './single';
+import save from './save';
 
-// TODO: source should be graphQL
+// TODO: get rid of get all... now using graphQL
 
 const routes = express.Router();
 
@@ -25,6 +26,9 @@ routes.param('clientId', (req, res, next, value) => {
 });
 
 routes.use('/:clientId', single);
-routes.route('/').get(all); // TODO: add post handler
+routes
+  .route('/')
+  .get(all)
+  .post(save);
 
 export default routes;
