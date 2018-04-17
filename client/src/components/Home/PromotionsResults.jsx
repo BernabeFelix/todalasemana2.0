@@ -3,7 +3,7 @@ import { arrayOf, func, shape } from 'prop-types';
 import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
 import { Promotion } from '../common/types';
-import withPromotions from '../common/withPromotions/withPromotions';
+import withPromotions from '../common/HOC/withPromotions';
 
 const PromotionsResults = ({ promotions, urlCallback }) =>
   promotions.map(promotion => (

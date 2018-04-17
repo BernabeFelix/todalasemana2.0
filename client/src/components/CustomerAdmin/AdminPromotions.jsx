@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { List } from 'material-ui';
-import { shape } from 'prop-types';
-import { gql } from 'apollo-boost/lib/index';
-import { Query } from 'react-apollo';
-import AdminPromotion from './AdminPromotion';
-import { History, Match } from '../common/types';
+import { arrayOf, shape } from 'prop-types';
+import { History, Match, Promotion } from '../common/types';
 import { hasSlashAtTheEnd } from '../../utils/url';
-
-const query = gql`
-  {
-    promotions {
-      id
-    }
-  }
-`;
+import withPromotions from '../common/HOC/withPromotions';
+import AdminPromotion from "./AdminPromotion";
 
 class AdminPromotions extends Component {
   updateRoute = id => () => {
@@ -27,32 +18,22 @@ class AdminPromotions extends Component {
   };
 
   render() {
-    return (
-      <Query query={query}>
-        {({ loading, data }) => {
-          //  todo: create a 'no promotions message'
-          if (loading) return null;
+    const { promotions } = this.props;
 
-          return (
-            <List style={{ backgroundColor: 'white', padding: 0 }}>
-              {data.promotions.map(({ id }) => (
-                <AdminPromotion
-                  id={id}
-                  onClick={this.updateRoute(id)}
-                  key={id}
-                />
-              ))}
-            </List>
-          );
-        }}
-      </Query>
+    return (
+      <List style={{ backgroundColor: 'white', padding: 0 }}>
+        {promotions.map(({ id }) => (
+          <AdminPromotion id={id} onClick={this.updateRoute(id)} key={id} />
+        ))}
+      </List>
     );
   }
 }
 
 AdminPromotions.propTypes = {
   history: shape(History).isRequired,
-  match: shape(Match).isRequired
+  match: shape(Match).isRequired,
+  promotions: arrayOf(shape(Promotion)).isRequired
 };
 
-export default AdminPromotions;
+export default withPromotions(AdminPromotions);

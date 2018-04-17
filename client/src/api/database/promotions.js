@@ -9,8 +9,8 @@ const ref = 'promotions/';
 // Check types/Promotion for reference
 export const addPromotion = async ({
   title,
-  isActive,
   description,
+  isActive = true,
   imgUrl = defaultImage
 }) =>
   await database.add(ref, {

@@ -1,12 +1,11 @@
 import { Divider, IconButton, ListItem } from 'material-ui';
 import React, { Component, Fragment } from 'react';
-import { Query } from 'react-apollo';
-import { func, number, oneOfType, string } from 'prop-types';
+import { func, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import withSnackBar, { SnackBarTypes } from '../common/SnackBar/withSnackBar';
 import CustomAvatar from '../common/CustomAvatar/CustomAvatar';
 import { $blueCool, $red } from '../../styles/variables';
-import { promotionById } from '../../api/queries';
+import withPromotion from '../common/HOC/withPromotion';
 
 const $avatarSize = 150;
 const $padding = 16;
@@ -34,61 +33,45 @@ class AdminPromotion extends Component {
   };
 
   render() {
-    const { id, onClick } = this.props;
+    const { promotion, onClick } = this.props;
+
+    const { description, imgUrl, isActive, title } = promotion;
 
     return (
-      <Query query={promotionById} variables={{ id }}>
-        {({ loading, data }) => {
-          //  todo: create a 'no promotions message'
-          if (loading) return null;
-
-          const { description, imgUrl, isActive, title } = data.promotion;
-
-          return (
-            <Fragment>
-              <ListItem
-                primaryText={title}
-                secondaryText={description}
-                secondaryTextLines={2}
-                innerDivStyle={innerDivStyle}
-                onClick={onClick}
-                leftAvatar={
-                  <CustomAvatar
-                    src={imgUrl}
-                    size={$avatarSize}
-                    padding={$padding}
-                  />
-                }
-                rightIconButton={
-                  <IconButton
-                    touch
-                    onClick={this.deletePromo}
-                    tooltip="Eliminar"
-                  >
-                    <DeleteIcon color={$red} />
-                  </IconButton>
-                }
-              >
-                <div
-                  style={{
-                    ...activeBorder,
-                    borderLeft: `10px solid ${isActive ? $blueCool : $red}`
-                  }}
-                />
-              </ListItem>
-              <Divider inset />
-            </Fragment>
-          );
-        }}
-      </Query>
+      <Fragment>
+        <ListItem
+          primaryText={title}
+          secondaryText={description}
+          secondaryTextLines={2}
+          innerDivStyle={innerDivStyle}
+          onClick={onClick}
+          leftAvatar={
+            <CustomAvatar src={imgUrl} size={$avatarSize} padding={$padding} />
+          }
+          rightIconButton={
+            <IconButton touch onClick={this.deletePromo} tooltip="Eliminar">
+              <DeleteIcon color={$red} />
+            </IconButton>
+          }
+        >
+          <div
+            style={{
+              ...activeBorder,
+              borderLeft: `10px solid ${isActive ? $blueCool : $red}`
+            }}
+          />
+        </ListItem>
+        <Divider inset />
+      </Fragment>
     );
   }
 }
 
 AdminPromotion.propTypes = {
-  id: oneOfType([string, number]).isRequired,
+  id: oneOfType([string]).isRequired,
   onClick: func.isRequired,
   ...SnackBarTypes
 };
 
-export default withSnackBar(AdminPromotion);
+// todo: add react-compose
+export default withPromotion(withSnackBar(AdminPromotion));
