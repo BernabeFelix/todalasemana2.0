@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { func } from 'prop-types';
 import { Paper } from 'material-ui';
 import Chip from 'material-ui/Chip';
-import FlatButton from 'material-ui/FlatButton';
 import RisedButton from 'material-ui/RaisedButton';
-import Location from 'material-ui/svg-icons/communication/location-on';
 import ShareMenu from './ShareMenu';
 import { Promotion } from '../common/types';
 import { getRootUrl } from '../../utils/url';
@@ -25,12 +23,22 @@ const styles = {
 
 const getFullUrl = relativeUrl => `${getRootUrl()}${relativeUrl}`;
 
-const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
+const PromotionSingleResult = ({
+  description,
+  id,
+  imgUrl,
+  url,
+  companyUrl,
+  title,
+  company
+}) => (
   <Paper className="promotion-single-result" zDepth={2}>
     <div className="row">
       <div className="col-xs-12 col-sm-12">
         <h4 className="company">
-          <Link to="/pizza-hut">Pizza Hut &copy;</Link>
+          <Link to={companyUrl({ companySlugName: company.slugName })}>
+            {company.name}
+          </Link>
           <ShareMenu title={title} url={getFullUrl(url({ id }))} />
         </h4>
 
@@ -49,18 +57,14 @@ const PromotionSingleResult = ({ description, id, imgUrl, url, title }) => (
             Comida
           </Chip>
         </h4>
-        <small className="availability">Válido hasta el 12/05/2018</small>
+        {/* TODO: implement if there is time */}
+        {/* <small className="availability">Válido hasta el 12/05/2018</small> */}
         <p className="description">{description}</p>
         <div className="actions">
           <RisedButton
             label="Detalles"
             primary
             containerElement={<Link to={url({ id })} />}
-            style={styles.buttonRoot}
-          />
-          <FlatButton
-            label="Mapa"
-            icon={<Location />}
             style={styles.buttonRoot}
           />
         </div>
