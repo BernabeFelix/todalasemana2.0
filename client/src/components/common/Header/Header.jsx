@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { string } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import UserMenu from './UserMenu';
 import Auth from '../../../api/auth/Auth';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
@@ -29,47 +29,26 @@ const SignIn = () => (
   </div>
 );
 
-const UserButton = props => (
-  <div className="header-right-nav">
-    <Link to="/perfil">
-      <FlatButton
-        label={props.username}
-        className="header-right-nav-btn"
-        hoverColor="transparent"
-        rippleColor="transparent !important"
-      />
-    </Link>
-  </div>
-);
-UserButton.propTypes = {
-  username: string.isRequired
-};
-
-const getCurrentUser = async () => {
-  const auth = new Auth();
-  const user = await auth.getCurrentUser().catch(error => console.log(error));
-  console.log(user);
-  return user ? user.email : null;
-};
-
 class Header extends React.Component {
   constructor() {
     super();
-    const user = getCurrentUser();
-    this.state = {
-      sideNavOpen: false,
-      username: user ? user.email : 'polkien'
-    };
+    Auth.auth.onAuthStateChanged(this.handleSessionChange);
   }
 
-  // componentWillMount() {
-  //   const user = getCurrentUser();
-  //   // IT DOESN'T WORK!!! :@ User is always null here, why?
-  //   this.setState({
-  //     sideNavOpen: false,
-  //     username: user ? user.email : 'polkien'
-  //   });
-  // }
+  state = {
+    sideNavOpen: false,
+    userName: null
+  };
+
+  handleSessionChange = user => {
+    // For now, this line controls what menu will be shown in header (either admin or customer)
+    // TODO: refactor once we have roles in backend
+    const isAdmin = true;
+    this.setState({
+      userName: user && user.emailVerified ? user.email : null,
+      isAdmin
+    });
+  };
 
   toggleDrawer = () => {
     this.setState({
@@ -78,6 +57,7 @@ class Header extends React.Component {
   };
 
   render() {
+    const { userName, isAdmin } = this.state;
     return (
       <Fragment>
         <AppBar
@@ -100,8 +80,8 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              {this.state.username ? (
-                <UserButton username={this.state.username} />
+              {userName ? (
+                <UserMenu userName={userName} isAdmin={isAdmin} />
               ) : (
                 <SignIn />
               )}

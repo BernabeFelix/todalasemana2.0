@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
-import Form from './Form';
+import Form from '../common/Form';
+import PasswordRecovery from './PasswordRecovery';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
+import errors from '../../api/auth/errors';
+
 import { homeUrl } from '../../routes';
 
 class Login extends Component {
@@ -13,42 +17,50 @@ class Login extends Component {
     redirect: null
   };
 
-
-
   login = async data => {
     const { user, password } = data;
 
-    // todo: @paul what is this for?
-    this.setState({
-      error: null,
-      redirect: null
-    });
-
     await sleep(300); // just to fake load time
-    const auth = new Auth();
-    // Try login
-    try {
-      await auth.login(user, password);
-      // Redirect to home
-      // const { history } = this.props;
-      // history.push(homeUrl());
-      this.setState({ redirect: homeUrl() });
-    } catch (error) {
-      // show error
-      this.setState({
-        error: error.message
-      });
-    }
+    this.setState({ error: null }, async () => {
+      const auth = new Auth();
+      // Try login
+      try {
+        await auth.login(user, password);
+        // Redirect to home
+        this.setState({ redirect: homeUrl() });
+      } catch (error) {
+        const msg = error ? error.message : errors.internalError;
+        // show error
+        this.setState({
+          error: msg
+        });
+      }
+    });
+  };
+
+  forgotPassword = () => {
+    this.setState({ showPasswordRecovery: true });
+  };
+
+  togglePasswordRecovery = () => {
+    this.setState(currentState => ({
+      showPasswordRecovery: !currentState.showPasswordRecovery
+    }));
   };
 
   render() {
-    const { redirect } = this.state;
+    const { redirect, error, showPasswordRecovery } = this.state;
+
     if (redirect) {
       return <Redirect to={redirect} />;
     }
-    const { error } = this.state;
+
+    if (showPasswordRecovery) {
+      return <PasswordRecovery cancel={this.togglePasswordRecovery} />;
+    }
+
     return (
-      <Form onSubmit={this.login} className="login">
+      <Form onSubmit={this.login} className="login" successText="Welcome back!">
         {(updateValid, shouldValid) => (
           <div className="login">
             {error && (
@@ -72,7 +84,17 @@ class Login extends Component {
                 />
               </div>
             </div>
-            <span className="recover-password">Recuperar contraseña</span>
+            <div className="row">
+              <div className="col-xs-12">
+                <FlatButton
+                  label="Recuperar contraseña"
+                  className="recover-password"
+                  hoverColor="transparent"
+                  rippleColor="transparent"
+                  onClick={this.togglePasswordRecovery}
+                />
+              </div>
+            </div>
           </div>
         )}
       </Form>

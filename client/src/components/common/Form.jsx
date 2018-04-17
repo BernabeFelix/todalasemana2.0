@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
-import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
-import { Intent } from '../common/types';
-import { $blueCool } from '../../styles/variables';
+import withSnackBar, { SnackBarStyles } from './SnackBar/withSnackBar';
+import { $blueCool, $red } from '../../styles/variables';
 
 class Form extends Component {
   state = {
@@ -32,7 +31,7 @@ class Form extends Component {
 
   controlsWithValidation = {};
 
-  submit = async () => {
+  submit = () => {
     this.setState({
       loading: true
     });
@@ -46,20 +45,10 @@ class Form extends Component {
       return;
     }
 
-    this.props.openSnackBar(this.props.successText, Intent.SUCCESS);
-
     const values = this.getFormValues();
-    const reset = await this.props.onSubmit(values);
-
-    // reset form?
-    if (reset) this.reset();
+    this.props.onSubmit(values);
 
     this.setState({ shouldValid: false, loading: false });
-  };
-
-  reset = () => {
-    /* eslint-disable react/no-string-refs */
-    Object.values(this.refs).forEach(control => control.reset());
   };
 
   updateControl = (controlName, values) => {
@@ -90,7 +79,7 @@ class Form extends Component {
           <RaisedButton
             label={submitText}
             fullWidth
-            backgroundColor="#ee3335"
+            backgroundColor={$red}
             labelColor="#fff"
             onClick={this.submit}
             disabled={loading}
