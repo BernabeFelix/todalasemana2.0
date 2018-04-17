@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { func, number, oneOfType, string } from 'prop-types';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
-import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
+import withSnackBar, { SnackBarTypes } from '../common/SnackBar/withSnackBar';
 import CustomAvatar from '../common/CustomAvatar/CustomAvatar';
 import { $blueCool, $red } from '../../styles/variables';
 import { promotionById } from '../../api/queries';
@@ -88,7 +88,7 @@ class AdminPromotion extends Component {
 AdminPromotion.propTypes = {
   id: oneOfType([string, number]).isRequired,
   onClick: func.isRequired,
-  ...SnackBarStyles
+  ...SnackBarTypes
 };
 
 export default withSnackBar(AdminPromotion);

@@ -43,7 +43,7 @@ const withSnackBar = WrappedComponent => {
   return WithSnackBar;
 };
 
-export const SnackBarStyles = {
+export const SnackBarTypes = {
   openSnackBar: func.isRequired
 };
 
