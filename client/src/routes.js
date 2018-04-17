@@ -23,3 +23,5 @@ export const superAdminUrl = r('/super-admin');
 export const accountUrl = r('/cuenta');
 
 export const clientsUrl = r('/clientes/:id?');
+
+export const companyUrl = r('/:companySlugName');
