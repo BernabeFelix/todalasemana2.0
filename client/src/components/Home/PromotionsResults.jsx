@@ -1,26 +1,43 @@
 import React from 'react';
-import { arrayOf, func, shape } from 'prop-types';
-import fakePromotions from '../../api/promotions';
+import { func } from 'prop-types';
+import { gql } from 'apollo-boost';
+import { Query } from 'react-apollo';
 import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
-import { Promotion } from '../common/types';
 
-const PromotionsResults = ({ promotions, urlCallback }) =>
-  promotions.map(promotion => (
-    <PromotionSingleResult
-      key={promotion.id}
-      url={urlCallback}
-      {...promotion}
-    />
-  ));
+const query = gql`
+  query {
+    promotions {
+      id
+      title
+      imgUrl
+      isActive
+      description
+    }
+  }
+`;
+
+const PromotionsResults = ({ urlCallback }) => (
+  <Query query={query}>
+    {({ loading, data }) => {
+      if (loading) return null;
+
+      return data.promotions.map(promotion => (
+        <PromotionSingleResult
+          key={promotion.id}
+          url={urlCallback}
+          {...promotion}
+        />
+      ));
+    }}
+  </Query>
+);
 
 PromotionsResults.defaultProps = {
-  urlCallback: promotionUrl,
-  promotions: fakePromotions
+  urlCallback: promotionUrl
 };
 
 PromotionsResults.propTypes = {
-  promotions: arrayOf(shape(Promotion)),
   urlCallback: func
 };
 

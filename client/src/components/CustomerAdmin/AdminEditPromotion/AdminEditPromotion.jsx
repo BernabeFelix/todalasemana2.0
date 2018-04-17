@@ -1,14 +1,18 @@
 import React from 'react';
 import { string } from 'prop-types';
-import fakePromotions from '../../../api/promotions';
+import { Query } from 'react-apollo';
 import NewEditPromotion from '../NewEditPromotion';
+import { promotionById } from '../../../api/queries';
 
-const AdminEditPromotion = ({ id }) => {
-  // todo: remove this when redux/apollo is setup
-  const promotion = fakePromotions.find(promo => promo.id === parseInt(id, 10));
+const AdminEditPromotion = nestedId => (
+  <Query query={promotionById} variables={nestedId}>
+    {({ loading, data }) => {
+      if (loading) return null;
 
-  return <NewEditPromotion {...promotion} />;
-};
+      return <NewEditPromotion {...data.promotion} />;
+    }}
+  </Query>
+);
 
 AdminEditPromotion.propTypes = {
   id: string.isRequired
