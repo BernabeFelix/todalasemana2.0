@@ -1,13 +1,27 @@
 import database from './database';
+import r from '../../routes';
 
 const defaultImage = 'https://placebear.com/200/300';
 
 const ref = 'promotions/';
 
 // todo: add userId as parameter
-export const addPromotion = ({ title, description, imageUrl = defaultImage }) =>
-  database.add(ref, {
+// Check types/Promotion for reference
+export const addPromotion = async ({
+  title,
+  isActive,
+  description,
+  imgUrl = defaultImage
+}) =>
+  await database.add(ref, {
     title,
+    isActive,
     description,
-    imageUrl
+    imgUrl
   });
+
+export const getPromotion = async (id, onSuccess) =>
+  await database.get(`${ref}${id}`, onSuccess);
+
+export const getPromotions = async onSuccess =>
+  await database.get(ref, onSuccess);

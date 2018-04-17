@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import { Paper } from 'material-ui';
 import Chip from 'material-ui/Chip';
 import RisedButton from 'material-ui/RaisedButton';
@@ -22,12 +22,8 @@ const styles = {
 };
 
 const PromotionSingleResult = ({
-  description,
-  id,
-  imgUrl,
   url,
-  title,
-  company
+  promotion: { company, description, id, imgUrl, title }
 }) => (
   <Paper className="promotion-single-result" zDepth={2}>
     <div className="row">
@@ -68,7 +64,7 @@ PromotionSingleResult.defaultProps = {
 };
 PromotionSingleResult.propTypes = {
   url: func.isRequired,
-  ...Promotion
+  promotion: shape(Promotion).isRequired
 };
 
 export default PromotionSingleResult;

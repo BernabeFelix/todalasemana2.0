@@ -1,44 +1,44 @@
-import React from 'react';
-import { func } from 'prop-types';
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import React, { Component } from 'react';
+import { arrayOf, func, shape } from 'prop-types';
+import { connect } from 'react-redux';
 import { promotionUrl } from '../../routes';
 import PromotionSingleResult from './PromotionSingleResult';
+import { Promotion } from '../common/types';
+import { fetchPromotions } from '../../store/promotions/actions-creators';
 
-const query = gql`
-  query {
-    promotions {
-      id
-      title
-      imgUrl
-      isActive
-      description
-    }
+class PromotionsResults extends Component {
+  componentDidMount() {
+    this.props.fetchPromotions();
   }
-`;
 
-const PromotionsResults = ({ urlCallback }) => (
-  <Query query={query}>
-    {({ loading, data }) => {
-      if (loading) return null;
+  render() {
+    const { promotions, urlCallback } = this.props;
 
-      return data.promotions.map(promotion => (
-        <PromotionSingleResult
-          key={promotion.id}
-          url={urlCallback}
-          {...promotion}
-        />
-      ));
-    }}
-  </Query>
-);
+    return promotions.map(promotion => (
+      <PromotionSingleResult
+        key={promotion.id}
+        url={urlCallback}
+        promotion={promotion}
+      />
+    ));
+  }
+}
 
 PromotionsResults.defaultProps = {
   urlCallback: promotionUrl
 };
 
 PromotionsResults.propTypes = {
+  promotions: arrayOf(shape(Promotion)).isRequired,
+  fetchPromotions: func.isRequired,
   urlCallback: func
 };
 
-export default PromotionsResults;
+export default connect(
+  state => ({
+    promotions: state.promotions.data
+  }),
+  {
+    fetchPromotions
+  }
+)(PromotionsResults);

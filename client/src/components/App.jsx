@@ -23,7 +23,6 @@ const promosTheme = getMuiTheme({
 const client = new ApolloClient({ uri: 'http://0.0.0.0:5000/graphql' });
 const store = configureStore();
 
-
 const App = () => (
   <MuiThemeProvider muiTheme={promosTheme}>
     <Redux store={store}>

@@ -1,7 +1,7 @@
-const reducer = (store = {}, type, payload) => {
+const reducer = (state = [], { type, payload }) => {
   switch (type) {
     default:
-      return store;
+      return state;
   }
 };
 
