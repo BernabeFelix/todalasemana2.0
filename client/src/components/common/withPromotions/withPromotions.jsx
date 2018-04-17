@@ -8,7 +8,9 @@ import { getDisplayName } from '../SnackBar/withSnackBar';
 const withPromotions = WrappedComponent => {
   class WithPromotions extends Component {
     componentDidMount() {
-      this.props.fetchPromotions();
+      if (!this.props.promotions.length) {
+        this.props.fetchPromotions();
+      }
     }
 
     render() {
