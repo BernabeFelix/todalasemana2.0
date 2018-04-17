@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { func } from 'prop-types';
-import Form from './Form';
+import Form from '../common/Form';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
 import { sleep } from './utils';

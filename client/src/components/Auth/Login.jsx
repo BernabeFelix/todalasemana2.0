@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
-import Form from './Form';
+import Form from '../common/Form';
 import PasswordRecovery from './PasswordRecovery';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';

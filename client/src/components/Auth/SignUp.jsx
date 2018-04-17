@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Snackbar from 'material-ui/Snackbar';
 import controls from './controls';
 import CustomTextField from './CustomFormField/CustomTextField';
-import Form from './Form';
+import Form from '../common/Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { signInUrl } from '../../routes';

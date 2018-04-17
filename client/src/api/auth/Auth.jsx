@@ -3,6 +3,7 @@ import { signInUrl } from '../../routes';
 import errors from './errors';
 
 class Auth {
+  // This is a private property
   static auth = FirebaseApp.auth();
 
   // TODO: take from settings.json at root from branch ps/shares

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
-import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
+import withSnackBar, { SnackBarStyles } from './SnackBar/withSnackBar';
 import { $blueCool, $red } from '../../styles/variables';
 
 class Form extends Component {

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { RaisedButton } from 'material-ui';
 import controls from './AdminEditPromotion/controls';
-import Form from '../Auth/Form';
+import Form from '../common/Form';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
 import { NewPromotion } from '../common/types';
 
