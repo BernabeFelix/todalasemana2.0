@@ -20,6 +20,19 @@ export const addPromotion = async ({
     imgUrl
   });
 
+export const editPromotion = async ({
+  title,
+  description,
+  isActive = true,
+  imgUrl = defaultImage
+}) =>
+  await database.update(ref, {
+    title,
+    isActive,
+    description,
+    imgUrl
+  });
+
 export const getPromotion = async (id, onSuccess) =>
   await database.get(`${ref}${id}`, onSuccess);
 

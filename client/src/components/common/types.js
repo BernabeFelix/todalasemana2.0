@@ -32,11 +32,11 @@ export const PromotionDefaults = {
   company: '\u00A0'
 };
 export const Promotion = {
-  id: string.isRequired,
-  description: string.isRequired,
-  imgUrl: string.isRequired,
-  isActive: bool.isRequired,
-  title: string.isRequired,
+  id: string,
+  description: string,
+  imgUrl: string,
+  isActive: bool,
+  title: string,
   company: string
 };
 

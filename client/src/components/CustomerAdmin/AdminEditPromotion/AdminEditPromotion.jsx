@@ -1,21 +1,23 @@
 import React from 'react';
-import { string } from 'prop-types';
-import { Query } from 'react-apollo';
+import { shape, string } from 'prop-types';
 import NewEditPromotion from '../NewEditPromotion';
-import { promotionById } from '../../../api/queries';
+import { Promotion } from '../../common/types';
+import withPromotion from '../../common/HOC/withPromotion';
+import { editPromotion } from '../../../api/database/promotions';
 
-const AdminEditPromotion = nestedId => (
-  <Query query={promotionById} variables={nestedId}>
-    {({ loading, data }) => {
-      if (loading) return null;
+const AdminEditPromotion = ({ promotion }) => {
+  if (!promotion) return null;
 
-      return <NewEditPromotion {...data.promotion} />;
-    }}
-  </Query>
-);
-
-AdminEditPromotion.propTypes = {
-  id: string.isRequired
+  return <NewEditPromotion {...promotion} onSubmit={editPromotion} />;
 };
 
-export default AdminEditPromotion;
+AdminEditPromotion.defaultProps = {
+  promotion: null
+};
+
+AdminEditPromotion.propTypes = {
+  id: string.isRequired,
+  promotion: shape(Promotion)
+};
+
+export default withPromotion(AdminEditPromotion);

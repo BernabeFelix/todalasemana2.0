@@ -1,15 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NewEditPromotion from './NewEditPromotion';
 import { addPromotion } from '../../api/database/promotions';
 
-class NewPromotion extends Component {
-  onSubmit = data => {
-    addPromotion(data);
-  };
-
-  render() {
-    return <NewEditPromotion onSubmit={this.onSubmit} />;
-  }
-}
+const NewPromotion = () => <NewEditPromotion onSubmit={addPromotion} />;
 
 export default NewPromotion;
