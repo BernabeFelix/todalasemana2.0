@@ -1,10 +1,14 @@
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
-import { arrayOf, shape, string } from 'prop-types';
+import { arrayOf, shape } from 'prop-types';
 import Marker from './Marker';
 import { MarkerType } from '../common/types';
 
 class Map extends React.Component {
+  static mapKeys = {
+    key: 'AIzaSyBfRwLDgjFXGuiwxdVnZ0zlaDEIiHulQgI',
+    language: 'es'
+  };
   state = {
     center: [0, 0],
     geocodedMarkers: [],
@@ -89,6 +93,7 @@ class Map extends React.Component {
         center={this.state.center}
         defaultZoom={this.state.zoom}
         onGoogleApiLoaded={this.initGeocoder}
+        bootstrapURLKeys={Map.mapKeys}
       >
         {geocodedMarkers.map(marker => (
           <Marker {...marker} key={marker.title} />
