@@ -41,7 +41,8 @@ class Auth {
 
     const result = {
       code: 'ok',
-      message: 'Te enviamos un correo de activación.'
+      message:
+        'Te hemos enviado un enlace de activación, por favor revisa tu correo.'
     };
     return result;
   };
@@ -78,6 +79,7 @@ class Auth {
     try {
       const actionCodeSettings = { url: this.continueUrlHome };
       await Auth.auth.sendPasswordResetEmail(email, actionCodeSettings);
+      console.log('Auth.js:81');
     } catch (error) {
       // The following are not user facing errors, so will throw internal error...
       // auth/missing-android-pkg-name
@@ -85,8 +87,9 @@ class Auth {
       // auth/invalid-continue-uri
       // auth/unauthorized-continue-uri
       // auth/missing-ios-bundle-id
+      console.log(error);
       let err = errors.getErrorMessageForCode(error.code);
-      if (!err) err = { message: errors.internalError };
+      if (!err) err = errors.internalError;
       throw err;
     }
   };

@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import Auth from '../../../api/auth/Auth';
 import UserMenu from './UserMenu';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
@@ -29,11 +30,11 @@ const SignIn = () => (
 );
 
 class Header extends React.Component {
-  // constructor() {
-  // super();
-  // todo: fix this, uncomment to see the problem
-  // Auth.auth.onAuthStateChanged(this.handleSessionChange);
-  // }
+  constructor() {
+    super();
+    // todo: fix this, uncomment to see the problem
+    Auth.auth.onAuthStateChanged(this.handleSessionChange);
+  }
 
   state = {
     sideNavOpen: false,

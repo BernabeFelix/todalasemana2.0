@@ -8,7 +8,7 @@ import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 
 class PasswordRecovery extends Component {
-  state = { error: null };
+  state = { error: null, successMsg: null };
 
   sendRecoveryEmail = async data => {
     this.setState({ error: null });
@@ -17,18 +17,21 @@ class PasswordRecovery extends Component {
       const { user } = data;
       const auth = new Auth();
       await auth.sendRecoveryEmail(user);
-      return true;
+      this.setState({
+        successMsg:
+          'Te hemos enviado un enlace para recuperar tu contraseña, por favor revisa tu correo.'
+      });
+      setTimeout(() => this.props.cancel(), 5000);
     } catch (error) {
       // show error
       this.setState({
         error: error.message
       });
-      return false;
     }
   };
 
   render() {
-    const { error } = this.state;
+    const { error, successMsg } = this.state;
     return (
       <Form
         onSubmit={this.sendRecoveryEmail}
@@ -38,6 +41,9 @@ class PasswordRecovery extends Component {
       >
         {(updateValid, shouldValid) => (
           <div className="password-recovery">
+            {successMsg && (
+              <div className="alert alert-info alert-small">{successMsg}</div>
+            )}
             <p>Ingresa tu dirección de correo.</p>
             {error && (
               <div className="alert alert-error alert-small">{error}</div>
