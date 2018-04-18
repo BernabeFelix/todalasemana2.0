@@ -34,6 +34,7 @@ class AdminPromotion extends Component {
 
     try {
       await deletePromotion(id);
+      this.props.onDelete(id)
 
       openSnackBar(Intent.SUCCESS, 'Promotion deleted');
     } catch (e) {
@@ -79,6 +80,7 @@ class AdminPromotion extends Component {
 AdminPromotion.propTypes = {
   id: oneOfType([string]).isRequired,
   onClick: func.isRequired,
+  onDelete: func.isRequired,
   ...SnackBarTypes
 };
 

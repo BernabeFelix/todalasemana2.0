@@ -13,10 +13,20 @@ const withPromotions = WrappedComponent => {
       }
     }
 
+    forceUpdate = () => {
+      this.props.fetchPromotions();
+    };
+
     render() {
       const { promotions } = this.props;
 
-      return <WrappedComponent {...this.props} promotions={promotions} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          promotions={promotions}
+          updatePromotions={this.forceUpdate}
+        />
+      );
     }
   }
 
