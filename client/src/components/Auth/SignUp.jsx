@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// import { func } from 'prop-types';
-import Snackbar from 'material-ui/Snackbar';
 import controls from './controls';
 import CustomTextField from './CustomFormField/CustomTextField';
 import Form from '../common/Form';
@@ -12,15 +10,13 @@ import { Intent } from '../../components/common/types';
 
 class SignUp extends Component {
   state = {
-    error: null,
-    success: null
+    error: null
   };
 
   signUp = async data => {
     this.setState(
       {
-        error: null,
-        success: null
+        error: null
       },
       async () => {
         await sleep(300); // Fake load time
@@ -47,22 +43,12 @@ class SignUp extends Component {
   };
 
   render() {
-    const { error, success } = this.state;
+    const { error } = this.state;
 
     return (
       <Form onSubmit={this.signUp} className="signup">
         {(updateValid, shouldValid) => (
           <Fragment>
-            {success && (
-              <Snackbar
-                open
-                message={success}
-                action="Continuar"
-                onActionClick={this.redirect}
-                onRequestClose={this.redirect}
-                autoHideDuration={10000}
-              />
-            )}
             {error && (
               <div className="alert alert-error alert-small">{error}</div>
             )}
