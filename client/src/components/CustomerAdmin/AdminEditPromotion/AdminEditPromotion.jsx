@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { shape, string } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import NewEditPromotion from '../NewEditPromotion';
 import { Intent, Promotion } from '../../common/types';
 import withPromotion from '../../common/HOC/withPromotion';
@@ -12,6 +12,7 @@ class AdminEditPromotion extends Component {
   editPromotion = async data => {
     try {
       await editPromotion(this.props.id, data);
+      this.props.updatePromotion();
 
       this.props.openSnackBar(Intent.SUCCESS);
     } catch (e) {
@@ -35,6 +36,7 @@ AdminEditPromotion.defaultProps = {
 AdminEditPromotion.propTypes = {
   id: string.isRequired,
   promotion: shape(Promotion),
+  updatePromotion: func.isRequired,
   ...SnackBarTypes
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape } from 'prop-types';
+import { func, shape } from 'prop-types';
 import { connect } from 'react-redux';
 import { Promotion } from '../types';
 import { getDisplayName } from '../SnackBar/withSnackBar';
@@ -11,8 +11,12 @@ const getPromotion = (state, { id }) =>
     : { promotion: {} };
 
 const withPromotion = WrappedComponent => {
-  const WithPromotion = ({ promotion, ...props }) => (
-    <WrappedComponent {...props} promotion={promotion} />
+  const WithPromotion = ({ promotion, updatePromotions, ...props }) => (
+    <WrappedComponent
+      {...props}
+      promotion={promotion}
+      updatePromotion={updatePromotions}
+    />
   );
 
   WithPromotion.displayName = `WithPromotion(${getDisplayName(
@@ -24,7 +28,8 @@ const withPromotion = WrappedComponent => {
   };
 
   WithPromotion.propTypes = {
-    promotion: shape(Promotion)
+    promotion: shape(Promotion),
+    updatePromotions: func.isRequired
   };
 
   return withPromotions(connect(getPromotion)(WithPromotion));
