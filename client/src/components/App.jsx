@@ -12,6 +12,9 @@ const promosTheme = getMuiTheme({
   textField: {
     focusColor: $blueCool,
     hintColor: $blueCool
+  },
+  raisedButton: {
+    primaryColor: $blueCool
   }
 });
 
