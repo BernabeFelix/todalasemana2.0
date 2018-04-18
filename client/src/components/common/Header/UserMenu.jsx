@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { string, bool } from 'prop-types';
+import { shape, string, bool } from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
+import { withRouter } from 'react-router-dom';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import CustomerMenu from './CustomerMenu';
 import AdminMenu from './AdminMenu';
 import Auth from '../../../api/auth/Auth';
 import { $blueCool, $red } from '../../../styles/variables';
+import { homeUrl } from '../../../routes';
 
 class UserMenu extends Component {
   state = {
@@ -29,6 +31,8 @@ class UserMenu extends Component {
   logout = async () => {
     const auth = new Auth();
     await auth.logout();
+
+    this.props.history.push(homeUrl());
   };
 
   render() {
@@ -43,10 +47,9 @@ class UserMenu extends Component {
           targetOrigin={{ horizontal: 'right', vertical: 'top' }}
           onRequestClose={this.closeMenu}
         >
-          {isAdmin && (
+          {isAdmin ? (
             <AdminMenu closeMenu={this.closeMenu} logout={this.logout} />
-          )}
-          {!isAdmin && (
+          ) : (
             <CustomerMenu closeMenu={this.closeMenu} logout={this.logout} />
           )}
         </Popover>
@@ -72,7 +75,8 @@ UserMenu.defaultProps = {
 
 UserMenu.propTypes = {
   userName: string.isRequired,
-  isAdmin: bool
+  isAdmin: bool,
+  history: shape(History).isRequired
 };
 
-export default UserMenu;
+export default withRouter(UserMenu);
