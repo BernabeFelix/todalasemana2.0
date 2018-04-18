@@ -31,7 +31,7 @@ const PromotionSingleResult = ({
 }) => (
   <Paper className="promotion-single-result" zDepth={2}>
     <div className="row">
-      <div className="col-xs-12 col-sm-12">
+      <div className="col-xs-12">
         <h4 className="company">
           {company}
           <ShareMenu title={title} url={`${getRootUrl()}${url({ id })}`} />
