@@ -23,7 +23,7 @@ const styles = {
 
 const PromotionSingleResult = ({
   url,
-  promotion: { company, description, id, imgUrl, title }
+  promotion: { description, id, imgUrl, title, company }
 }) => (
   <Paper className="promotion-single-result" zDepth={2}>
     <div className="row">
@@ -60,8 +60,9 @@ const PromotionSingleResult = ({
 );
 
 PromotionSingleResult.defaultProps = {
-  ...PromotionDefaults
+  company: '\u00A0'
 };
+
 PromotionSingleResult.propTypes = {
   url: func.isRequired,
   promotion: shape(Promotion).isRequired

@@ -29,9 +29,7 @@ export const NewPromotion = {
   title: string,
   description: string
 };
-export const PromotionDefaults = {
-  company: '\u00A0'
-};
+
 export const Promotion = {
   id: string,
   description: string,
