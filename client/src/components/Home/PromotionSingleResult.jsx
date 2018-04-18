@@ -28,7 +28,6 @@ const PromotionSingleResult = ({
   id,
   imgUrl,
   url,
-  companyUrl,
   title,
   company
 }) => (
@@ -36,9 +35,7 @@ const PromotionSingleResult = ({
     <div className="row">
       <div className="col-xs-12 col-sm-12">
         <h4 className="company">
-          <Link to={companyUrl({ companySlugName: company.slugName })}>
-            {company.name}
-          </Link>
+          {company.name}
           <ShareMenu title={title} url={getFullUrl(url({ id }))} />
         </h4>
 
@@ -61,12 +58,9 @@ const PromotionSingleResult = ({
         {/* <small className="availability">Válido hasta el 12/05/2018</small> */}
         <p className="description">{description}</p>
         <div className="actions">
-          <RisedButton
-            label="Detalles"
-            primary
-            containerElement={<Link to={url({ id })} />}
-            style={styles.buttonRoot}
-          />
+          <Link to={url({ id })}>
+            <RisedButton label="Detalles" primary style={styles.buttonRoot} />
+          </Link>
         </div>
       </div>
     </div>

@@ -8,11 +8,7 @@ const fakePromotions = [
     isActive: true,
     imgUrl: 'https://placebear.com/200/100',
     title: 'Im the title 1',
-    company: {
-      id: '0',
-      name: 'Pizza Hut',
-      slugName: 'pizza-hut'
-    }
+    company: 'Pizza Hut'
   },
   {
     id: 2,
@@ -20,11 +16,7 @@ const fakePromotions = [
     title: 'Im the title 2',
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    company: {
-      id: '0',
-      name: "Domino's",
-      slugName: 'dominos'
-    }
+    company: "Domino's"
   },
   {
     id: 3,
@@ -32,11 +24,7 @@ const fakePromotions = [
     title: 'Im the title 3',
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    company: {
-      id: '1',
-      name: "Little Caesar's",
-      slugName: 'little-caesars'
-    }
+    company: "Little Caesar's"
   },
   {
     id: 4,
@@ -44,11 +32,7 @@ const fakePromotions = [
     title: 'Im the title 4',
     description: 'Im the description',
     imgUrl: 'https://placebear.com/200/100',
-    company: {
-      id: '2',
-      name: "Torino's Pizza",
-      slugName: 'torinos'
-    }
+    company: "Torino's Pizza"
   }
 ];
 
