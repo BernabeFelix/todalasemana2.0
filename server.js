@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+import expressValidator from 'express-validator';
 import routes from './routes';
 import graphqlApp from './graphql';
 
@@ -8,8 +10,9 @@ const port = process.env.PORT || 5000;
 
 // This is needed for apollo in the frontend
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(expressValidator());
 
 // API
 
