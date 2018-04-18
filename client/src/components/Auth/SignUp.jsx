@@ -1,52 +1,53 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { func } from 'prop-types';
 import Snackbar from 'material-ui/Snackbar';
 import controls from './controls';
 import CustomTextField from './CustomFormField/CustomTextField';
 import Form from '../common/Form';
+import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { signInUrl } from '../../routes';
+import { Intent } from '../../components/common/types';
 
 class SignUp extends Component {
   state = {
     error: null,
-    success: null,
-    redirect: null
+    success: null
   };
 
   signUp = async data => {
-    this.setState({
-      error: null,
-      success: null
-    });
-    await sleep(300); // Fake load time
-    // Try to create account
-    try {
-      const { email, password } = data;
-      const auth = new Auth();
-      const res = await auth.signUp({ email, password });
+    this.setState(
+      {
+        error: null,
+        success: null
+      },
+      async () => {
+        await sleep(300); // Fake load time
 
-      // Show success message and invite to check the email
-      this.setState({ success: res.message });
-    } catch (error) {
-      // show error
-      this.setState({
-        error: error.message
-      });
-    }
-  };
+        // Try to create account
+        try {
+          const { email, password } = data;
+          const auth = new Auth();
+          const res = await auth.signUp({ email, password });
 
-  redirect = () => {
-    this.setState({ redirect: true });
+          // Show success message and invite to check the email
+          this.props.openSnackBar(res.message, Intent.DEFAULT);
+
+          // Redirect
+          setTimeout(() => this.props.history.push(signInUrl()), 4000);
+        } catch (error) {
+          // show error
+          this.setState({
+            error: error.message
+          });
+        }
+      }
+    );
   };
 
   render() {
-    const { error, success, redirect } = this.state;
-
-    if (redirect) {
-      return <Redirect to={signInUrl()} />;
-    }
+    const { error, success } = this.state;
 
     return (
       <Form onSubmit={this.signUp} className="signup">
@@ -145,4 +146,8 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+SignUp.propTypes = {
+  ...SnackBarStyles
+};
+
+export default withSnackBar(SignUp);
