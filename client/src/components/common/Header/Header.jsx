@@ -32,7 +32,6 @@ const SignIn = () => (
 class Header extends React.Component {
   constructor() {
     super();
-    // todo: fix this, uncomment to see the problem
     Auth.auth.onAuthStateChanged(this.handleSessionChange);
   }
 
