@@ -33,5 +33,3 @@ export const accountUrl = r('/cuenta');
 export const adminAccountUrl = r('/admin/cuenta');
 
 export const clientsUrl = r('/clientes/:id?');
-
-export const companyUrl = r('/:companySlugName');
