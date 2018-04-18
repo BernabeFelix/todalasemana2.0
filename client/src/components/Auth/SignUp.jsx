@@ -2,21 +2,21 @@ import React, { Component, Fragment } from 'react';
 import controls from './controls';
 import CustomTextField from './CustomFormField/CustomTextField';
 import Form from '../common/Form';
-import withSnackBar, { SnackBarStyles } from '../common/SnackBar/withSnackBar';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { signInUrl } from '../../routes';
-import { Intent } from '../../components/common/types';
 
 class SignUp extends Component {
   state = {
-    error: null
+    error: null,
+    successMsg: null
   };
 
   signUp = async data => {
     this.setState(
       {
-        error: null
+        error: null,
+        successMsg: null
       },
       async () => {
         await sleep(300); // Fake load time
@@ -28,10 +28,10 @@ class SignUp extends Component {
           const res = await auth.signUp({ email, password });
 
           // Show success message and invite to check the email
-          this.props.openSnackBar(res.message, Intent.DEFAULT);
+          this.setState({ successMsg: res.message });
 
           // Redirect
-          setTimeout(() => this.props.history.push(signInUrl()), 4000);
+          setTimeout(() => this.props.history.push(signInUrl()), 5000);
         } catch (error) {
           // show error
           this.setState({
@@ -43,12 +43,15 @@ class SignUp extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, successMsg } = this.state;
 
     return (
       <Form onSubmit={this.signUp} className="signup">
         {(updateValid, shouldValid) => (
           <Fragment>
+            {successMsg && (
+              <div className="alert alert-info alert-small">{successMsg}</div>
+            )}
             {error && (
               <div className="alert alert-error alert-small">{error}</div>
             )}
@@ -132,8 +135,4 @@ class SignUp extends Component {
   }
 }
 
-SignUp.propTypes = {
-  ...SnackBarStyles
-};
-
-export default withSnackBar(SignUp);
+export default SignUp;

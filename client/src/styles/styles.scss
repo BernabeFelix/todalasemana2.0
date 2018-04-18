@@ -90,6 +90,10 @@ a {
     background-color: #fbe9e7;
     color: #d50000;
   }
+  &.alert-info {
+    background-color: rgba(31, 143, 143, 0.1);
+    color: $blue-cool;
+  }
 }
 
 p {
