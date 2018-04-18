@@ -50,35 +50,34 @@ const NewEditPromotion = ({ description, imgUrl, title, onSubmit }) => (
             </div>
           </div>
 
-              {/* Edit Description */}
-              <div className="row">
-                <div className="col-xs text-center">
-                  <CustomTextField
-                    control={controls.description}
-                    initialValue={description}
-                    onValidChange={updateValid}
-                    shouldValid={shouldValid}
-                    maxLength={200}
-                    multiLine
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs text-center">
-                  <SearchBox
-                    control={controls.address}
-                    onValidChange={updateValid}
-                    shouldValid={shouldValid}
-                    onPlacesChanged={location => console.log(location)}
-                  />
-                </div>
-              </div>
-            </Fragment>
-          )}
-        </Form>
-      </div>
-    );
-
+          {/* Edit Description */}
+          <div className="row">
+            <div className="col-xs text-center">
+              <CustomTextField
+                control={controls.description}
+                initialValue={description}
+                onValidChange={updateValid}
+                shouldValid={shouldValid}
+                maxLength={200}
+                multiLine
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs text-center">
+              <SearchBox
+                control={controls.address}
+                onValidChange={updateValid}
+                shouldValid={shouldValid}
+                onPlacesChanged={location => console.log(location)}
+              />
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Form>
+  </div>
+);
 
 NewEditPromotion.propTypes = {
   onSubmit: func.isRequired,
