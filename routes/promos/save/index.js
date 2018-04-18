@@ -4,7 +4,7 @@ import { validations, validate } from './validations';
 const router = express.Router();
 
 const save = (req, res) => {
-  // where are we taking the id from...
+  // TODO: resolve id...
   const id = '?';
   const created = Date.now();
   const promo = {
