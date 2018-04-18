@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { string, bool } from 'prop-types';
+import { string, bool, func } from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import CustomerMenu from './CustomerMenu';
 import AdminMenu from './AdminMenu';
-import Auth from '../../../api/auth/Auth';
 import { $blueCool, $red } from '../../../styles/variables';
 
 class UserMenu extends Component {
@@ -26,11 +25,6 @@ class UserMenu extends Component {
     this.setState({ open: false });
   };
 
-  logout = async () => {
-    const auth = new Auth();
-    await auth.logout();
-  };
-
   render() {
     const { userName, isAdmin } = this.props;
 
@@ -44,10 +38,13 @@ class UserMenu extends Component {
           onRequestClose={this.closeMenu}
         >
           {isAdmin && (
-            <AdminMenu closeMenu={this.closeMenu} logout={this.logout} />
+            <AdminMenu closeMenu={this.closeMenu} logout={this.props.logout} />
           )}
           {!isAdmin && (
-            <CustomerMenu closeMenu={this.closeMenu} logout={this.logout} />
+            <CustomerMenu
+              closeMenu={this.closeMenu}
+              logout={this.props.logout}
+            />
           )}
         </Popover>
         <div className="header-right-nav">
@@ -72,7 +69,8 @@ UserMenu.defaultProps = {
 
 UserMenu.propTypes = {
   userName: string.isRequired,
-  isAdmin: bool
+  isAdmin: bool,
+  logout: func.isRequired
 };
 
 export default UserMenu;

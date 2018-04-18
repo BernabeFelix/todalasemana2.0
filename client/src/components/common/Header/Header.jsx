@@ -46,13 +46,23 @@ class Header extends React.Component {
     const isAdmin = true;
     this.setState({
       userName: user && user.emailVerified ? user.email : null,
-      isAdmin
+      isAdmin: user && user.emailVerified ? isAdmin : null
     });
   };
 
   toggleDrawer = () => {
     this.setState({
       sideNavOpen: !this.state.sideNavOpen
+    });
+  };
+
+  logout = async () => {
+    const auth = new Auth();
+    await auth.logout();
+
+    this.setState({
+      userName: null,
+      isAdmin: null
     });
   };
 
@@ -81,7 +91,11 @@ class Header extends React.Component {
                 <Day dayName="domingo" />
               </div>
               {userName ? (
-                <UserMenu userName={userName} isAdmin={isAdmin} />
+                <UserMenu
+                  userName={userName}
+                  isAdmin={isAdmin}
+                  logout={this.logout}
+                />
               ) : (
                 <SignIn />
               )}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
+import { shape } from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import CustomTextField from './CustomFormField/CustomTextField';
 import controls from './controls';
@@ -9,12 +10,27 @@ import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import errors from '../../api/auth/errors';
 
-import { homeUrl } from '../../routes';
+import { adminUrl, superAdminUrl } from '../../routes';
 
 class Login extends Component {
+  constructor() {
+    super();
+    Auth.auth.onAuthStateChanged(this.handleSessionChange);
+  }
+
   state = {
     error: null,
     redirect: null
+  };
+
+  handleSessionChange = user => {
+    // For now, this line controls what menu will be shown in header (either admin or customer)
+    // TODO: refactor once we have roles in backend
+    if (user && user.emailVerified) {
+      /* eslint-disable no-param-reassign */
+      user.isAdmin = false;
+      this.props.history.push(user.isAdmin ? superAdminUrl() : adminUrl());
+    }
   };
 
   login = async data => {
@@ -26,8 +42,7 @@ class Login extends Component {
       // Try login
       try {
         await auth.login(user, password);
-        // Redirect to home
-        this.setState({ redirect: homeUrl() });
+        // Redirect happens in handleSessionChange
       } catch (error) {
         const msg = error ? error.message : errors.internalError;
         // show error
@@ -102,4 +117,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  history: shape(History).isRequired
+};
+
+export default withRouter(Login);
