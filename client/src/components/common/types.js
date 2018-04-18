@@ -19,7 +19,8 @@ export const Size = {
 // intent
 export const Intent = {
   ERROR: 'ERROR',
-  SUCCESS: 'SUCCESS'
+  SUCCESS: 'SUCCESS',
+  DEFAULT: 'DEFAULT'
 };
 
 export const NewPromotion = {
