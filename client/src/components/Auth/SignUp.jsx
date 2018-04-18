@@ -14,6 +14,7 @@ class SignUp extends Component {
     successMsg: null
   };
 
+  /* eslint-disable no-param-reassign */
   signUp = async data => {
     this.setState(
       {
