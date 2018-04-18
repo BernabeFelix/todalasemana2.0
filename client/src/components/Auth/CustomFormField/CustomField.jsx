@@ -86,23 +86,16 @@ class CustomField extends Component {
     }
   };
 
-  reset = () => {
-    this.setState({
-      [this.props.control.fields.name]: '',
-      [CustomField.errorField]: ''
-    });
-  };
-
   render() {
     const { children, control } = this.props;
     const {
       [control.fields.name]: value,
-      [CustomField.errorField]: errorField
+      [CustomField.errorField]: errorText
     } = this.state;
 
     return children({
       controlFields: control.fields,
-      errorField,
+      errorText,
       updateValue: this.updateValue,
       value
     });

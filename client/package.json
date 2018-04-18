@@ -43,6 +43,7 @@
     "animate-css-styled-components": "0.0.20",
     "apollo-boost": "^0.1.4",
     "firebase": "^4.12.0",
+    "google-map-react": "^0.34.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "lodash-es": "^4.17.7",
