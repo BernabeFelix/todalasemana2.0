@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
 import { TextField } from 'material-ui';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
 import CustomField from '../Auth/CustomFormField/CustomField';
@@ -10,7 +9,7 @@ class SearchBox extends Component {
     const input = this.searchBoxRef;
 
     this.searchBox = new window.google.maps.places.SearchBox(input);
-    this.searchBox.addListener('places_changed', this.onPlacesChanged);
+    this.searchBox.addListener('places_changed', this.getSearchBoxPlaces);
   }
 
   componentWillUnmount() {
@@ -18,11 +17,13 @@ class SearchBox extends Component {
     window.google.maps.event.clearInstanceListeners(this.searchBox);
   }
 
-  onPlacesChanged = () => {
-    const { onPlacesChanged } = this.props;
+  getSearchBoxPlaces = () => {
+    const places = this.searchBox.getPlaces();
 
-    if (onPlacesChanged) {
-      onPlacesChanged(this.searchBox.getPlaces());
+    if (places.length) {
+      const place = places[0].formatted_address;
+
+      this.updateValue(place);
     }
   };
 
@@ -42,20 +43,31 @@ class SearchBox extends Component {
     //  todo: search for a better way to do this
     return (
       <CustomField {...props}>
-        {({ controlFields, errorText, updateValue }) => (
-          <TextField
-            {...controlFields}
-            placeholder=""
-            ref={this.setRef}
-            autoComplete="off"
-            id="custom-search-box"
-            errorText={errorText}
-            maxLength={maxLength}
-            onChange={updateValue}
-            readOnly={props.readOnly}
-            fullWidth={fullWidth}
-          />
-        )}
+        {({
+          controlFields,
+          errorText,
+          updateValue,
+          value,
+          updateDirectValue
+        }) => {
+          this.updateValue = updateDirectValue;
+
+          return (
+            <TextField
+              {...controlFields}
+              placeholder=""
+              ref={this.setRef}
+              autoComplete="off"
+              id="custom-search-box"
+              errorText={errorText}
+              maxLength={maxLength}
+              onChange={updateValue}
+              fullWidth={fullWidth}
+              readOnly={props.readOnly}
+              value={value}
+            />
+          );
+        }}
       </CustomField>
     );
   }
@@ -63,9 +75,6 @@ class SearchBox extends Component {
 
 SearchBox.defaultProps = CustomTextField.defaultProps;
 
-SearchBox.propTypes = {
-  onPlacesChanged: func.isRequired,
-  ...CustomTextField.propTypes
-};
+SearchBox.propTypes = CustomTextField.propTypes;
 
 export default SearchBox;

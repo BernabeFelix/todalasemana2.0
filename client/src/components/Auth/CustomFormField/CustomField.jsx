@@ -62,10 +62,24 @@ class CustomField extends Component {
     );
   };
 
+  updateDirectValue = value => {
+    console.log(value)
+    const { control } = this.props;
+
+    // check validation after state update
+    // to have state updated during validation
+    this.setState(
+      {
+        [control.fields.name]: value
+      },
+      this.validate
+    );
+  };
+
   validate = () => {
     const { control, onValidChange, readOnly, shouldValid } = this.props;
 
-    if(readOnly) return
+    if (readOnly) return;
 
     const required = validateRequired(
       control.fields.name,
@@ -95,8 +109,9 @@ class CustomField extends Component {
 
     return children({
       controlFields: control.fields,
-      errorText,
       updateValue: this.updateValue,
+      updateDirectValue: this.updateDirectValue,
+      errorText,
       value
     });
   }

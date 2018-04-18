@@ -14,7 +14,13 @@ import SearchBox from '../Map/SearchBox';
 //   border: 'none'
 // };
 
-const NewEditPromotion = ({ description, imgUrl, title, onSubmit }) => (
+const NewEditPromotion = ({
+  address,
+  description,
+  imgUrl,
+  title,
+  onSubmit
+}) => (
   <div className="admin-edit-promotion">
     {/* Upload Image */}
     <div className="row image-row">
@@ -69,7 +75,7 @@ const NewEditPromotion = ({ description, imgUrl, title, onSubmit }) => (
                 control={controls.address}
                 onValidChange={updateValid}
                 shouldValid={shouldValid}
-                onPlacesChanged={location => console.log(location)}
+                initialValue={address}
               />
             </div>
           </div>

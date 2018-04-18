@@ -24,9 +24,10 @@ export const Intent = {
 };
 
 export const NewPromotion = {
-  description: string,
+  address: string,
   imgUrl: string,
-  title: string
+  title: string,
+  description: string
 };
 export const PromotionDefaults = {
   company: '\u00A0'
