@@ -7,10 +7,6 @@ import withPromotions from '../common/HOC/withPromotions';
 import AdminPromotion from './AdminPromotion';
 
 class AdminPromotions extends Component {
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
   updateRoute = id => () => {
     const { match, history } = this.props;
     const currentUrl = match.url;
