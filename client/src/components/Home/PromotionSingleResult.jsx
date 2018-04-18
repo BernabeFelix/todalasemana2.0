@@ -5,7 +5,7 @@ import { Paper } from 'material-ui';
 import Chip from 'material-ui/Chip';
 import RisedButton from 'material-ui/RaisedButton';
 import ShareMenu from './ShareMenu';
-import { Promotion } from '../common/types';
+import { Promotion, PromotionDefaults } from '../common/types';
 import { getRootUrl } from '../../utils/url';
 
 const styles = {
@@ -66,6 +66,9 @@ const PromotionSingleResult = ({
   </Paper>
 );
 
+PromotionSingleResult.defaultProps = {
+  ...PromotionDefaults
+};
 PromotionSingleResult.propTypes = {
   url: func.isRequired,
   ...Promotion

@@ -96,16 +96,14 @@ class Form extends Component {
 
 Form.defaultProps = {
   className: '',
-  submitText: 'entrar',
-  successText: 'ok'
+  submitText: 'entrar'
 };
 
 Form.propTypes = {
   className: string,
   children: func.isRequired,
   onSubmit: func.isRequired,
-  submitText: string,
-  successText: string
+  submitText: string
 };
 
 export default Form;

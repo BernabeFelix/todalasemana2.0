@@ -28,13 +28,16 @@ export const NewPromotion = {
   imgUrl: string,
   title: string
 };
-
+export const PromotionDefaults = {
+  company: '\u00A0'
+};
 export const Promotion = {
   id: number.isRequired,
   description: string.isRequired,
   imgUrl: string.isRequired,
   isActive: bool.isRequired,
-  title: string.isRequired
+  title: string.isRequired,
+  company: string
 };
 
 export const Client = {
