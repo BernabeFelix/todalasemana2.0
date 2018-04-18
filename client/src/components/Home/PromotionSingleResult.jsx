@@ -21,8 +21,6 @@ const styles = {
   }
 };
 
-const getFullUrl = relativeUrl => `${getRootUrl()}${relativeUrl}`;
-
 const PromotionSingleResult = ({
   description,
   id,
@@ -35,8 +33,8 @@ const PromotionSingleResult = ({
     <div className="row">
       <div className="col-xs-12 col-sm-12">
         <h4 className="company">
-          {company.name}
-          <ShareMenu title={title} url={getFullUrl(url({ id }))} />
+          {company}
+          <ShareMenu title={title} url={`${getRootUrl()}${url({ id })}`} />
         </h4>
 
         <div className="row">
@@ -51,6 +49,7 @@ const PromotionSingleResult = ({
         <h4 className="title">
           {title}
           <Chip style={styles.chip} labelStyle={styles.chipLabel}>
+            {/* Change for the actual value from promo's properties */}
             Comida
           </Chip>
         </h4>

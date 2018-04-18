@@ -11,15 +11,16 @@ import {
   TwitterShareButton,
   WhatsappShareButton
 } from 'react-share';
+import { $gray } from '../../styles/variables';
 
 const styles = {
   shareIconStyles: {
     fontSize: '24px',
-    color: 'rgb(117, 117, 117)'
+    color: $gray
   },
   iconMenu: {
     iconStyle: {
-      color: '#757575',
+      color: $gray,
       height: '18px',
       width: '18px'
     },
