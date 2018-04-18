@@ -6,6 +6,7 @@ import CustomTextField from '../Auth/CustomFormField/CustomTextField';
 import { NewPromotion } from '../common/types';
 import SearchBox from '../Map/SearchBox';
 
+// todo: keep this until dropZone is implemented or removed
 // const dropZoneStyle = {
 //   width: 'auto',
 //   height: 'auto',

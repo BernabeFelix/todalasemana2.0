@@ -22,12 +22,12 @@ const controls = {
   },
   title: {
     errors: {
-      required: 'Ingrese un titulo'
+      required: 'Ingrese un título'
     },
     fields: {
       name: 'title',
       type: Input.text,
-      floatingLabelText: 'titulo'
+      floatingLabelText: 'título'
     }
   }
 };

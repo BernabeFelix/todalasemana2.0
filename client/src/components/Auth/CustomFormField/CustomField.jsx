@@ -86,14 +86,6 @@ class CustomField extends Component {
     }
   };
 
-  // todo: delete this reset if not used
-  reset = () => {
-    this.setState({
-      [this.props.control.fields.name]: '',
-      [CustomField.errorField]: ''
-    });
-  };
-
   render() {
     const { children, control } = this.props;
     const {
