@@ -8,12 +8,14 @@ const ref = 'promotions/';
 // todo: add userId as parameter
 // Check types/Promotion for reference
 export const addPromotion = async ({
+  address,
   title,
   description,
   isActive = true,
   imgUrl = defaultImage
 }) =>
   await database.add(ref, {
+    address,
     title,
     isActive,
     description,
@@ -24,8 +26,7 @@ export const addPromotion = async ({
 export const editPromotion = async (id, data) =>
   await database.update(ref + id, data);
 
-export const deletePromotion = async (id) =>
-    await database.remove(ref + id);
+export const deletePromotion = async id => await database.remove(ref + id);
 
 export const getPromotion = async (id, onSuccess) =>
   await database.get(ref + id, onSuccess);
