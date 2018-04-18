@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import expressValidator from 'express-validator';
-import fileUpload from 'express-fileupload';
 import routes from './routes';
 import graphqlApp from './graphql';
 
@@ -14,7 +13,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(fileUpload());
 
 // API
 
