@@ -24,6 +24,9 @@ export const addPromotion = async ({
 export const editPromotion = async (id, data) =>
   await database.update(ref + id, data);
 
+export const deletePromotion = async (id) =>
+    await database.remove(ref + id);
+
 export const getPromotion = async (id, onSuccess) =>
   await database.get(ref + id, onSuccess);
 

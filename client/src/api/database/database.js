@@ -14,6 +14,8 @@ class DataBase {
 
   static get = async (ref, onSuccess) =>
     await DataBase.database.ref(ref).once('value', onSuccess);
+
+  static remove = async ref => await DataBase.database.ref(ref).remove();
 }
 
 export default DataBase;
