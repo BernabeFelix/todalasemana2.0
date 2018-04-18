@@ -20,21 +20,15 @@ export const addPromotion = async ({
     imgUrl
   });
 
-export const editPromotion = async ({
-  title,
-  description,
-  isActive = true,
-  imgUrl = defaultImage
-}) =>
-  await database.update(ref, {
-    title,
-    isActive,
-    description,
-    imgUrl
-  });
+// todo: another function should look at the fields that actually changed not all of them
+export const editPromotion = async (id, data) => {
+  console.log(data);
+
+  await database.update(ref + id, data);
+};
 
 export const getPromotion = async (id, onSuccess) =>
-  await database.get(`${ref}${id}`, onSuccess);
+  await database.get(ref + id, onSuccess);
 
 export const getPromotions = async onSuccess =>
   await database.get(ref, onSuccess);
