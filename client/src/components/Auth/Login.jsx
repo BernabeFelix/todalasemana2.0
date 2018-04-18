@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import CustomTextField from './CustomFormField/CustomTextField';
@@ -19,8 +19,7 @@ class Login extends Component {
   }
 
   state = {
-    error: null,
-    redirect: null
+    error: null
   };
 
   handleSessionChange = user => {
@@ -64,11 +63,7 @@ class Login extends Component {
   };
 
   render() {
-    const { redirect, error, showPasswordRecovery } = this.state;
-
-    if (redirect) {
-      return <Redirect to={redirect} />;
-    }
+    const { error, showPasswordRecovery } = this.state;
 
     if (showPasswordRecovery) {
       return <PasswordRecovery cancel={this.togglePasswordRecovery} />;
