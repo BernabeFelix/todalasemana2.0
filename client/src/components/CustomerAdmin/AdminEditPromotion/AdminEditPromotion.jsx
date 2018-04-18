@@ -13,9 +13,9 @@ class AdminEditPromotion extends Component {
     try {
       await editPromotion(this.props.id, data);
 
-      this.props.openSnackBar('Guardado correctamente', Intent.SUCCESS);
+      this.props.openSnackBar(Intent.SUCCESS);
     } catch (e) {
-      this.props.openSnackBar('Sucedio un error, por favor intente de nuevo');
+      this.props.openSnackBar();
     }
   };
 

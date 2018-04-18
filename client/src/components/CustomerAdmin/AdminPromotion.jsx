@@ -6,6 +6,7 @@ import withSnackBar, { SnackBarTypes } from '../common/SnackBar/withSnackBar';
 import CustomAvatar from '../common/CustomAvatar/CustomAvatar';
 import { $blueCool, $red } from '../../styles/variables';
 import withPromotion from '../common/HOC/withPromotion';
+import { Intent } from '../common/types';
 
 const $avatarSize = 150;
 const $padding = 16;
@@ -29,7 +30,7 @@ const innerDivStyle = {
 class AdminPromotion extends Component {
   deletePromo = () => {
     //    todo: replace this by real delete
-    this.props.openSnackBar(`Promotion deleted`);
+    this.props.openSnackBar(Intent.SUCCESS, 'Promotion deleted');
   };
 
   render() {

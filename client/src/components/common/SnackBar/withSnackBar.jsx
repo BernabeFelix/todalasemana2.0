@@ -8,6 +8,9 @@ export const getDisplayName = WrappedComponent =>
 
 const withSnackBar = WrappedComponent => {
   class WithSnackBar extends React.Component {
+    static errorMsg = 'Sucedio un error, por favor intente de nuevo';
+    static successMsg = 'Guardado correctamente';
+
     state = {
       msg: '',
       open: false,
@@ -16,8 +19,17 @@ const withSnackBar = WrappedComponent => {
 
     handleRequestClose = () => this.setState({ open: false });
 
-    openSnackBar = (msg, intent = Intent.ERROR) =>
+    /* eslint-disable no-param-reassign */
+    openSnackBar = (intent = Intent.ERROR, msg) => {
+      if (!msg) {
+        msg =
+          intent === Intent.ERROR
+            ? WithSnackBar.errorMsg
+            : WithSnackBar.successMsg;
+      }
+
       this.setState({ msg, intent, open: true });
+    };
 
     render() {
       const { intent, msg, open } = this.state;
