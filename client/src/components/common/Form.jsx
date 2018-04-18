@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RaisedButton } from 'material-ui';
 import { func, string } from 'prop-types';
-import withSnackBar, { SnackBarStyles } from './SnackBar/withSnackBar';
 import { $blueCool, $red } from '../../styles/variables';
 
 class Form extends Component {
@@ -97,19 +96,14 @@ class Form extends Component {
 
 Form.defaultProps = {
   className: '',
-  submitText: 'entrar',
-  successText: 'ok'
+  submitText: 'entrar'
 };
 
 Form.propTypes = {
   className: string,
   children: func.isRequired,
   onSubmit: func.isRequired,
-  submitText: string,
-  successText: string,
-  ...SnackBarStyles
+  submitText: string
 };
 
-const FormWithSnackBar = withSnackBar(Form);
-
-export default FormWithSnackBar;
+export default Form;

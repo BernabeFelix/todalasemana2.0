@@ -5,7 +5,7 @@ import { Paper } from 'material-ui';
 import Chip from 'material-ui/Chip';
 import RisedButton from 'material-ui/RaisedButton';
 import ShareMenu from './ShareMenu';
-import { Promotion } from '../common/types';
+import { Promotion, PromotionDefaults } from '../common/types';
 import { getRootUrl } from '../../utils/url';
 
 const styles = {
@@ -13,8 +13,8 @@ const styles = {
     float: 'right'
   },
   chipLabel: {
-    fontSize: '12px',
-    lineHeight: '24px'
+    fontSize: '10px',
+    lineHeight: '20px'
   },
   buttonRoot: {
     marginRight: '1rem'
@@ -37,15 +37,12 @@ const PromotionSingleResult = ({
           <ShareMenu title={title} url={`${getRootUrl()}${url({ id })}`} />
         </h4>
 
-        <div className="row">
-          <div className="col-xs-12">
-            <Link to={url({ id })}>
-              <div className="img-container">
-                <img className="img-responsive" src={imgUrl} alt="" />
-              </div>
-            </Link>
+        <Link to={url({ id })}>
+          <div className="img-container">
+            <img className="img-responsive" src={imgUrl} alt="" />
           </div>
-        </div>
+        </Link>
+
         <h4 className="title">
           {title}
           <Chip style={styles.chip} labelStyle={styles.chipLabel}>
@@ -66,6 +63,9 @@ const PromotionSingleResult = ({
   </Paper>
 );
 
+PromotionSingleResult.defaultProps = {
+  ...PromotionDefaults
+};
 PromotionSingleResult.propTypes = {
   url: func.isRequired,
   ...Promotion

@@ -12,6 +12,21 @@ const errorStyle = {
   backgroundColor: $red
 };
 
+const defaultStyle = {
+  backgroundColor: '#000'
+};
+
+const getStyles = intent => {
+  switch (intent) {
+    case Intent.ERROR:
+      return errorStyle;
+    case Intent.SUCCESS:
+      return successStyle;
+    default:
+      return defaultStyle;
+  }
+};
+
 const CustomSnackbar = ({
   duration,
   handleRequestClose,
@@ -24,12 +39,12 @@ const CustomSnackbar = ({
     message={msg}
     autoHideDuration={duration}
     onRequestClose={handleRequestClose}
-    bodyStyle={intent === Intent.ERROR ? errorStyle : successStyle}
+    bodyStyle={getStyles(intent)}
   />
 );
 
 CustomSnackbar.defaultProps = {
-  duration: 2000,
+  duration: 4000,
   open: false
 };
 
