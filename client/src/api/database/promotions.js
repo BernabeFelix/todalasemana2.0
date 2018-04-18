@@ -21,11 +21,8 @@ export const addPromotion = async ({
   });
 
 // todo: another function should look at the fields that actually changed not all of them
-export const editPromotion = async (id, data) => {
-  console.log(data);
-
+export const editPromotion = async (id, data) =>
   await database.update(ref + id, data);
-};
 
 export const getPromotion = async (id, onSuccess) =>
   await database.get(ref + id, onSuccess);

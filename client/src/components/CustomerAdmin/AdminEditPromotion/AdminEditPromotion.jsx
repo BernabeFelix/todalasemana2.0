@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { shape, string } from 'prop-types';
 import NewEditPromotion from '../NewEditPromotion';
-import { Promotion } from '../../common/types';
+import { Intent, Promotion } from '../../common/types';
 import withPromotion from '../../common/HOC/withPromotion';
 import { editPromotion } from '../../../api/database/promotions';
+import withSnackBar, {
+  SnackBarTypes
+} from '../../common/SnackBar/withSnackBar';
 
 class AdminEditPromotion extends Component {
-  editPromotion = data => {
-    editPromotion(this.props.id, data);
+  editPromotion = async data => {
+    try {
+      await editPromotion(this.props.id, data);
+
+      this.props.openSnackBar('Guardado correctamente', Intent.SUCCESS);
+    } catch (e) {
+      this.props.openSnackBar('Sucedio un error, por favor intente de nuevo');
+    }
   };
 
   render() {
@@ -25,7 +34,8 @@ AdminEditPromotion.defaultProps = {
 
 AdminEditPromotion.propTypes = {
   id: string.isRequired,
-  promotion: shape(Promotion)
+  promotion: shape(Promotion),
+  ...SnackBarTypes
 };
 
-export default withPromotion(AdminEditPromotion);
+export default withPromotion(withSnackBar(AdminEditPromotion));

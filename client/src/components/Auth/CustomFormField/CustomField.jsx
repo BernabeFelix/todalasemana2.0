@@ -63,7 +63,6 @@ class CustomField extends Component {
   };
 
   updateDirectValue = value => {
-    console.log(value)
     const { control } = this.props;
 
     // check validation after state update

@@ -39,7 +39,6 @@ const NewEditPromotion = ({
 
     <Form
       submitText="guardar"
-      successText="Guardado correctamente"
       onSubmit={onSubmit}
     >
       {(updateValid, shouldValid) => (

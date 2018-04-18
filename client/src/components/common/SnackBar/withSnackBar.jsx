@@ -17,7 +17,7 @@ const withSnackBar = WrappedComponent => {
     handleRequestClose = () => this.setState({ open: false });
 
     openSnackBar = (msg, intent = Intent.ERROR) =>
-      this.setState({ intent, msg, open: true });
+      this.setState({ msg, intent, open: true });
 
     render() {
       const { intent, msg, open } = this.state;

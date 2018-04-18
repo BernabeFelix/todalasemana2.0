@@ -12,7 +12,8 @@ class DataBase {
   static update = async (ref, data) =>
     await DataBase.database.ref(ref).update(data);
 
-  static get = async (ref, onSuccess) => await DataBase.database.ref(ref).once('value', onSuccess);
+  static get = async (ref, onSuccess) =>
+    await DataBase.database.ref(ref).once('value', onSuccess);
 }
 
 export default DataBase;
