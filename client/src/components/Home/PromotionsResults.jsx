@@ -10,7 +10,7 @@ const PromotionsResults = ({ promotions, urlCallback }) =>
     <PromotionSingleResult
       key={promotion.id}
       url={urlCallback}
-      promotion={promotion}
+      {...promotion}
     />
   ));
 

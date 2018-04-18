@@ -7,7 +7,7 @@ const Home = () => (
   <div className="container">
     <div className="row">
       {/*  <div className="hide-xs-only col-sm-4">Login / Sign up</div>  */}
-      <div className="col-xs-12 col-sm-6">
+      <div className="col-xs-12 col-sm-6 col-md-4">
         <h2>Promociones del día</h2>
         <PromotionsResults />
       </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { func, shape } from 'prop-types';
+import { func } from 'prop-types';
 import { Paper } from 'material-ui';
 import Chip from 'material-ui/Chip';
 import RisedButton from 'material-ui/RaisedButton';
 import ShareMenu from './ShareMenu';
-import { Promotion, PromotionDefaults } from '../common/types';
+import { Promotion } from '../common/types';
 import { getRootUrl } from '../../utils/url';
 
 const styles = {
@@ -23,7 +23,11 @@ const styles = {
 
 const PromotionSingleResult = ({
   url,
-  promotion: { description, id, imgUrl, title, company }
+  description,
+  id,
+  imgUrl,
+  title,
+  company = '\u00A0'
 }) => (
   <Paper className="promotion-single-result" zDepth={2}>
     <div className="row">
@@ -34,9 +38,14 @@ const PromotionSingleResult = ({
         </h4>
 
         <Link to={url({ id })}>
-          <div className="img-container">
-            <img className="img-responsive" src={imgUrl} alt="" />
-          </div>
+          <div
+            className="img-container"
+            style={{
+              background: `url(${imgUrl}) center no-repeat`,
+              backgroundSize: 'contain',
+              height: '200px'
+            }}
+          />
         </Link>
 
         <h4 className="title">
@@ -59,13 +68,9 @@ const PromotionSingleResult = ({
   </Paper>
 );
 
-PromotionSingleResult.defaultProps = {
-  company: '\u00A0'
-};
-
 PromotionSingleResult.propTypes = {
   url: func.isRequired,
-  promotion: shape(Promotion).isRequired
+  ...Promotion
 };
 
 export default PromotionSingleResult;
