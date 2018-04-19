@@ -24,19 +24,18 @@ export const Intent = {
 };
 
 export const NewPromotion = {
+  address: string,
+  imgUrl: string,
+  title: string,
+  description: string
+};
+
+export const Promotion = {
+  id: string,
   description: string,
   imgUrl: string,
-  title: string
-};
-export const PromotionDefaults = {
-  company: '\u00A0'
-};
-export const Promotion = {
-  id: number.isRequired,
-  description: string.isRequired,
-  imgUrl: string.isRequired,
-  isActive: bool.isRequired,
-  title: string.isRequired,
+  isActive: bool,
+  title: string,
   company: string
 };
 

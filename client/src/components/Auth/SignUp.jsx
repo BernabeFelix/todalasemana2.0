@@ -5,6 +5,8 @@ import Form from '../common/Form';
 import { sleep } from './utils';
 import Auth from '../../api/auth/Auth';
 import { signInUrl } from '../../routes';
+import { createCustomer } from '../../api/database/customers';
+import SearchBox from '../Map/SearchBox';
 
 class SignUp extends Component {
   state = {
@@ -12,6 +14,7 @@ class SignUp extends Component {
     successMsg: null
   };
 
+  /* eslint-disable no-param-reassign */
   signUp = async data => {
     this.setState(
       {
@@ -23,9 +26,12 @@ class SignUp extends Component {
 
         // Try to create account
         try {
-          const { email, password } = data;
+          delete data.passwordConfirm
+
+          const { email, password, ...personalData } = data;
           const auth = new Auth();
           const res = await auth.signUp({ email, password });
+          await createCustomer({ ...personalData, email });
 
           // Show success message and invite to check the email
           this.setState({ successMsg: res.message });
@@ -73,7 +79,7 @@ class SignUp extends Component {
             </div>
             <div className="row">
               <div className="col-xs-12 col-sm-6">
-                <CustomTextField
+                <SearchBox
                   control={controls.address}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
@@ -84,6 +90,7 @@ class SignUp extends Component {
                   control={controls.zipCode}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
+                  maxLength={5}
                 />
               </div>
             </div>
@@ -93,6 +100,7 @@ class SignUp extends Component {
                   control={controls.phone}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
+                  maxLength={10}
                 />
               </div>
               <div className="col-xs-12 col-sm-6">
@@ -104,9 +112,16 @@ class SignUp extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12">
+              <div className="col-xs-12 col-sm-6">
                 <CustomTextField
                   control={controls.email}
+                  onValidChange={updateValid}
+                  shouldValid={shouldValid}
+                />
+              </div>
+              <div className="col-xs-12 col-sm-6">
+                <CustomTextField
+                  control={controls.company}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
                 />

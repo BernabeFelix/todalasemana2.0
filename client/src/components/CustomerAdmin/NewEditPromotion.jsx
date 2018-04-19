@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { RaisedButton } from 'material-ui';
+import { func } from 'prop-types';
 import controls from './AdminEditPromotion/controls';
 import Form from '../common/Form';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
@@ -13,82 +14,79 @@ import SearchBox from '../Map/SearchBox';
 //   border: 'none'
 // };
 
-class NewEditPromotion extends Component {
-  addEditPromotion = () => {};
-
-  render() {
-    const { description, imgUrl, title } = this.props;
-
-    return (
-      <div className="admin-edit-promotion">
-        {/* Upload Image */}
-        <div className="row image-row">
-          <div className="col-xs-6 image-wrapper">
-            <div
-              className="image"
-              style={{ backgroundImage: `url(${imgUrl})` }}
-            />
-          </div>
-          <div className="col-xs-6">
-            <RaisedButton
-              label="Cambiar Imagen"
-              style={{
-                margin: 12
-              }}
-            />
-          </div>
-        </div>
-
-        <Form
-          submitText="guardar"
-          successText="Guardado correctamente"
-          onSubmit={this.addEditPromotion}
-        >
-          {(updateValid, shouldValid) => (
-            <Fragment>
-              {/* Edit Title */}
-              <div className="row">
-                <div className="col-xs text-center">
-                  <CustomTextField
-                    control={controls.title}
-                    initialValue={title}
-                    onValidChange={updateValid}
-                    shouldValid={shouldValid}
-                  />
-                </div>
-              </div>
-
-              {/* Edit Description */}
-              <div className="row">
-                <div className="col-xs text-center">
-                  <CustomTextField
-                    control={controls.description}
-                    initialValue={description}
-                    onValidChange={updateValid}
-                    shouldValid={shouldValid}
-                    maxLength={200}
-                    multiLine
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs text-center">
-                  <SearchBox
-                    control={controls.address}
-                    onValidChange={updateValid}
-                    shouldValid={shouldValid}
-                    onPlacesChanged={location => console.log(location)}
-                  />
-                </div>
-              </div>
-            </Fragment>
-          )}
-        </Form>
+const NewEditPromotion = ({
+  address,
+  description,
+  imgUrl,
+  title,
+  onSubmit
+}) => (
+  <div className="admin-edit-promotion">
+    {/* Upload Image */}
+    <div className="row image-row">
+      <div className="col-xs-6 image-wrapper">
+        <div className="image" style={{ backgroundImage: `url(${imgUrl})` }} />
       </div>
-    );
-  }
-}
+      <div className="col-xs-6">
+        <RaisedButton
+          label="Cambiar Imagen"
+          style={{
+            margin: 12
+          }}
+        />
+      </div>
+    </div>
 
-NewEditPromotion.propTypes = NewPromotion;
+    <Form
+      submitText="guardar"
+      onSubmit={onSubmit}
+    >
+      {(updateValid, shouldValid) => (
+        <Fragment>
+          {/* Edit Title */}
+          <div className="row">
+            <div className="col-xs text-center">
+              <CustomTextField
+                control={controls.title}
+                initialValue={title}
+                onValidChange={updateValid}
+                shouldValid={shouldValid}
+              />
+            </div>
+          </div>
+
+          {/* Edit Description */}
+          <div className="row">
+            <div className="col-xs text-center">
+              <CustomTextField
+                control={controls.description}
+                initialValue={description}
+                onValidChange={updateValid}
+                shouldValid={shouldValid}
+                maxLength={200}
+                multiLine
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs text-center">
+              <SearchBox
+                control={controls.address}
+                onValidChange={updateValid}
+                shouldValid={shouldValid}
+                initialValue={address}
+              />
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Form>
+  </div>
+);
+
+NewEditPromotion.propTypes = {
+  onSubmit: func.isRequired,
+  ...NewPromotion
+};
 
 export default NewEditPromotion;

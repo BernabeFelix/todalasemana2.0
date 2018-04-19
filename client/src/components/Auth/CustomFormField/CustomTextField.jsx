@@ -17,6 +17,7 @@ const CustomTextField = ({ fullWidth, multiLine, maxLength, ...props }) => (
         maxLength={maxLength}
         readOnly={props.readOnly}
         fullWidth={fullWidth}
+        floatingLabelStyle={{left: 0}}
       />
     )}
   </CustomField>

@@ -1,21 +1,43 @@
-import React from 'react';
-import { string } from 'prop-types';
-import { Query } from 'react-apollo';
+import React, { Component } from 'react';
+import { func, shape, string } from 'prop-types';
 import NewEditPromotion from '../NewEditPromotion';
-import { promotionById } from '../../../api/queries';
+import { Intent, Promotion } from '../../common/types';
+import withPromotion from '../../common/HOC/withPromotion';
+import { editPromotion } from '../../../api/database/promotions';
+import withSnackBar, {
+  SnackBarTypes
+} from '../../common/SnackBar/withSnackBar';
 
-const AdminEditPromotion = nestedId => (
-  <Query query={promotionById} variables={nestedId}>
-    {({ loading, data }) => {
-      if (loading) return null;
+class AdminEditPromotion extends Component {
+  editPromotion = async data => {
+    try {
+      await editPromotion(this.props.id, data);
+      this.props.updatePromotion();
 
-      return <NewEditPromotion {...data.promotion} />;
-    }}
-  </Query>
-);
+      this.props.openSnackBar(Intent.SUCCESS);
+    } catch (e) {
+      this.props.openSnackBar();
+    }
+  };
 
-AdminEditPromotion.propTypes = {
-  id: string.isRequired
+  render() {
+    const { promotion } = this.props;
+
+    if (!promotion) return null;
+
+    return <NewEditPromotion {...promotion} onSubmit={this.editPromotion} />;
+  }
+}
+
+AdminEditPromotion.defaultProps = {
+  promotion: null
 };
 
-export default AdminEditPromotion;
+AdminEditPromotion.propTypes = {
+  id: string.isRequired,
+  promotion: shape(Promotion),
+  updatePromotion: func.isRequired,
+  ...SnackBarTypes
+};
+
+export default withPromotion(withSnackBar(AdminEditPromotion));
