@@ -37,7 +37,15 @@ class UserMenu extends Component {
           targetOrigin={{ horizontal: 'right', vertical: 'top' }}
           onRequestClose={this.closeMenu}
         >
-          {isAdmin && (
+          {isAdmin ? (
+            <AdminMenu closeMenu={this.closeMenu} logout={this.props.logout} />
+          ) : (
+            <CustomerMenu
+              closeMenu={this.closeMenu}
+              logout={this.props.logout}
+            />
+          )}
+          {/* {isAdmin && (
             <AdminMenu closeMenu={this.closeMenu} logout={this.props.logout} />
           )}
           {!isAdmin && (
@@ -45,7 +53,7 @@ class UserMenu extends Component {
               closeMenu={this.closeMenu}
               logout={this.props.logout}
             />
-          )}
+          )} */}
         </Popover>
         <div className="header-right-nav">
           <FlatButton
