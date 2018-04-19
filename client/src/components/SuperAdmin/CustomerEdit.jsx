@@ -6,7 +6,7 @@ import fakeClients from '../../api/clients';
 
 const shouldValid = false;
 
-const ClientEdit = ({ id }) => {
+const CustomerEdit = ({ id }) => {
   // todo: remove this when redux/apollo is setup
   const {
     email,
@@ -88,8 +88,8 @@ const ClientEdit = ({ id }) => {
   );
 };
 
-ClientEdit.propTypes = {
+CustomerEdit.propTypes = {
   id: string.isRequired
 };
 
-export default ClientEdit;
+export default CustomerEdit;

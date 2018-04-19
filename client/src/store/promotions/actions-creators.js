@@ -1,12 +1,11 @@
 import { createAction } from 'redux-actions';
 import { getPromotions } from '../../api/database/promotions';
+import { objToArrOfObj } from '../../utils/object';
 
 export const receivePromotions = createAction(
   'RECEIVE_PROMOTIONS',
   promotions => promotions
 );
-
-const objToArrOfObj = obj => Object.keys(obj).map(id => ({ ...obj[id], id }));
 
 export const fetchPromotions = () => async dispatch => {
   let promotions = await getPromotions();

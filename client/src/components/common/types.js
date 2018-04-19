@@ -39,16 +39,16 @@ export const Promotion = {
   company: string
 };
 
-export const Client = {
-  id: number.isRequired,
-  firstName: string.isRequired,
-  lastName: string.isRequired,
+export const Customer = {
+  id: string,
+  firstName: string,
+  lastName: string,
   address: string,
   zipCode: string,
   email: string,
   phone: string,
   service: string,
-  dateCreated: string.isRequired
+  dateCreated: string
 };
 
 export const MarkerType = {

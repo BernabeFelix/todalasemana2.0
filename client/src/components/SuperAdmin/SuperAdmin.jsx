@@ -6,8 +6,8 @@ import { clientsUrl, promotionsUrl } from '../../routes';
 import { Match, Size } from '../common/types';
 import AdminMenu from './AdminMenu';
 import AdminLayout from '../Admin/AdminLayout';
-import ClientList from './ClientList';
-import ClientEdit from './ClientEdit';
+import ClientList from './CustomerList';
+import CustomerEdit from './CustomerEdit';
 import AdminPromotions from '../CustomerAdmin/AdminPromotions';
 import AdminEditPromotion from '../CustomerAdmin/AdminEditPromotion/AdminEditPromotion';
 
@@ -69,7 +69,7 @@ class SuperAdmin extends Component {
                 <Route
                   exact={exact}
                   path={`${this.clientListPath}/:id`}
-                  render={props => <ClientEdit id={props.match.params.id} />}
+                  render={props => <CustomerEdit id={props.match.params.id} />}
                 />
                 <Route
                   exact
