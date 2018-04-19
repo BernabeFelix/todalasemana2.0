@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { shape } from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -43,10 +44,10 @@ class Header extends React.Component {
   handleSessionChange = user => {
     // For now, this line controls what menu will be shown in header (either admin or customer)
     // TODO: refactor once we have roles in backend
-    const isAdmin = true;
+    const isAdmin = false;
     this.setState({
       userName: user && user.emailVerified ? user.email : null,
-      isAdmin: user && user.emailVerified ? isAdmin : null
+      isAdmin
     });
   };
 
@@ -60,10 +61,13 @@ class Header extends React.Component {
     const auth = new Auth();
     await auth.logout();
 
-    this.setState({
-      userName: null,
-      isAdmin: null
-    });
+    this.setState(
+      {
+        userName: null,
+        isAdmin: null
+      },
+      () => this.props.history.push(signInUrl())
+    );
   };
 
   render() {
@@ -112,4 +116,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  history: shape(History).isRequired
+};
+
+export default withRouter(Header);
