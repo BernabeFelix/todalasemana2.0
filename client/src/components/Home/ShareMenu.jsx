@@ -42,7 +42,7 @@ const ShareMenu = ({ title, url }) => (
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     >
-      <FacebookShareButton url={url} quote={title} hashtag="#todalasemana.com">
+      <FacebookShareButton url={url} quote={title} hashtag="#todalasemana">
         <MenuItem
           primaryText="Facebook"
           leftIcon={
