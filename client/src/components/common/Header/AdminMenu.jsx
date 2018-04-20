@@ -10,7 +10,6 @@ import Account from 'material-ui/svg-icons/action/account-box';
 import ClientList from 'material-ui/svg-icons/action/supervisor-account';
 import { $red } from '../../../styles/variables';
 import {
-  signInUrl,
   superAdminPromosUrl,
   superAdminClientsUrl,
   adminAccountUrl
@@ -18,27 +17,29 @@ import {
 
 const AdminMenu = ({ closeMenu, logout }) => (
   <Menu>
-    <MenuItem
-      containerElement={<Link to={superAdminPromosUrl()} />}
-      primaryText="Promociones"
-      leftIcon={<List />}
-      onClick={closeMenu}
-    />
-    <MenuItem
-      containerElement={<Link to={superAdminClientsUrl()} />}
-      primaryText="Clientes"
-      leftIcon={<ClientList />}
-      onClick={closeMenu}
-    />
-    <MenuItem
-      containerElement={<Link to={adminAccountUrl()} />}
-      primaryText="Cuenta"
-      leftIcon={<Account />}
-      onClick={closeMenu}
-    />
+    <Link to={superAdminPromosUrl()}>
+      <MenuItem
+        primaryText="Promociones"
+        leftIcon={<List />}
+        onClick={closeMenu}
+      />
+    </Link>
+    <Link to={superAdminClientsUrl()}>
+      <MenuItem
+        primaryText="Clientes"
+        leftIcon={<ClientList />}
+        onClick={closeMenu}
+      />
+    </Link>
+    <Link to={adminAccountUrl()}>
+      <MenuItem
+        primaryText="Cuenta"
+        leftIcon={<Account />}
+        onClick={closeMenu}
+      />
+    </Link>
     <Divider />
     <MenuItem
-      containerElement={<Link to={signInUrl()} />}
       primaryText="Salir"
       leftIcon={<Power color={$red} />}
       onClick={logout}
