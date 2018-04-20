@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Auth from '../../../api/auth/Auth';
+import { getCustomerByEmail } from '../../../api/database/customers';
 import UserMenu from './UserMenu';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
@@ -41,14 +42,25 @@ class Header extends React.Component {
     userName: null
   };
 
-  handleSessionChange = user => {
-    // For now, this line controls what menu will be shown in header (either admin or customer)
-    // TODO: refactor once we have roles in backend
-    const isAdmin = false;
-    this.setState({
-      userName: user && user.emailVerified ? user.email : null,
-      isAdmin
-    });
+  handleSessionChange = async user => {
+    console.log(user);
+    if (user && user.emailVerified) {
+      console.log('FETCH USER');
+      // Fetch user data
+      const theUser = await getCustomerByEmail(user.email);
+      console.log(theUser);
+      if (!theUser) {
+        console.log('User not found in database...');
+        return;
+      }
+
+      // For now, this line controls what menu will be shown in header (either admin or customer)
+      theUser.isAdmin = false; // TODO: refactor once we have roles in backend
+      this.setState({
+        userName: theUser.firstName,
+        isAdmin: theUser.isAdmin
+      });
+    }
   };
 
   toggleDrawer = () => {
