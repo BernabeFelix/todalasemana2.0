@@ -1,13 +1,16 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { shape, string } from 'prop-types';
+import { connect } from 'react-redux';
 import controls from '../Auth/controls';
 import CustomTextField from '../Auth/CustomFormField/CustomTextField';
-import fakeClients from '../../api/clients';
+import { fetchCustomer } from '../../store/customers/actions-creators';
+import { Customer } from '../common/types';
 
 const shouldValid = false;
 
-const CustomerEdit = ({ id }) => {
-  // todo: remove this when redux/apollo is setup
+const CustomerEdit = ({ customer }) => {
+  if (!customer) return null;
+
   const {
     email,
     phone,
@@ -16,7 +19,7 @@ const CustomerEdit = ({ id }) => {
     service,
     lastName,
     firstName
-  } = fakeClients.find(client => client.id === parseInt(id, 10));
+  } = customer;
 
   return (
     <div style={{ backgroundColor: 'white', padding: 20 }}>
@@ -89,7 +92,15 @@ const CustomerEdit = ({ id }) => {
 };
 
 CustomerEdit.propTypes = {
-  id: string.isRequired
+  /* eslint-disable-next-line react/no-unused-prop-types */
+  id: string.isRequired,
+  customer: shape(Customer).isRequired
 };
 
-export default CustomerEdit;
+export default connect(
+  (state, { id }) =>
+    state.customers.data.length
+      ? { customer: state.customers.data.find(customer => customer.id === id) }
+      : { customer: {} },
+  { fetchCustomer }
+)(CustomerEdit);
