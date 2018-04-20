@@ -13,7 +13,7 @@ export const $red = '#ee3335';
 export const $white = '#ffffff';
 export const $black = '#000000';
 export const $grayBg = '#f2f2f2';
-export const $gray = '#757575'
+export const $gray = '#757575';
 
 // sizes
 export const $headerHeight = '64px';
