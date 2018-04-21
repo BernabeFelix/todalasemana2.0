@@ -18,31 +18,35 @@ import {
 
 const CustomerMenu = ({ closeMenu, logout }) => (
   <Menu>
-    <MenuItem
-      containerElement={<Link to={adminNewPromoUrl()} />}
-      primaryText="Nueva promoción"
-      leftIcon={<Add color={$blueCool} />}
-      onClick={closeMenu}
-    />
-    <MenuItem
-      containerElement={<Link to={adminPromotionsUrl()} />}
-      primaryText="Promociones"
-      leftIcon={<List />}
-      onClick={closeMenu}
-    />
-    <MenuItem
-      containerElement={<Link to={adminAccountUrl()} />}
-      primaryText="Cuenta"
-      leftIcon={<Account />}
-      onClick={closeMenu}
-    />
+    <Link to={adminNewPromoUrl()}>
+      <MenuItem
+        primaryText="Nueva promoción"
+        leftIcon={<Add color={$blueCool} />}
+        onClick={closeMenu}
+      />
+    </Link>
+    <Link to={adminPromotionsUrl()}>
+      <MenuItem
+        primaryText="Promociones"
+        leftIcon={<List />}
+        onClick={closeMenu}
+      />
+    </Link>
+    <Link to={adminAccountUrl()}>
+      <MenuItem
+        primaryText="Cuenta"
+        leftIcon={<Account />}
+        onClick={closeMenu}
+      />
+    </Link>
     <Divider />
-    <MenuItem
-      containerElement={<Link to={signInUrl()} />}
-      primaryText="Salir"
-      leftIcon={<Power color={$red} />}
-      onClick={logout}
-    />
+    <Link to={signInUrl()}>
+      <MenuItem
+        primaryText="Salir"
+        leftIcon={<Power color={$red} />}
+        onClick={logout}
+      />
+    </Link>
   </Menu>
 );
 
