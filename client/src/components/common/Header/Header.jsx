@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Auth from '../../../api/auth/Auth';
-import { getCustomerByEmail } from '../../../api/database/customers';
 import UserMenu from './UserMenu';
 import SideNav from '../SideNav/SideNav';
 import Day from './Day';
@@ -38,27 +37,13 @@ class Header extends React.Component {
   }
 
   state = {
-    sideNavOpen: false,
-    userName: null
+    sideNavOpen: false
   };
 
   handleSessionChange = async user => {
-    console.log(user);
     if (user && user.emailVerified) {
-      console.log('FETCH USER');
-      // Fetch user data
-      const theUser = await getCustomerByEmail(user.email);
-      console.log(theUser);
-      if (!theUser) {
-        console.log('User not found in database...');
-        return;
-      }
-
-      // For now, this line controls what menu will be shown in header (either admin or customer)
-      theUser.isAdmin = false; // TODO: refactor once we have roles in backend
       this.setState({
-        userName: theUser.firstName,
-        isAdmin: theUser.isAdmin
+        userEmail: user.email
       });
     }
   };
@@ -75,15 +60,14 @@ class Header extends React.Component {
 
     this.setState(
       {
-        userName: null,
-        isAdmin: null
+        userEmail: null
       },
       () => this.props.history.push(signInUrl())
     );
   };
 
   render() {
-    const { userName, isAdmin } = this.state;
+    const { userEmail } = this.state;
     return (
       <Fragment>
         <AppBar
@@ -106,12 +90,8 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              {userName ? (
-                <UserMenu
-                  userName={userName}
-                  isAdmin={isAdmin}
-                  logout={this.logout}
-                />
+              {userEmail ? (
+                <UserMenu email={userEmail} logout={this.logout} />
               ) : (
                 <SignIn />
               )}

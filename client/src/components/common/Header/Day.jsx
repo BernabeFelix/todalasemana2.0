@@ -12,6 +12,7 @@ const Day = props => (
         className="header-right-nav-btn"
         hoverColor="transparent"
         rippleColor="transparent !important"
+        labelStyle={{ fontSize: 12 }}
       />
     </Link>
     {props.showDivider ? (

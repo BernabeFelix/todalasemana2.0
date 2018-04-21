@@ -8,13 +8,4 @@ export const createCustomer = async data => {
   await DataBase.add(ref, newCustomer);
 };
 
-export const getCustomerByEmail = async (email, onSuccess) => {
-  const refObj = DataBase.getRef(ref);
-  const res = await refObj
-    .orderByChild('email')
-    .equalTo(email)
-    .once('value', onSuccess);
-  return res;
-};
-
 export const getAllCustomers = async () => await DataBase.get(ref);
