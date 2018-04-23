@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const validateRequired = (field, fieldErrorText, state, errors) => {
   const toUpdate = {};
   let isValid = true;
@@ -20,3 +22,6 @@ export const validateRequired = (field, fieldErrorText, state, errors) => {
 
 export const sleep = async ms =>
   new Promise(resolve => setTimeout(resolve, ms));
+
+/* eslint-disable no-restricted-globals */
+export const getParam = param => qs.parse(location.search)[param];

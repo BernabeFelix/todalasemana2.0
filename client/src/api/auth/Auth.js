@@ -92,6 +92,36 @@ class Auth {
     }
   };
 
+  confirmEmailAddress = async code => {
+    try {
+      await Auth.auth.sendapplyActionCode(code);
+    } catch (error) {
+      let err = errors.getErrorMessageForCode(error.code);
+      if (!err) err = errors.internalError;
+      throw err;
+    }
+  };
+
+  verifyPasswordResetCode = async code => {
+    try {
+      await Auth.auth.verifyPasswordResetCode(code);
+    } catch (error) {
+      let err = errors.getErrorMessageForCode(error.code);
+      if (!err) err = errors.internalError;
+      throw err;
+    }
+  };
+
+  changePassword = async (code, password) => {
+    try {
+      await Auth.auth.confirmPasswordReset(code, password);
+    } catch (error) {
+      let err = errors.getErrorMessageForCode(error.code);
+      if (!err) err = errors.internalError;
+      throw err;
+    }
+  };
+
   getCurrentUser = async () => {
     const user = Auth.auth.currentUser;
     return user;
