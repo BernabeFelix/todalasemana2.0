@@ -1,15 +1,13 @@
 import FirebaseApp from './FirebaseApp';
 import { signInUrl } from '../../routes';
 import errors from './errors';
+import { getRootUrl } from '../../utils/url';
 
 class Auth {
   // This is a private property
   static auth = FirebaseApp.auth();
 
-  // TODO: take from settings.json at root from branch ps/shares
-  continueUrlHome = 'http://localhost:8080';
-
-  signInUrl = `${this.continueUrlHome}/${signInUrl}`;
+  signInUrl = `${getRootUrl()}${signInUrl()}`;
 
   signUp = async data => {
     let user = Auth.auth.currentUser;
@@ -25,7 +23,7 @@ class Auth {
 
     user = Auth.auth.currentUser;
     try {
-      const actionCodeSettings = { url: this.continueUrlHome };
+      const actionCodeSettings = { url: this.signInUrl };
       await user.sendEmailVerification(actionCodeSettings);
     } catch (error) {
       // Unknown error codes? didn't find in js reference, so rolling back and throwing generic error
@@ -77,7 +75,7 @@ class Auth {
 
   sendRecoveryEmail = async email => {
     try {
-      const actionCodeSettings = { url: this.continueUrlHome };
+      const actionCodeSettings = { url: this.signInUrl };
       await Auth.auth.sendPasswordResetEmail(email, actionCodeSettings);
     } catch (error) {
       // The following are not user facing errors, so will throw internal error...
