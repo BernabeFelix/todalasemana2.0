@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { string, bool, func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import { withRouter } from 'react-router-dom';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
+import withCustomer from '../HOC/withCustomer';
 import CustomerMenu from './CustomerMenu';
 import AdminMenu from './AdminMenu';
 import { $blueCool, $red } from '../../../styles/variables';
+import { Customer } from '../types';
 
 class UserMenu extends Component {
   state = {
@@ -27,8 +29,9 @@ class UserMenu extends Component {
   };
 
   render() {
-    const { userName, isAdmin } = this.props;
-
+    const { customer } = this.props;
+    customer.isAdmin = true; // TODO change for the actual value from database once it is implemented
+    const { firstName, isAdmin } = customer;
     return (
       <Fragment>
         <Popover
@@ -49,12 +52,13 @@ class UserMenu extends Component {
         </Popover>
         <div className="header-right-nav">
           <FlatButton
-            label={userName}
+            label={firstName}
             className="header-right-nav-btn"
             hoverColor="transparent"
             rippleColor="transparent !important"
             labelPosition="before"
             icon={<AccountCircle color={$blueCool} hoverColor={$red} />}
+            labelStyle={{ fontSize: 12 }}
             onClick={this.openMenu}
           />
         </div>
@@ -63,14 +67,9 @@ class UserMenu extends Component {
   }
 }
 
-UserMenu.defaultProps = {
-  isAdmin: false
-};
-
 UserMenu.propTypes = {
-  userName: string.isRequired,
-  isAdmin: bool,
+  customer: shape(Customer).isRequired,
   logout: func.isRequired
 };
 
-export default withRouter(UserMenu);
+export default withCustomer(withRouter(UserMenu));
