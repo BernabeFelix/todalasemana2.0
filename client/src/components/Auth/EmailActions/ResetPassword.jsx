@@ -20,10 +20,9 @@ class ResetPassword extends Component {
 
     try {
       const { password } = data;
-      console.log(password);
       const auth = new Auth();
       const { code } = this.props;
-      await auth.confirmPasswordResetCode(code, password);
+      await auth.changePassword(code, password);
       this.setState({
         successMsg: 'Tu contraseña se actualizó correctamente.'
       });
@@ -44,7 +43,7 @@ class ResetPassword extends Component {
           <div className="col-xs-12">
             <div className="alert alert-info alert-small">{successMsg}</div>
             <Link to={signInUrl()}>
-              <RaisedButton label="Continuar" />
+              <RaisedButton label="Continuar" primary fullWidth />
             </Link>
           </div>
         </div>
@@ -73,7 +72,7 @@ class ResetPassword extends Component {
             <div className="row">
               <div className="col-xs-12">
                 <CustomTextField
-                  control={controls.user}
+                  control={controls.password}
                   onValidChange={updateValid}
                   shouldValid={shouldValid}
                 />

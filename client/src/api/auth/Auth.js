@@ -1,13 +1,13 @@
 import FirebaseApp from './FirebaseApp';
 import { signInUrl } from '../../routes';
 import errors from './errors';
+import { getRootUrl } from '../../utils/url';
 
 class Auth {
   // This is a private property
   static auth = FirebaseApp.auth();
 
-  // TODO: take from settings.json at root from branch ps/shares
-  continueUrlHome = 'http://localhost:8080';
+  continueUrlHome = getRootUrl();
 
   signInUrl = `${this.continueUrlHome}/${signInUrl}`;
 
@@ -94,7 +94,7 @@ class Auth {
 
   confirmEmailAddress = async code => {
     try {
-      await Auth.auth.sendapplyActionCode(code);
+      await Auth.auth.applyActionCode(code);
     } catch (error) {
       let err = errors.getErrorMessageForCode(error.code);
       if (!err) err = errors.internalError;
@@ -104,7 +104,7 @@ class Auth {
 
   verifyPasswordResetCode = async code => {
     try {
-      await Auth.auth.verifyPasswordResetCode(code);
+      return await Auth.auth.verifyPasswordResetCode(code);
     } catch (error) {
       let err = errors.getErrorMessageForCode(error.code);
       if (!err) err = errors.internalError;

@@ -60,8 +60,8 @@ a {
 .paper {
   padding: 15px 20px;
 }
-// Text colors
 .text {
+  // Text colors
   &-white {
     color: $white;
   }
@@ -75,11 +75,17 @@ a {
   &-danger {
     color: $errorColor;
   }
+
+  // text align
+  &-center {
+    text-align: center;
+  }
 }
 
 /* alerts */
 .alert {
   padding: 1rem;
+  margin-bottom: 1rem;
   &.alert-small {
     padding: 0.5rem;
     font-size: 14px;
