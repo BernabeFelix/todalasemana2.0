@@ -37,18 +37,15 @@ class Header extends React.Component {
   }
 
   state = {
-    sideNavOpen: false,
-    userName: null
+    sideNavOpen: false
   };
 
-  handleSessionChange = user => {
-    // For now, this line controls what menu will be shown in header (either admin or customer)
-    // TODO: refactor once we have roles in backend
-    const isAdmin = false;
-    this.setState({
-      userName: user && user.emailVerified ? user.email : null,
-      isAdmin
-    });
+  handleSessionChange = async user => {
+    if (user && user.emailVerified) {
+      this.setState({
+        userEmail: user.email
+      });
+    }
   };
 
   toggleDrawer = () => {
@@ -63,15 +60,14 @@ class Header extends React.Component {
 
     this.setState(
       {
-        userName: null,
-        isAdmin: null
+        userEmail: null
       },
       () => this.props.history.push(signInUrl())
     );
   };
 
   render() {
-    const { userName, isAdmin } = this.state;
+    const { userEmail } = this.state;
     return (
       <Fragment>
         <AppBar
@@ -94,12 +90,8 @@ class Header extends React.Component {
                 <Day dayName="sabado" showDivider />
                 <Day dayName="domingo" />
               </div>
-              {userName ? (
-                <UserMenu
-                  userName={userName}
-                  isAdmin={isAdmin}
-                  logout={this.logout}
-                />
+              {userEmail ? (
+                <UserMenu email={userEmail} logout={this.logout} />
               ) : (
                 <SignIn />
               )}

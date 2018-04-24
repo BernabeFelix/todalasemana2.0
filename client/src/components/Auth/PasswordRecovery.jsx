@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { func } from 'prop-types';
 import Form from '../common/Form';
 import CustomTextField from './CustomFormField/CustomTextField';
@@ -60,11 +60,10 @@ class PasswordRecovery extends Component {
 
             <div className="row">
               <div className="col-xs-12">
-                <FlatButton
+                <RaisedButton
                   label="Cancelar"
                   className="recover-password cancel"
-                  hoverColor="transparent"
-                  rippleColor="transparent"
+                  fullWidth
                   onClick={this.props.cancel}
                 />
               </div>

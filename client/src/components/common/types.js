@@ -48,7 +48,7 @@ export const Customer = {
   email: string,
   phone: string,
   service: string,
-  dateCreated: string
+  dateCreated: number
 };
 
 export const MarkerType = {
