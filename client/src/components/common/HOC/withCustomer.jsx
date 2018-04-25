@@ -6,9 +6,6 @@ import { getDisplayName } from '../SnackBar/withSnackBar';
 import withCustomers from './withCustomers';
 
 const getCustomer = (state, { email }) => {
-  console.log('getcustomer');
-  console.log(state);
-  console.log(email);
   const cust = state.customers.data.length
     ? {
         customer: state.customers.data.find(
@@ -16,7 +13,6 @@ const getCustomer = (state, { email }) => {
         )
       }
     : { customer: {} };
-  console.log(cust);
   return cust;
 };
 
