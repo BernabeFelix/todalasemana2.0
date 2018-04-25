@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import FA from 'react-fontawesome';
-import { getQueryStringParam, sleep } from '../utils';
+import { getQueryStringParam } from '../utils';
 import Auth from '../../../api/auth/Auth';
 import { signInUrl } from '../../../routes';
 import ResetPassword from './ResetPassword';
@@ -37,7 +36,6 @@ class ActionHandler extends Component {
   }
 
   async componentWillMount() {
-    await sleep(1000);
     // if state has an error already from constructor, do nothing but show it
     if (this.state.errorMsg) return;
 
@@ -83,14 +81,7 @@ class ActionHandler extends Component {
       );
     } else if (mode === 'resetPassword' && email) {
       toRender = <ResetPassword code={code} email={email} />;
-    } else {
-      toRender = (
-        <div className="loader">
-          <FA name="circle-o-notch" className="" spin size="3x" />
-          <p>Validando</p>
-        </div>
-      );
-    }
+    } else toRender = null;
 
     return (
       <div className="row">
