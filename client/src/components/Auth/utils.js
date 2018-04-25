@@ -24,4 +24,4 @@ export const sleep = async ms =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 /* eslint-disable no-restricted-globals */
-export const getParam = param => qs.parse(location.search)[param];
+export const getQueryStringParam = param => qs.parse(location.search)[param];

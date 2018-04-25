@@ -3,23 +3,20 @@ import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import FA from 'react-fontawesome';
-import { getParam, sleep } from '../utils';
+import { getQueryStringParam, sleep } from '../utils';
 import Auth from '../../../api/auth/Auth';
 import { signInUrl } from '../../../routes';
 import ResetPassword from './ResetPassword';
 
-const boxStyles = {
-  padding: '1rem'
-};
+const invalidLinkError = 'El enlace no es válido.';
 
 class ActionHandler extends Component {
   constructor(props) {
     super(props);
-    const mode = getParam('mode');
-    const code = getParam('oobCode');
-    let error = null;
+    const mode = getQueryStringParam('mode');
+    const code = getQueryStringParam('oobCode');
+    let errorMsg = null;
     let title;
-    if (!mode || !code) error = 'El enlace de recuperación no es válido.';
     switch (mode) {
       case 'verifyEmail':
         title = 'Confirmación de correo';
@@ -27,22 +24,23 @@ class ActionHandler extends Component {
       case 'resetPassword':
         title = 'Restablecer contraseña';
         break;
-      case 'recoverEmail':
+      case 'recoverEmail': // TODO: handle email recovery
       default:
-        // TODO: handle email recovery
         title = 'Error';
-        error = 'Ocurrió un error inesperado.';
+        errorMsg = invalidLinkError;
         break;
     }
-    this.state = { mode, code, title, error };
+
+    if (!code && !errorMsg) errorMsg = invalidLinkError;
+
+    this.state = { mode, code, title, errorMsg };
   }
 
   async componentWillMount() {
     await sleep(1000);
-    if (this.state.error) {
-      this.setState({ errorMsg: this.state.error });
-      return;
-    }
+    // if state has an error already from constructor, do nothing but show it
+    if (this.state.errorMsg) return;
+
     const auth = new Auth();
     const { mode, code } = this.state;
     try {
@@ -51,18 +49,15 @@ class ActionHandler extends Component {
         case 'verifyEmail':
           await auth.confirmEmailAddress(code);
           this.setState({
-            title: 'Confirmación de correo',
             successMsg: '¡Tu cuenta ha sido activada exitosamente!'
           });
           break;
         case 'resetPassword':
           // Validate code and get email address
           email = await auth.verifyPasswordResetCode(code);
-          this.setState({ email, title: 'Restablecer contraseña' });
+          this.setState({ email });
           break;
-        case 'recoverEmail':
-          // TODO: handle email recovery
-          break;
+        case 'recoverEmail': // TODO: handle email recovery
         default:
           break;
       }
@@ -74,19 +69,13 @@ class ActionHandler extends Component {
   render() {
     const { mode, code, title, email, errorMsg, successMsg } = this.state;
     let toRender = null;
-    if (successMsg) {
+    if (successMsg || errorMsg) {
+      const alertClasses = `alert alert-${
+        successMsg ? 'info' : 'error'
+      } alert-small`;
       toRender = (
         <Fragment>
-          <div className="alert alert-info alert-small">{successMsg}</div>
-          <Link to={signInUrl()}>
-            <RaisedButton label="Continuar" primary fullWidth />
-          </Link>
-        </Fragment>
-      );
-    } else if (errorMsg) {
-      toRender = (
-        <Fragment>
-          <div className="alert alert-error alert-small">{errorMsg}</div>
+          <div className={alertClasses}>{successMsg || errorMsg}</div>
           <Link to={signInUrl()}>
             <RaisedButton label="Continuar" primary fullWidth />
           </Link>
@@ -106,7 +95,12 @@ class ActionHandler extends Component {
     return (
       <div className="row">
         <div className="col-xs-12 col-sm-offset-5 col-sm-3">
-          <Paper zDepth={2} style={boxStyles}>
+          <Paper
+            zDepth={2}
+            style={{
+              padding: '1rem'
+            }}
+          >
             <h3 className="text-center">{title}</h3>
             <div className="logo" />
             <div className="row">

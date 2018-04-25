@@ -6,7 +6,6 @@ import { string } from 'prop-types';
 import Form from '../../common/Form';
 import CustomTextField from '../CustomFormField/CustomTextField';
 import controls from '../controls';
-import { sleep } from '../utils';
 import Auth from '../../../api/auth/Auth';
 import { signInUrl } from '../../../routes';
 
@@ -15,8 +14,6 @@ class ResetPassword extends Component {
 
   resetPassword = async data => {
     this.setState({ error: null });
-
-    await sleep(300); // just to fake load time
 
     try {
       const { password } = data;
