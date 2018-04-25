@@ -14,6 +14,8 @@ export const $white = '#ffffff';
 export const $black = '#000000';
 export const $grayBg = '#f2f2f2';
 export const $gray = '#757575';
+export const $mute = '#9e9e9e';
+export const $errorColor = '#d50000';
 
 // sizes
 export const $headerHeight = '64px';
