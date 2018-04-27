@@ -5,12 +5,14 @@ import {
   homeUrl,
   signInUrl,
   signUpUrl,
-  superAdminUrl
+  superAdminUrl,
+  emailActionHandlerUrl
 } from '../routes';
 import Auth from './Auth/Auth';
 import Home from './Home/Home';
 import CustomerAdmin from './CustomerAdmin/CustomerAdmin';
 import SuperAdmin from './SuperAdmin/SuperAdmin';
+import ActionHandler from './Auth/EmailActions/ActionHandler';
 
 const Content = () => (
   <main className="main">
@@ -20,6 +22,7 @@ const Content = () => (
       <Route path={signUpUrl()} component={Auth} />
       <Route path={adminUrl()} component={CustomerAdmin} />
       <Route path={superAdminUrl()} component={SuperAdmin} />
+      <Route path={emailActionHandlerUrl()} component={ActionHandler} />
     </Switch>
   </main>
 );

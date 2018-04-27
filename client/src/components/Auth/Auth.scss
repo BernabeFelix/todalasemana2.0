@@ -33,3 +33,11 @@
     margin: auto;
   }
 }
+
+.loader {
+  color: $mute;
+  text-align: center;
+  > p {
+    margin-top: 1rem;
+  }
+}

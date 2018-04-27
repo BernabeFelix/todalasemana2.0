@@ -33,6 +33,14 @@ const fireBaseErrors = [
   {
     code: 'auth/email-already-in-use',
     message: 'La dirección de correo electrónico no está disponible.'
+  },
+  {
+    code: 'auth/expired-action-code',
+    message: 'El enlace de recuperación expiró.'
+  },
+  {
+    code: 'auth/invalid-action-code',
+    message: 'El enlace de recuperación no es válido.'
   }
 ];
 const errors = {

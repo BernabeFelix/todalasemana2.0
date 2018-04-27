@@ -29,6 +29,7 @@ export const superAdminPromosUrl = r('/super-admin/promociones');
 export const superAdminClientsUrl = r('/super-admin/clientes');
 
 export const accountUrl = r('/cuenta');
+export const emailActionHandlerUrl = r('/cuentas');
 
 export const adminAccountUrl = r('/admin/cuenta');
 
